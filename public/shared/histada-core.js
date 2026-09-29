@@ -2543,6 +2543,49 @@
       border-color: #cbd5e1 !important;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
     }
+    .matrix-bottom-row article {
+      background: linear-gradient(135deg, #ffffff, #f8fafc) !important;
+      background-image: none !important;
+      border-color: #d9b25a !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07) !important;
+      color: #1e293b !important;
+    }
+    .matrix-bottom-row article h2 {
+      color: #78350f !important;
+    }
+    .matrix-bottom-row article span:not(.tag) {
+      color: #b45309 !important;
+    }
+    .matrix-bottom-row article p {
+      color: #334155 !important;
+    }
+    .matrix-bottom-row article p strong {
+      color: #0f172a !important;
+    }
+    .matrix-bottom-row article p span {
+      color: #475569 !important;
+    }
+    .matrix-bottom-row article div[style*="width:64px"] {
+      background: #fffbeb !important;
+      border-color: #d9b25a !important;
+      box-shadow: 0 4px 14px rgba(180, 83, 9, 0.15) !important;
+    }
+    .matrix-bottom-row article svg polygon {
+      stroke: #b45309 !important;
+    }
+    .matrix-bottom-row article svg text {
+      fill: #78350f !important;
+    }
+    .matrix-bottom-row article .tag {
+      background: #fffbeb !important;
+      border-color: #d9b25a !important;
+      color: #78350f !important;
+    }
+    .matrix-bottom-row article .tag[style*="#2c8f99"] {
+      background: #f0fdf4 !important;
+      border-color: #0d6c78 !important;
+      color: #0d6c78 !important;
+    }
     .modal, .histada-modal-backdrop, .dist-modal-overlay, .h-social-modal-overlay {
       background: rgba(241, 245, 249, 0.88) !important;
       backdrop-filter: blur(8px) !important;

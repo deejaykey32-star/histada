@@ -678,6 +678,49 @@ html[data-theme="light"] .histada-exit-modal-card {
   border-color: #cbd5e1 !important;
 }
 
+html[data-theme="light"] .matrix-bottom-row article {
+  background: linear-gradient(135deg, #ffffff, #f8fafc) !important;
+  border-color: #d9b25a !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07) !important;
+  color: #1e293b !important;
+}
+html[data-theme="light"] .matrix-bottom-row article h2 {
+  color: #78350f !important;
+}
+html[data-theme="light"] .matrix-bottom-row article span:not(.tag) {
+  color: #b45309 !important;
+}
+html[data-theme="light"] .matrix-bottom-row article p {
+  color: #334155 !important;
+}
+html[data-theme="light"] .matrix-bottom-row article p strong {
+  color: #0f172a !important;
+}
+html[data-theme="light"] .matrix-bottom-row article p span {
+  color: #475569 !important;
+}
+html[data-theme="light"] .matrix-bottom-row article div[style*="width:64px"] {
+  background: #fffbeb !important;
+  border-color: #d9b25a !important;
+  box-shadow: 0 4px 14px rgba(180, 83, 9, 0.15) !important;
+}
+html[data-theme="light"] .matrix-bottom-row article svg polygon {
+  stroke: #b45309 !important;
+}
+html[data-theme="light"] .matrix-bottom-row article svg text {
+  fill: #78350f !important;
+}
+html[data-theme="light"] .matrix-bottom-row article .tag {
+  background: #fffbeb !important;
+  border-color: #d9b25a !important;
+  color: #78350f !important;
+}
+html[data-theme="light"] .matrix-bottom-row article .tag[style*="#2c8f99"] {
+  background: #f0fdf4 !important;
+  border-color: #0d6c78 !important;
+  color: #0d6c78 !important;
+}
+
 html[data-theme="light"] .fact,
 html[data-theme="light"] .storybox,
 html[data-theme="light"] .st-text-box,
