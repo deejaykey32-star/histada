@@ -618,7 +618,7 @@ html[data-theme="light"], body[data-theme="light"] {
   --h-ink: #0f172a;
   --h-muted: #475569;
   --h-gold: #d97706;
-  --h-gold2: #b45309;
+  --h-gold2: #92400e;
   --h-teal: #0284c7;
   --h-cyan: #0d9488;
   --h-green: #16a34a;
@@ -627,82 +627,146 @@ html[data-theme="light"], body[data-theme="light"] {
   color: #0f172a !important;
 }
 
+/* Page containers & Cards */
+html[data-theme="light"] body,
+html[data-theme="light"] #app,
+html[data-theme="light"] .app,
+html[data-theme="light"] .hud,
+html[data-theme="light"] .card,
+html[data-theme="light"] .pane,
+html[data-theme="light"] .facts,
+html[data-theme="light"] .fact,
+html[data-theme="light"] .storybox,
+html[data-theme="light"] .gfx,
+html[data-theme="light"] .ach,
+html[data-theme="light"] #cBody,
+html[data-theme="light"] #lBody,
+html[data-theme="light"] #rBody,
+html[data-theme="light"] .rules-box,
+html[data-theme="light"] .mode-card,
+html[data-theme="light"] .feature-card,
+html[data-theme="light"] .dialog,
+html[data-theme="light"] .modal-card,
 html[data-theme="light"] .histada-story-card,
 html[data-theme="light"] .histada-scanner-card,
 html[data-theme="light"] .histada-quiz-card,
 html[data-theme="light"] .histada-exit-modal-card {
-  background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
+  background-color: #ffffff !important;
   color: #0f172a !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12) !important;
-}
-
-html[data-theme="light"] .story-header,
-html[data-theme="light"] .scanner-header,
-html[data-theme="light"] .quiz-header,
-html[data-theme="light"] .hem-header {
-  background: rgba(217, 119, 6, 0.08) !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-}
-
-html[data-theme="light"] .story-body,
-html[data-theme="light"] .st-text-box,
-html[data-theme="light"] .story-tts-bar,
-html[data-theme="light"] .quiz-explain,
-html[data-theme="light"] .hem-link-btn {
-  background: #f1f5f9 !important;
   border-color: #cbd5e1 !important;
+}
+
+html[data-theme="light"] .fact,
+html[data-theme="light"] .storybox,
+html[data-theme="light"] .st-text-box,
+html[data-theme="light"] .explain,
+html[data-theme="light"] .note,
+html[data-theme="light"] .pane,
+html[data-theme="light"] .kv,
+html[data-theme="light"] .bar {
+  background-color: #f1f5f9 !important;
+  color: #1e293b !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Headings & Text readability in Light Mode */
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] h5,
+html[data-theme="light"] h6,
+html[data-theme="light"] .qtext,
+html[data-theme="light"] .quiz-qtext,
+html[data-theme="light"] .story-titles h2,
+html[data-theme="light"] .scanner-title,
+html[data-theme="light"] .hem-header h3,
+html[data-theme="light"] .hero h2,
+html[data-theme="light"] .modal h2,
+html[data-theme="light"] .modal h3 {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] p,
+html[data-theme="light"] span:not(.k):not(.badge):not(.edition-r-badge):not(.edition-std-badge),
+html[data-theme="light"] li,
+html[data-theme="light"] label,
+html[data-theme="light"] td,
+html[data-theme="light"] th {
   color: #1e293b !important;
 }
 
-html[data-theme="light"] .story-titles h2,
-html[data-theme="light"] .quiz-title-box h3,
-html[data-theme="light"] .scanner-title,
-html[data-theme="light"] .hem-header h3 {
-  color: #b45309 !important;
+html[data-theme="light"] .muted,
+html[data-theme="light"] .sub,
+html[data-theme="light"] small,
+html[data-theme="light"] .lab,
+html[data-theme="light"] .st-sub,
+html[data-theme="light"] .quiz-counter {
+  color: #475569 !important;
 }
 
-html[data-theme="light"] .qz-opt-btn {
-  background: #ffffff !important;
-  border-color: #cbd5e1 !important;
+/* Inputs, Selects & Buttons */
+html[data-theme="light"] button:not(.pri):not(.gold):not(.st-btn-quiz):not(.btn-dist):not(.histada-theme-toggle-trigger):not(.histada-global-menu-trigger):not(.btn-dist-mobile),
+html[data-theme="light"] .opts button,
+html[data-theme="light"] .qz-opt-btn,
+html[data-theme="light"] .subtabs button,
+html[data-theme="light"] .tab-pill,
+html[data-theme="light"] select,
+html[data-theme="light"] input[type="text"],
+html[data-theme="light"] input[type="number"],
+html[data-theme="light"] textarea {
+  background-color: #ffffff !important;
   color: #0f172a !important;
+  border-color: #cbd5e1 !important;
 }
 
+html[data-theme="light"] .opts button:hover,
 html[data-theme="light"] .qz-opt-btn:hover:not(:disabled) {
-  background: rgba(217, 119, 6, 0.1) !important;
-  border-color: #d97706 !important;
+  background-color: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
 }
 
-html[data-theme="light"] .story-footer,
-html[data-theme="light"] .quiz-footer,
-html[data-theme="light"] .scanner-controls {
+html[data-theme="light"] .opts button.ok,
+html[data-theme="light"] .qz-opt-btn.correct {
+  background-color: #dcfce7 !important;
+  border-color: #16a34a !important;
+  color: #14532d !important;
+}
+
+html[data-theme="light"] .opts button.no,
+html[data-theme="light"] .qz-opt-btn.wrong {
+  background-color: #fee2e2 !important;
+  border-color: #dc2626 !important;
+  color: #7f1d1d !important;
+}
+
+/* Modals & Backdrop */
+html[data-theme="light"] .histada-modal-backdrop,
+html[data-theme="light"] .modal {
+  background: rgba(241, 245, 249, 0.88) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+html[data-theme="light"] .dialog,
+html[data-theme="light"] .modal-card,
+html[data-theme="light"] .certprev {
   background: #ffffff !important;
-  border-top: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
 }
 
-html[data-theme="light"] .histada-global-menu-trigger,
-html[data-theme="light"] .histada-theme-toggle-trigger {
-  background: #ffffff !important;
-  border-color: #d97706 !important;
-  color: #b45309 !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1) !important;
-}
-
-html[data-theme="light"] .histada-global-menu-trigger:hover,
-html[data-theme="light"] .histada-theme-toggle-trigger:hover {
-  background: #fef3c7 !important;
-}
-
-/* Floating Theme Switcher Button (Header / Top Bar) */
+/* Floating Theme Switcher Button - Centered at Top */
 .histada-theme-toggle-trigger {
   position: fixed;
-  top: 14px;
-  right: 175px;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 99999;
   background: rgba(15, 26, 43, 0.94);
   border: 1.5px solid var(--h-gold, #d9b25a);
   color: var(--h-gold2, #f0d48f);
-  padding: 8px 14px;
+  padding: 6px 16px;
   border-radius: 20px;
   font: 700 13px system-ui, -apple-system, sans-serif;
   cursor: pointer;
@@ -715,8 +779,22 @@ html[data-theme="light"] .histada-theme-toggle-trigger:hover {
 }
 
 .histada-theme-toggle-trigger:hover {
-  transform: translateY(-2px);
+  transform: translateX(-50%) translateY(-2px);
   box-shadow: 0 8px 24px rgba(217, 178, 90, 0.4);
+}
+
+html[data-theme="light"] .histada-global-menu-trigger,
+html[data-theme="light"] .histada-theme-toggle-trigger {
+  background: #ffffff !important;
+  border-color: #d97706 !important;
+  color: #b45309 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+}
+
+html[data-theme="light"] .histada-global-menu-trigger:hover,
+html[data-theme="light"] .histada-theme-toggle-trigger:hover {
+  background: #fef3c7 !important;
+  transform: translateX(-50%) translateY(-2px) !important;
 }
 
 /* Extended TTS Control Panel */
