@@ -1,0 +1,174 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/shared/favicon.svg" type="image/svg+xml"><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]{display:none!important}</style><script src="/shared/claude-shim.js"></script></head><body>
+<title>HISTADA do druku</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Świadomie jeden, papierowy wygląd – jak arkusz z drukarni: kremowy karton, granatowy tusz, turkus planszy, złoto. */
+:root{color-scheme:light;--paper:#f4efe3;--sheet:#fdfbf5;--ink:#15303a;--muted:#5e6f76;--line:#d9d1bd;--teal:#0d6c78;--gold:#b8902c;--kraft:#e8e3d6;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;--display:"Cinzel","Times New Roman",serif}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 var(--sans)}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:32px 56px;display:flex;flex-direction:column;gap:30px}
+header{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:flex-end;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:18px}
+.eyebrow{font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+h1{margin:6px 0 8px;font:700 clamp(30px,5vw,48px)/1.05 var(--display);letter-spacing:.06em;text-wrap:balance}
+.lede{margin:0;max-width:64ch}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+select,button{font:600 14px var(--sans);color:var(--ink);background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:7px 12px;cursor:pointer}
+button:hover{border-color:var(--teal)}
+button.pri{background:var(--teal);border-color:var(--teal);color:#fff}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button:disabled{opacity:.5;cursor:default}
+.all{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:var(--ink);color:#fdfbf5;border-radius:10px;padding:18px 20px}
+.all b{font:700 20px var(--display);letter-spacing:.04em;color:#f0d48f}
+.all p{margin:4px 0 0;color:#d7dfe2;font-size:14px}
+.all .ico{width:56px;height:56px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.item{background:var(--sheet);border:1px solid var(--line);border-radius:10px;display:grid;grid-template-rows:auto 1fr;overflow:hidden}
+.item.wide{grid-column:1/-1;grid-template-rows:none;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+.shot{background:var(--kraft);display:grid;place-items:center;padding:14px;min-height:200px;border-bottom:1px solid var(--line)}
+.item.wide .shot{border-bottom:none;border-right:1px solid var(--line)}
+.shot img{max-width:100%;max-height:230px;display:block;box-shadow:0 2px 0 rgba(0,0,0,.06),0 8px 22px rgba(21,48,58,.18);background:#fff}
+.item.wide .shot img{max-height:340px}
+.body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px}
+.body h2{margin:0;font:700 21px/1.15 var(--display);letter-spacing:.03em}
+.body p{margin:0;font-size:14.5px}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-size:13px;margin:0}
+.spec dt{font:500 12px var(--mono);color:var(--muted)}
+.spec dd{margin:0}
+.dl{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+.dl button{display:inline-flex;gap:6px;align-items:baseline;font-size:13px;padding:6px 10px}
+.dl button small{font:500 11px var(--mono);color:var(--muted)}
+.dl button.pri small{color:#cfe8eb}
+.dl.pages{padding:8px;background:var(--paper);border-radius:8px;margin-top:0}
+.dl button[aria-expanded=true]{border-color:var(--teal);background:#e6f1f2}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:14px;display:flex;flex-direction:column;gap:4px}
+.steps li::before{content:counter(s);font:700 18px var(--display);color:var(--gold)}
+.steps b{font-size:14.5px}
+h3{margin:0 0 10px;font:700 20px var(--display);letter-spacing:.05em}
+.note{font-size:13px;color:var(--muted);max-width:86ch;margin:0;border-left:2px solid var(--line);padding-left:12px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 14px;border-radius:8px;font-size:14px;z-index:9;max-width:calc(100% - 32px)}
+@media (max-width:760px){.item.wide{grid-template-columns:1fr}.item.wide .shot{border-right:none;border-bottom:1px solid var(--line)}.all{grid-template-columns:1fr}.all .ico{display:none}.grid{grid-template-columns:1fr}}
+</style>
+
+<main class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow" data-t="eyebrow"></div>
+      <h1 data-t="title"></h1>
+      <p class="lede" data-t="lede"></p>
+    </div>
+    <div class="tools"><select id="lang" aria-label="Język / Language"><option value="pl">PL</option><option value="en">EN</option></select></div>
+  </header>
+
+  <section class="all">
+    <svg class="ico" viewBox="0 0 56 56" aria-hidden="true"><rect x="8" y="6" width="34" height="44" rx="3" fill="#fdfbf5"/><rect x="14" y="10" width="34" height="44" rx="3" fill="#f0d48f"/><path d="M31 22v16m-7-7l7 7 7-7" stroke="#15303a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div><b data-t="allT"></b><p data-t="allP"></p></div>
+    <button class="pri" data-file="histada-zestaw-kompletny.pdf"></button>
+  </section>
+
+  <div class="grid" id="grid"></div>
+
+  <section>
+    <h3 data-t="howT"></h3>
+    <ol class="steps" id="steps"></ol>
+  </section>
+  <p class="note" data-t="note"></p>
+</main>
+
+<script>
+'use strict';
+const L = (() => { try { const v = localStorage.getItem('histada.lang'); return v === 'en' || v === 'bi' ? 'en' : 'pl'; } catch (e) { return 'pl'; } })();
+document.documentElement.lang = L; if (L === 'en') document.title = 'HISTADA – print and play';
+const SIZES = {"histada-karty-dziedzin-7.png": 163322, "histada-kartoniki-postaci-en-10.png": 237019, "histada-kartoniki-postaci-6.png": 246875, "histada-karty-zdolnosci-en-1.png": 262016, "histada-karty-pomocy-2.png": 238290, "histada-kartoniki-postaci-en-4.svg": 20177, "histada-karty-dziedzin-en-4.png": 220636, "histada-zestaw-kompletny-en.pdf": 3239243, "histada-karty-pomocy-en.pdf": 108973, "histada-opowiesci-epoka-03.pdf": 667181, "thumb-tabela-wynikow-en.png": 13529, "histada-tabela-wynikow.pdf": 52658, "histada-kartoniki-postaci-3.svg": 126629, "histada-kartoniki-postaci-7.png": 376848, "histada-kartoniki-postaci-3.png": 377183, "thumb-kartoniki-postaci-en.png": 63210, "histada-karty-pomocy.pdf": 131115, "histada-pudelko-na-karty-en.pdf": 47801, "histada-instrukcja-1.svg": 5540, "histada-tabela-wynikow.png": 76460, "histada-karty-dziedzin-7.svg": 25997, "histada-instrukcja-en-2.png": 241873, "histada-kartoniki-postaci-4.svg": 20363, "histada-kartoniki-postaci-10.png": 246875, "histada-plansza-A1-en.svg": 880487, "thumb-karty-pomocy-en.png": 59251, "histada-karty-wydarzen-6.png": 121087, "histada-karty-zdolnosci-1.png": 278216, "histada-opowiesci-epoka-04-en.pdf": 631278, "histada-karty-wydarzen-en-1.png": 248414, "histada-instrukcja.pdf": 95198, "histada-kartoniki-postaci-8.png": 246875, "histada-karty-pomocy-en-1.png": 424187, "histada-plansza-8xA4-bez-marginesow-en.pdf": 1689890, "histada-plansza-A1.svg": 880764, "thumb-pionki-zetony.png": 40768, "histada-karty-dziedzin-8.png": 142551, "histada-karty-dziedzin-6.png": 222447, "histada-karty-zdolnosci-en-3.png": 71350, "histada-kartoniki-postaci-en-9.svg": 126569, "histada-karty-dziedzin-en.pdf": 131180, "histada-pudelko-na-karty-en.png": 87609, "histada-kartoniki-postaci-en-7.png": 364305, "histada-pionki-zetony-en.svg": 30594, "histada-opowiesci-epoka-02.pdf": 665980, "histada-karty-wydarzen-en-6.png": 116570, "histada-kartoniki-postaci-5.svg": 126678, "histada-kartoniki-postaci-11.png": 372888, "histada-kartoniki-postaci-en-2.svg": 20177, "histada-opowiesci-epoka-02-en.pdf": 612678, "histada-kartoniki-postaci-en-3.png": 364498, "histada-karty-wydarzen-en-5.png": 128120, "histada-instrukcja-en.pdf": 70784, "thumb-kartoniki-postaci.png": 64510, "histada-karty-dziedzin-en-3.svg": 43579, "histada-kartoniki-postaci-2.svg": 20363, "histada-kartoniki-postaci-12.png": 246875, "histada-kartoniki-postaci-2.png": 246875, "histada-opowiesci-epoka-12-en.pdf": 614540, "histada-kartoniki-postaci-en-4.png": 237019, "histada-plansza-A1.pdf": 1177721, "histada-karty-dziedzin-4.svg": 132935, "histada-opowiesci-epoka-10-en.pdf": 609666, "histada-opowiesci-epoka-05-en.pdf": 618509, "histada-pionki-zetony-en.pdf": 90089, "histada-karty-wydarzen-en-2.png": 255511, "histada-kartoniki-postaci-6.svg": 20363, "histada-karty-dziedzin-8.svg": 80069, "thumb-instrukcja.png": 38493, "histada-kartoniki-postaci-en-7.svg": 126563, "histada-kartoniki-postaci-en-2.png": 237019, "thumb-plansza.png": 184516, "histada-karty-wydarzen-2.png": 264240, "histada-plansza-8xA4-en.pdf": 1705485, "histada-pionki-zetony-en.png": 203282, "histada-plansza-8xA4-bez-marginesow.pdf": 4416735, "histada-karty-dziedzin-en-2.png": 220550, "histada-instrukcja-en-2.svg": 9327, "thumb-instrukcja-en.png": 35716, "thumb-karty-zdolnosci.png": 48546, "histada-karty-dziedzin-en-1.svg": 42424, "thumb-plansza-en.png": 196653, "histada-opowiesci-epoka-04.pdf": 710218, "histada-kosci.pdf": 71929, "histada-karty-wydarzen-en-4.png": 255577, "histada-opowiesci-epoka-11-en.pdf": 615660, "histada-karty-dziedzin-en-5.png": 260344, "histada-karty-dziedzin-en-1.png": 247212, "histada-pionki-zetony.svg": 30632, "histada-kartoniki-postaci-4.png": 246875, "histada-kartoniki-postaci-10.svg": 20363, "histada-plansza-8xA4.pdf": 5047348, "histada-karty-dziedzin-5.png": 270609, "histada-kosci-en.pdf": 54853, "histada-karty-wydarzen-en.pdf": 113558, "histada-opowiesci-epoka-01-en.pdf": 615010, "histada-tabela-wynikow.svg": 10172, "histada-opowiesci-epoka-09.pdf": 663001, "thumb-karty-zdolnosci-en.png": 47561, "histada-kartoniki-postaci-5.png": 379749, "histada-opowiesci-epoka-10.pdf": 663743, "histada-tabela-wynikow-en.pdf": 42181, "histada-kartoniki-postaci-7.svg": 126691, "histada-kartoniki-postaci-en-5.png": 362422, "histada-karty-wydarzen-en-3.png": 269280, "histada-karty-pomocy-3.png": 214906, "histada-instrukcja-2.png": 254999, "histada-kartoniki-postaci-en-3.svg": 126500, "histada-kartoniki-postaci-en-1.svg": 126567, "histada-karty-pomocy-1.png": 412643, "histada-karty-pomocy-4.png": 139023, "histada-karty-zdolnosci.pdf": 223567, "histada-karty-dziedzin-en-2.svg": 132886, "histada-plansza-podglad.png": 1460600, "histada-kartoniki-postaci-12.svg": 20363, "histada-opowiesci-epoka-09-en.pdf": 609787, "histada-karty-dziedzin.pdf": 144699, "histada-kartoniki-postaci-en-8.png": 237019, "thumb-kosci-en.png": 40473, "histada-kartoniki-postaci-9.png": 376419, "histada-pudelko-na-karty-en.svg": 4761, "histada-karty-dziedzin-en-7.svg": 26142, "histada-kartoniki-postaci-en-6.svg": 20177, "histada-karty-dziedzin-2.svg": 132935, "histada-karty-dziedzin-2.png": 222304, "histada-tabela-wynikow-en.svg": 10172, "histada-karty-dziedzin-en-8.svg": 80036, "histada-karty-zdolnosci-en.pdf": 142961, "histada-kartoniki-postaci-en-11.png": 362704, "histada-kartoniki-postaci-11.svg": 126631, "histada-opowiesci-epoka-05.pdf": 689503, "histada-pionki-zetony.pdf": 106971, "histada-karty-wydarzen-3.png": 303354, "histada-kartoniki-postaci-en-8.svg": 20177, "histada-instrukcja-en-1.svg": 5440, "histada-instrukcja-en-1.png": 260053, "histada-karty-zdolnosci-3.png": 73679, "histada-plansza-A1-en.pdf": 1177468, "histada-karty-zdolnosci-en-2.png": 249588, "histada-kartoniki-postaci-8.svg": 20363, "histada-pudelko-na-karty.pdf": 61794, "histada-karty-wydarzen-1.png": 273859, "histada-opowiesci-epoka-07-en.pdf": 617355, "histada-kartoniki-postaci-1.png": 377637, "thumb-pionki-zetony-en.png": 40794, "histada-opowiesci-epoka-08-en.pdf": 614539, "histada-opowiesci-epoka-03-en.pdf": 601293, "thumb-karty-pomocy.png": 61496, "histada-karty-pomocy-en-3.png": 208560, "histada-kosci-en.svg": 18532, "histada-karty-dziedzin-6.svg": 132935, "histada-karty-dziedzin-1.png": 264003, "histada-kartoniki-postaci-en-5.svg": 126544, "histada-karty-wydarzen-5.png": 141201, "histada-karty-dziedzin-en-3.png": 282508, "histada-karty-dziedzin-en-4.svg": 132886, "histada-kartoniki-postaci-en-12.png": 237019, "histada-karty-dziedzin-3.png": 304797, "histada-karty-dziedzin-4.png": 222404, "thumb-kosci.png": 42100, "histada-karty-dziedzin-5.svg": 42953, "histada-kartoniki-postaci-en-6.png": 237019, "thumb-opowiesci.png": 71430, "thumb-karty-wydarzen-en.png": 45575, "histada-pionki-zetony.png": 209903, "histada-kartoniki-postaci-en-1.png": 366268, "histada-opowiesci-epoka-11.pdf": 674040, "histada-kartoniki-postaci-en-12.svg": 20177, "histada-opowiesci-epoka-01.pdf": 678138, "histada-plansza-podglad-en.png": 1446296, "histada-karty-dziedzin-en-7.png": 163591, "histada-opowiesci-epoka-08.pdf": 672998, "thumb-karty-wydarzen.png": 50120, "histada-karty-pomocy-en-4.png": 132756, "histada-karty-pomocy-en-2.png": 227994, "histada-kartoniki-postaci.pdf": 1295858, "histada-karty-dziedzin-1.svg": 42454, "histada-karty-dziedzin-en-6.png": 220692, "histada-opowiesci-epoka-06-en.pdf": 625573, "histada-karty-zdolnosci-en-4.png": 69488, "thumb-pudelko-na-karty.png": 17302, "histada-karty-dziedzin-en-6.svg": 132886, "histada-opowiesci-epoka-07.pdf": 675626, "histada-karty-dziedzin-3.svg": 43368, "histada-opowiesci-epoka-06.pdf": 687270, "histada-karty-wydarzen-4.png": 264307, "histada-karty-dziedzin-en-8.png": 141852, "histada-kartoniki-postaci-en-10.svg": 20177, "histada-instrukcja-2.svg": 9523, "histada-kosci-en.png": 182640, "thumb-pudelko-na-karty-en.png": 16981, "histada-kosci.svg": 18622, "histada-kartoniki-postaci-9.svg": 126692, "histada-kartoniki-postaci-en-11.svg": 126505, "thumb-karty-dziedzin.png": 54813, "histada-kosci.png": 190760, "thumb-opowiesci-en.png": 68909, "histada-zestaw-kompletny.pdf": 3497534, "histada-pudelko-na-karty.svg": 4788, "histada-tabela-wynikow-en.png": 71240, "histada-karty-zdolnosci-4.png": 72307, "histada-kartoniki-postaci-en-9.png": 366178, "thumb-tabela-wynikow.png": 14043, "histada-karty-wydarzen.pdf": 132890, "histada-pudelko-na-karty.png": 89071, "histada-karty-dziedzin-en-5.svg": 42754, "histada-kartoniki-postaci-1.svg": 126692, "histada-opowiesci-epoka-12.pdf": 684458, "histada-kartoniki-postaci-en.pdf": 1258078, "thumb-karty-dziedzin-en.png": 53933, "histada-instrukcja-1.png": 277204, "histada-karty-zdolnosci-2.png": 254850};
+const TXT = {
+  pl: { eyebrow: 'HISTADA · Trylogia · część 1', title: 'Gra planszowa do druku', lede: 'Wszystko, czego potrzebujesz, żeby zagrać przy stole: mapa świata, karty, kartoniki postaci, kości, pionki i instrukcja. Pliki PDF w skali 1:1 oraz PNG i SVG do własnej obróbki.',
+    allT: 'Cały zestaw w jednym pliku', allP: 'Instrukcja, plansza A1, karty dziedzin, zdolności, wydarzeń i pomocy, kartoniki, kości, pionki, pudełko i tabela wyników – 41 stron w jednym PDF (karty opowieści są osobno, po jednym pliku na epokę). Strony mają różne formaty, więc drukuj z ustawieniem „rzeczywisty rozmiar”.', allB: 'Pobierz cały zestaw',
+    howT: 'Jak złożyć grę', note: 'Wszystkie pliki są w dwóch wersjach językowych – przełącznik PL/EN u góry wybiera, które pobierasz. Pytania do gry wyświetla aplikacja HISTADA (część 1, tryb planszy fizycznej) – po polsku, angielsku albo dwujęzycznie. Pliki pobierają się bezpośrednio z tej strony.',
+    dl: 'Pobierz', open: 'Otwórz', saved: 'Zapisano: ', err: 'Nie udało się pobrać pliku.', fmt: 'format', pages: 'strony', paper: 'papier', pr: 'druk', page: 'strona', ep: 'epoka' },
+  en: { eyebrow: 'HISTADA · Trilogy · part 1', title: 'Printable board game', lede: 'Everything you need to play at the table: world map, cards, character sheets, dice, pawns and rules. PDF files at 1:1 scale plus PNG and SVG for your own editing.',
+    allT: 'The whole kit in one file', allP: 'Rules, A1 board, domain, ability, event and player aid cards, character sheets, dice, pawns, box and score sheet – 41 pages in one PDF (story cards come separately, one file per epoch). Pages come in several sizes, so print at “actual size”.', allB: 'Download the whole kit',
+    howT: 'How to put the game together', note: 'Every file comes in two language versions – the PL/EN switch at the top picks which one you download. The questions are shown by the HISTADA app (part 1, physical board mode) – in Polish, English or bilingual. Files download directly from this page.',
+    dl: 'Download', open: 'Open', saved: 'Saved: ', err: 'Could not download the file.', fmt: 'format', pages: 'pages', paper: 'paper', pr: 'print', page: 'page', ep: 'epoch' },
+};
+const ITEMS = [
+  { id: 'plansza', wide: true, thumb: 'thumb-plansza.png', pl: ['Plansza – mapa świata', '502 heksagonalne pola lądu w odwzorowaniu Equal Earth, porty i trasy morskie, runy i numery pól, pola START i miejsce na talię. Jedno pole ≈ powierzchnia Polski.', 'A1 · 841 × 594 mm', '1 arkusz albo 8 × A4 do sklejenia', '120–170 g/m²', 'ksero wielkoformatowe albo drukarka A4'],
+    en: ['Board – world map', '502 hexagonal land fields in the Equal Earth projection, ports and sea routes, runes and field numbers, START spaces and a spot for the deck. One field ≈ the area of Poland.', 'A1 · 841 × 594 mm', '1 sheet or 8 × A4 to join', '120–170 gsm', 'large-format copy shop or an A4 printer'],
+    files: [['histada-plansza-A1.pdf', 'PDF A1'], ['histada-plansza-8xA4.pdf', 'PDF 8×A4 + klej'], ['histada-plansza-8xA4-bez-marginesow.pdf', 'PDF 8×A4'], ['histada-plansza-A1.svg', 'SVG'], ['histada-plansza-podglad.png', 'PNG']] },
+  { id: 'karty-dziedzin', thumb: 'thumb-karty-dziedzin.png', pl: ['Karty dziedzin', '36 kart (H01–H12, T01–T12, P01–P12) w trzech kolorach nauk, z kodem rozpoznawanym przez aplikację. Rewersy do druku dwustronnego.', '89 × 57 mm', '8 stron A4', '250–300 g/m²', 'dwustronnie, wzdłuż dłuższej krawędzi'],
+    en: ['Domain cards', '36 cards (H01–H12, T01–T12, P01–P12) in the three science colors, with a code the app recognizes. Backs for double-sided printing.', '89 × 57 mm', '8 A4 pages', '250–300 gsm', 'double-sided, flip on the long edge'],
+    files: [['histada-karty-dziedzin.pdf', 'PDF'], ['histada-karty-dziedzin-{n}.png', 'PNG', 8], ['histada-karty-dziedzin-{n}.svg', 'SVG', 8]] },
+  { id: 'kartoniki-postaci', thumb: 'thumb-kartoniki-postaci.png', pl: ['Kartoniki postaci', '12 postaci z miejscem na kartę, 10 rzędami kółek zębatych (suma + 9 inteligencji) i ściągą z przebiegiem tury na odwrocie.', 'A5', '12 stron A4 poziomo', '200–250 g/m²', 'dwustronnie'],
+    en: ['Character sheets', '12 characters with a card slot, 10 rows of gear wheels (total + 9 intelligences) and a turn cheat sheet on the back.', 'A5', '12 A4 landscape pages', '200–250 gsm', 'double-sided'],
+    files: [['histada-kartoniki-postaci.pdf', 'PDF'], ['histada-kartoniki-postaci-{n}.png', 'PNG', 12], ['histada-kartoniki-postaci-{n}.svg', 'SVG', 12]] },
+  { id: 'karty-zdolnosci', thumb: 'thumb-karty-zdolnosci.png', pl: ['Karty zdolności postaci', '12 kart – po jednej na postać – z jej zdolnością: dodatkowy ruch, rejs portowy albo +5 pkt w wybranych epokach, kategoriach lub inteligencjach. Działają z opcją „Zdolności postaci” w aplikacji.', '89 × 57 mm', '4 strony A4', '250–300 g/m²', 'dwustronnie, wzdłuż dłuższej krawędzi'],
+    en: ['Character ability cards', '12 cards – one per character – with its ability: extra movement, a port voyage or +5 pts in chosen epochs, categories or intelligences. They work with the “Character abilities” option in the app.', '89 × 57 mm', '4 A4 pages', '250–300 gsm', 'double-sided, flip on the long edge'],
+    files: [['histada-karty-zdolnosci.pdf', 'PDF'], ['histada-karty-zdolnosci-{n}.png', 'PNG', 4]] },
+  { id: 'karty-wydarzen', thumb: 'thumb-karty-wydarzen.png', pl: ['Karty wydarzeń', '24 wydarzenia z historii podróży: pomyślne wiatry, kolej parowa, sztorm, kwarantanna, Biblioteka Aleksandryjska… Dobierasz kartę, gdy na szarych k6 wypadnie dublet.', '89 × 57 mm', '6 stron A4', '250–300 g/m²', 'dwustronnie, wzdłuż dłuższej krawędzi'],
+    en: ['Event cards', '24 events from the history of travel: fair winds, the steam railway, a storm, quarantine, the Library of Alexandria… Draw one when the grey d6 show doubles.', '89 × 57 mm', '6 A4 pages', '250–300 gsm', 'double-sided, flip on the long edge'],
+    files: [['histada-karty-wydarzen.pdf', 'PDF'], ['histada-karty-wydarzen-{n}.png', 'PNG', 6]] },
+  { id: 'karty-pomocy', thumb: 'thumb-karty-pomocy.png', pl: ['Karty pomocy gracza', 'Tura w 6 krokach, legenda pola, alfabet 24 run z przeliczaniem kodu na numer pola oraz 12 kart epok z przedziałami czasu dla czarnej k12.', '89 × 57 mm', '4 strony A4 (15 kart)', '250–300 g/m²', 'dwustronnie, wzdłuż dłuższej krawędzi'],
+    en: ['Player aid cards', 'A turn in 6 steps, the field legend, the 24-rune alphabet with the code-to-field-number rule, and 12 epoch cards listing the time intervals for the black d12.', '89 × 57 mm', '4 A4 pages (15 cards)', '250–300 gsm', 'double-sided, flip on the long edge'],
+    files: [['histada-karty-pomocy.pdf', 'PDF'], ['histada-karty-pomocy-{n}.png', 'PNG', 4]] },
+  { id: 'opowiesci', wide: true, thumb: 'thumb-opowiesci.png', pl: ['Karty opowieści i pytań', '432 karty: każda dziedzina w każdej epoce. Na awersie opowieść Histady do przeczytania na głos, na rewersie 9 pytań z tej opowieści – po jednym na inteligencję – i odpowiedzi do góry nogami. Gra bez aplikacji: kości wybierają epokę, karta dziedziny – kartę opowieści.', 'A5 · 148 × 210 mm', '12 plików × 72 strony (36 kart)', '120–170 g/m²', 'dwustronnie, wzdłuż dłuższej krawędzi; albo 2 strony na A4'],
+    en: ['Story and question cards', '432 cards: every domain in every epoch. The front has Histada’s story to read aloud, the back 9 questions from that story – one per intelligence – with the answers upside down. Play without the app: the dice pick the epoch, the domain card picks the story card.', 'A5 · 148 × 210 mm', '12 files × 72 pages (36 cards)', '120–170 gsm', 'double-sided, flip on the long edge; or 2 pages per A4'],
+    files: [['histada-opowiesci-epoka-{nn}.pdf', 'PDF', 12]] },
+  { id: 'kosci', thumb: 'thumb-kosci.png', pl: ['Kości do sklejenia', 'Biała k12 z nazwami epok, czarna k12 przedziałów czasu i dwie szare k6 ruchu – siatki z zakładkami na klej.', 'k12: krawędź 16 mm · k6: 17 mm', '1 strona A4', '200–250 g/m²', 'skala 100%'],
+    en: ['Dice to assemble', 'White d12 with epoch names, black d12 for time intervals and two gray d6 for movement – nets with glue tabs.', 'd12: 16 mm edge · d6: 17 mm', '1 A4 page', '200–250 gsm', '100% scale'],
+    files: [['histada-kosci.pdf', 'PDF'], ['histada-kosci.png', 'PNG'], ['histada-kosci.svg', 'SVG']] },
+  { id: 'pionki-zetony', thumb: 'thumb-pionki-zetony.png', pl: ['Pionki i żetony', '12 pionków-namiotów postaci ze stopką 9 mm, okrągłe żetony postaci, żetony 6 nacji z GDD (kobieta ○, mężczyzna △) oraz znaczniki pierwszego gracza i rundy.', 'stopka 9 × 9 mm', '1 strona A4', '250–300 g/m²', 'skala 100%'],
+    en: ['Pawns and tokens', '12 tent pawns for the characters with a 9 mm base, round character tokens, tokens of the 6 nations from the GDD (woman ○, man △) and first-player and round markers.', '9 × 9 mm base', '1 A4 page', '250–300 gsm', '100% scale'],
+    files: [['histada-pionki-zetony.pdf', 'PDF'], ['histada-pionki-zetony.png', 'PNG'], ['histada-pionki-zetony.svg', 'SVG']] },
+  { id: 'pudelko-na-karty', thumb: 'thumb-pudelko-na-karty.png', pl: ['Pudełko na karty', 'Wsuwane pudełko na 36 kart dziedzin z wieczkiem, klapkami i legendą kategorii.', 'wnętrze 91 × 59 × 15 mm', '1 strona A4 poziomo', '250–300 g/m²', 'skala 100%'],
+    en: ['Card box', 'A tuck box for the 36 domain cards with a lid, dust flaps and a category legend.', 'inside 91 × 59 × 15 mm', '1 A4 landscape page', '250–300 gsm', '100% scale'],
+    files: [['histada-pudelko-na-karty.pdf', 'PDF'], ['histada-pudelko-na-karty.png', 'PNG'], ['histada-pudelko-na-karty.svg', 'SVG']] },
+  { id: 'tabela-wynikow', thumb: 'thumb-tabela-wynikow.png', pl: ['Tabela wyników', 'Arkusz na 12 graczy i 15 rund z kolumną sumy – gdy wolicie ołówek od kółek zębatych.', 'A4 poziomo', '1 strona', 'zwykły papier', 'do kopiowania'],
+    en: ['Score sheet', 'A sheet for 12 players and 15 rounds with a total column – when you prefer a pencil to gear wheels.', 'A4 landscape', '1 page', 'plain paper', 'photocopy as needed'],
+    files: [['histada-tabela-wynikow.pdf', 'PDF'], ['histada-tabela-wynikow.png', 'PNG'], ['histada-tabela-wynikow.svg', 'SVG']] },
+  { id: 'instrukcja', wide: true, thumb: 'thumb-instrukcja.png', pl: ['Instrukcja', 'Cel gry, elementy, przygotowanie, przebieg tury, porty, punktacja, koniec gry, a na drugiej stronie tabela druku, 9 inteligencji i 12 epok.', 'A4', '2 strony', 'zwykły papier', 'dwustronnie'],
+    en: ['Rules', 'Goal, components, setup, turn, ports, scoring and end of game; page two has the print table, the 9 intelligences and the 12 epochs.', 'A4', '2 pages', 'plain paper', 'double-sided'],
+    files: [['histada-instrukcja.pdf', 'PDF'], ['histada-instrukcja-{n}.png', 'PNG', 2], ['histada-instrukcja-{n}.svg', 'SVG', 2]] },
+];
+const STEPS = {
+  pl: [['Wydrukuj', 'Zawsze w skali 100% (rzeczywisty rozmiar). Planszę A1 najlepiej w punkcie ksero.'], ['Wytnij', 'Karty po znacznikach, kartoniki na pół, kości i pionki po liniach ciągłych.'], ['Sklej', 'Kości i pudełko: zegnij po przerywanych, posmaruj szare zakładki. Pionki: stopki do siebie.'], ['Zagraj', 'Otwórz grę planszową HISTADA w trybie planszy fizycznej – aplikacja pokaże pytania i policzy punkty.']],
+  en: [['Print', 'Always at 100% (actual size). The A1 board is best printed at a copy shop.'], ['Cut', 'Cards along the crop marks, sheets in half, dice and pawns along the solid lines.'], ['Glue', 'Dice and box: fold on the dashed lines and glue the gray tabs. Pawns: glue the feet together.'], ['Play', 'Open the HISTADA board game in physical board mode – the app shows the questions and keeps score.']],
+};
+const $ = s => document.querySelector(s), esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const FN = f => L !== 'en' ? f : f.includes('{nn}') ? f.replace('.pdf', '-en.pdf') : f.includes('{n}') ? f.replace('-{n}', '-en-{n}') : f.replace(/(\.\w+)$/, '-en$1');
+const t = TXT[L], mb = f => { const b = SIZES[f] || 0; return b > 1e6 ? (b / 1e6).toFixed(1).replace('.', L === 'pl' ? ',' : '.') + ' MB' : Math.max(1, Math.round(b / 1e3)) + ' kB'; };
+document.querySelectorAll('[data-t]').forEach(el => el.textContent = t[el.dataset.t]);
+$('.all button').dataset.file = FN('histada-zestaw-kompletny.pdf'); $('.all button').innerHTML = `${esc(t.allB)} <small>${mb(FN('histada-zestaw-kompletny.pdf'))}</small>`;
+$('#grid').innerHTML = ITEMS.map(it => { const x = it[L];
+  return `<article class="item ${it.wide ? 'wide' : ''}"><div class="shot"><img src="${FN(it.thumb)}" alt="${esc(x[0])}" loading="lazy"></div>
+    <div class="body"><h2>${esc(x[0])}</h2><p>${esc(x[1])}</p>
+      <dl class="spec"><dt>${t.fmt}</dt><dd>${esc(x[2])}</dd><dt>${t.pages}</dt><dd>${esc(x[3])}</dd><dt>${t.paper}</dt><dd>${esc(x[4])}</dd><dt>${t.pr}</dt><dd>${esc(x[5])}</dd></dl>
+      <div class="dl">${it.files.map(([f, lab, n], i) => n
+        ? `<button data-pages="${FN(f)}" data-n="${n}" aria-expanded="false">${esc(lab)} <small>${n} × ${f.includes('{nn}') ? t.ep : t.page}</small></button>`
+        : `<button class="${i ? '' : 'pri'}" data-file="${FN(f)}">${esc(L === 'en' ? lab.replace('+ klej', '+ glue') : lab)} <small>${mb(FN(f))}</small></button>`).join('')}</div><div class="dl pages" hidden></div></div></article>`; }).join('');
+document.addEventListener('click', e => {
+  const b = e.target.closest('button[data-pages]'); if (!b) return;
+  const box = b.closest('.body').querySelector('.pages'), open = b.getAttribute('aria-expanded') === 'true' && box.dataset.src === b.dataset.pages;
+  b.closest('.dl').querySelectorAll('[data-pages]').forEach(x => x.setAttribute('aria-expanded', 'false'));
+  if (open) { box.hidden = true; return; }
+  b.setAttribute('aria-expanded', 'true'); box.dataset.src = b.dataset.pages; box.hidden = false;
+  box.innerHTML = Array.from({ length: +b.dataset.n }, (_, i) => { const nn = b.dataset.pages.includes('{nn}'), f = b.dataset.pages.replace('{n}', i + 1).replace('{nn}', String(i + 1).padStart(2, '0')); return `<button data-file="${f}">${nn ? t.ep : t.page} ${i + 1} <small>${mb(f)}</small></button>`; }).join('');
+});
+$('#steps').innerHTML = STEPS[L].map(([a, b]) => `<li><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join('');
+$('#lang').value = L; $('#lang').onchange = e => { try { localStorage.setItem('histada.lang', e.target.value); } catch (x) {} location.reload(); };
+function toast(m) { document.querySelectorAll('.toast').forEach(x => x.remove()); const d = document.createElement('div'); d.className = 'toast'; d.textContent = m; document.body.appendChild(d); setTimeout(() => d.remove(), 3000); }
+let DL = null;
+(async () => { if (window.claude && window.claude.use) { try { DL = await window.claude.use('downloads'); } catch (e) {} } })();
+document.addEventListener('click', async e => {
+  const b = e.target.closest('button[data-file]'); if (!b) return;
+  const f = b.dataset.file;
+  if (!DL) { const a = document.createElement('a'); a.href = f; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); return; }
+  b.disabled = true;
+  try { const r = await fetch(f); if (!r.ok) throw new Error(r.status); await DL.save({ filename: f, data: await r.blob() }); toast(t.saved + f); }
+  catch (err) { if (!err || (err.code !== 'cancelled' && err.code !== 'declined')) toast(t.err); }
+  finally { b.disabled = false; }
+});
+</script>
+
+</body></html>

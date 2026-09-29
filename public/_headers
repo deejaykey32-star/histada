@@ -1,0 +1,22 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=()
+
+/*.html
+  Cache-Control: public, max-age=300
+
+/
+  Cache-Control: public, max-age=300
+
+/shared/*
+  Cache-Control: public, max-age=3600
+
+/druk/*.pdf
+  Cache-Control: public, max-age=86400
+
+/druk/*.png
+  Cache-Control: public, max-age=86400
+
+/druk/*.svg
+  Cache-Control: public, max-age=86400

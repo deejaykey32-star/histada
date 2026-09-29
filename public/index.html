@@ -1,0 +1,1058 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/shared/favicon.svg" type="image/svg+xml"><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]{display:none!important}</style><script src="/shared/claude-shim.js"></script></head><body>
+<title>HISTADA Trylogia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Chakra+Petch:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Świadomie jeden, nocny wygląd – wspólny mianownik trzech części: mapa, krąg, diament. */
+:root{color-scheme:dark;--bg:#0a111d;--bg2:#0f1a2b;--line:#253754;--ink:#eee7d4;--muted:#9fabbe;--gold:#d9b25a;--gold2:#f0d48f;--teal:#2c8f99;--cyan:#38e8ff;--mag:#ff4fd8;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;--display:"Cinzel","Times New Roman",serif}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:radial-gradient(90% 60% at 50% 0%,#16274a 0%,var(--bg) 60%) fixed,var(--bg);color:var(--ink);font:16px/1.55 var(--sans)}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:40px 56px;display:flex;flex-direction:column;gap:44px}
+header.top{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.ava{width:150px;height:150px;border:none;background:none;padding:0;border-radius:50%;cursor:pointer;filter:drop-shadow(0 8px 24px rgba(0,0,0,.45))}
+.ava svg{width:100%;height:100%;display:block}
+.eyebrow{font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+h1{margin:6px 0 10px;font:700 clamp(34px,6vw,58px)/1.02 var(--display);letter-spacing:.08em;color:var(--gold2);text-wrap:balance}
+.lede{margin:0;max-width:62ch;color:var(--ink);font-size:17px}
+.bubble{margin-top:14px;display:inline-flex;gap:10px;align-items:center;background:var(--bg2);border:1px solid var(--gold);border-radius:12px 12px 12px 3px;padding:9px 14px;font-size:14.5px;max-width:62ch}
+.bubble b{font:700 12px var(--display);letter-spacing:.12em;color:var(--gold2)}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.stats div{background:var(--bg2);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.stats b{font:600 26px var(--mono);font-variant-numeric:tabular-nums;color:var(--gold2)}
+.stats span{font-size:13px;color:var(--muted)}
+.parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.part.p4{border-top:3px solid #b8902c;background:#f4efe3;color:#15303a}.part.p4 h2{color:#15303a}.part.p4 p{color:#15303a}.part.p4 ul,.part.p4 .no{color:#5e6f76}.part.p4 .tag{color:#5e6f76;border-color:#d9d1bd}.part.p4 .go{background:#15303a;color:#f4efe3}
+@media (max-width:1100px){.parts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.part{position:relative;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--bg2);min-height:100%}
+.part .art{height:170px;position:relative;display:block}
+.part .art svg{width:100%;height:100%;display:block}
+.part .body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.part .no{font:500 12px var(--mono);color:var(--muted);letter-spacing:.06em}
+.part h2{margin:0;font:700 24px/1.15 var(--display);letter-spacing:.04em;text-wrap:balance}
+.part p{margin:0;color:var(--ink);font-size:15px}
+.part ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px;display:grid;gap:3px}
+.part .meta{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:500 12px var(--mono);border:1px solid var(--line);border-radius:99px;padding:2px 9px;color:var(--muted)}
+.go{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:600 15px var(--sans);border-radius:8px;padding:11px 16px;border:1px solid transparent}
+.p1{border-top:3px solid var(--teal)}.p1 h2{color:#8fd6dc}.p1 .go{background:#0d6c78;color:#fff}
+.p2{border-top:3px solid var(--gold)}.p2 h2{color:var(--gold2)}.p2 .go{background:var(--gold);color:#1c1405}
+.p3{border-top:3px solid var(--cyan);background:linear-gradient(#08122a,#070c19)}.p3 h2{color:#dff6ff;font-family:"Chakra Petch",var(--sans);letter-spacing:.14em;text-transform:uppercase;font-size:21px}.p3 .go{background:var(--cyan);color:#021018}
+.go:hover{filter:brightness(1.1)}.go:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+section h3{margin:0 0 12px;font:700 20px var(--display);letter-spacing:.06em;color:var(--gold2)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.ints{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ints div{display:flex;gap:8px;align-items:center;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--bg2)}
+.ints svg{flex:none}
+.flow{margin:0;padding:0;list-style:none;display:grid;gap:10px;counter-reset:s}
+.flow li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;font-size:15px}
+.flow li::before{content:counter(s);font:700 15px var(--display);color:var(--bg);background:var(--gold);border-radius:50%;width:28px;height:28px;display:grid;place-items:center}
+.note{font-size:13.5px;color:var(--muted);max-width:80ch;border-left:2px solid var(--line);padding-left:12px;margin:0}
+footer{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px;border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:900px){.parts{grid-template-columns:1fr}.two{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats div:last-child{grid-column:1/-1}}
+@media (max-width:560px){header.top{grid-template-columns:1fr;justify-items:start}.ava{width:110px;height:110px}.ints{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<style>.lang-sw{font:600 12px/1 system-ui,sans-serif;padding:4px 6px;border-radius:6px}</style>
+
+<script>window.__D={};</script>
+<script>/* ============ HISTADA – języki: PL / EN / PL+EN (dwujęzycznie) ============ */
+window.HistadaI18n = (() => {
+  const GEO = {
+"Afganistan": "Afghanistan",
+"Albania": "Albania",
+"Algieria": "Algeria",
+"Angola": "Angola",
+"Antarktyda": "Antarctica",
+"Arabia Saudyjska": "Saudi Arabia",
+"Argentyna": "Argentina",
+"Armenia": "Armenia",
+"Australia": "Australia",
+"Austria": "Austria",
+"Azerbejdżan": "Azerbaijan",
+"Bangladesz": "Bangladesh",
+"Belgia": "Belgium",
+"Belize": "Belize",
+"Benin": "Benin",
+"Bhutan": "Bhutan",
+"Białoruś": "Belarus",
+"Boliwia": "Bolivia",
+"Botswana": "Botswana",
+"Bośnia i Hercegowina": "Bosnia and Herzegovina",
+"Brazylia": "Brazil",
+"Burkina Faso": "Burkina Faso",
+"Burundi": "Burundi",
+"Bułgaria": "Bulgaria",
+"Chile": "Chile",
+"Chińska Republika Ludowa": "China",
+"Chorwacja": "Croatia",
+"Czad": "Chad",
+"Czarnogóra": "Montenegro",
+"Czechy": "Czechia",
+"Demokratyczna Republika Konga": "DR Congo",
+"Dżibuti": "Djibouti",
+"Egipt": "Egypt",
+"Ekwador": "Ecuador",
+"Erytrea": "Eritrea",
+"Estonia": "Estonia",
+"Eswatini": "Eswatini",
+"Etiopia": "Ethiopia",
+"Filipiny": "Philippines",
+"Finlandia": "Finland",
+"Francja": "France",
+"Gabon": "Gabon",
+"Ghana": "Ghana",
+"Grecja": "Greece",
+"Grenlandia": "Greenland",
+"Gruzja": "Georgia",
+"Gujana": "Guyana",
+"Gwatemala": "Guatemala",
+"Gwinea": "Guinea",
+"Gwinea Bissau": "Guinea-Bissau",
+"Gwinea Równikowa": "Equatorial Guinea",
+"Hiszpania": "Spain",
+"Holandia": "Netherlands",
+"Honduras": "Honduras",
+"Indie": "India",
+"Indonezja": "Indonesia",
+"Irak": "Iraq",
+"Iran": "Iran",
+"Irlandia": "Ireland",
+"Islandia": "Iceland",
+"Izrael": "Israel",
+"Jamajka": "Jamaica",
+"Japonia": "Japan",
+"Jemen": "Yemen",
+"Jordania": "Jordan",
+"Kambodża": "Cambodia",
+"Kamerun": "Cameroon",
+"Kanada": "Canada",
+"Katar": "Qatar",
+"Kazachstan": "Kazakhstan",
+"Kenia": "Kenya",
+"Kirgistan": "Kyrgyzstan",
+"Kolumbia": "Colombia",
+"Kongo": "Congo",
+"Korea Północna": "North Korea",
+"Kosowo": "Kosovo",
+"Kuba": "Cuba",
+"Kuwejt": "Kuwait",
+"Laos": "Laos",
+"Lesotho": "Lesotho",
+"Liberia": "Liberia",
+"Libia": "Libya",
+"Litwa": "Lithuania",
+"Macedonia Północna": "North Macedonia",
+"Madagaskar": "Madagascar",
+"Malawi": "Malawi",
+"Malezja": "Malaysia",
+"Mali": "Mali",
+"Maroko": "Morocco",
+"Mauretania": "Mauritania",
+"Meksyk": "Mexico",
+"Mjanma": "Myanmar",
+"Mongolia": "Mongolia",
+"Mozambik": "Mozambique",
+"Mołdawia": "Moldova",
+"Namibia": "Namibia",
+"Nepal": "Nepal",
+"Niemcy": "Germany",
+"Niger": "Niger",
+"Nigeria": "Nigeria",
+"Nikaragua": "Nicaragua",
+"Norwegia": "Norway",
+"Nowa Zelandia": "New Zealand",
+"Oman": "Oman",
+"Pakistan": "Pakistan",
+"Papua-Nowa Gwinea": "Papua New Guinea",
+"Paragwaj": "Paraguay",
+"Peru": "Peru",
+"Polska": "Poland",
+"Portugalia": "Portugal",
+"Południowa Afryka": "South Africa",
+"Republika Chińska": "Taiwan",
+"Republika Środkowoafrykańska": "Central African Republic",
+"Rosja": "Russia",
+"Rumunia": "Romania",
+"Rwanda": "Rwanda",
+"Sahara Zachodnia": "Western Sahara",
+"Senegal": "Senegal",
+"Serbia": "Serbia",
+"Sierra Leone": "Sierra Leone",
+"Somalia": "Somalia",
+"Somaliland": "Somaliland",
+"Sri Lanka": "Sri Lanka",
+"Stany Zjednoczone": "United States",
+"Sudan": "Sudan",
+"Sudan Południowy": "South Sudan",
+"Surinam": "Suriname",
+"Syria": "Syria",
+"Szwajcaria": "Switzerland",
+"Szwecja": "Sweden",
+"Słowacja": "Slovakia",
+"Słowenia": "Slovenia",
+"Tadżykistan": "Tajikistan",
+"Tajlandia": "Thailand",
+"Tanzania": "Tanzania",
+"Togo": "Togo",
+"Tunezja": "Tunisia",
+"Turcja": "Turkey",
+"Turkmenistan": "Turkmenistan",
+"Uganda": "Uganda",
+"Ukraina": "Ukraine",
+"Urugwaj": "Uruguay",
+"Uzbekistan": "Uzbekistan",
+"Wenezuela": "Venezuela",
+"Wielka Brytania": "United Kingdom",
+"Wietnam": "Vietnam",
+"Wybrzeże Kości Słoniowej": "Côte d'Ivoire",
+"Węgry": "Hungary",
+"Włochy": "Italy",
+"Zambia": "Zambia",
+"Zimbabwe": "Zimbabwe",
+"Zjednoczone Emiraty Arabskie": "United Arab Emirates",
+"Łotwa": "Latvia",
+"Europa": "Europe",
+"Azja": "Asia",
+"Afryka": "Africa",
+"Ameryka Północna": "North America",
+"Ameryka Południowa": "South America",
+"Australia i Oceania": "Australia and Oceania",
+"Akropol": "Acropolis",
+"Angkor Wat": "Angkor Wat",
+"Bazylika Grobu Pańskiego": "Church of the Holy Sepulchre",
+"Bazylika św. Piotra": "St. Peter's Basilica",
+"Burj Khalifa": "Burj Khalifa",
+"Chichén Itzá": "Chichén Itzá",
+"Chrystus Odkupiciel": "Christ the Redeemer",
+"Fudżi": "Mount Fuji",
+"Hagia Sophia": "Hagia Sophia",
+"Kilimandżaro": "Kilimanjaro",
+"Koloseum": "Colosseum",
+"Machu Picchu": "Machu Picchu",
+"Opera w Sydney": "Sydney Opera House",
+"Petra": "Petra",
+"Piramidy w Gizie": "Pyramids of Giza",
+"Sobór Wasyla Błogosławionego": "St. Basil's Cathedral",
+"Statua Wolności": "Statue of Liberty",
+"Stonehenge": "Stonehenge",
+"Tadż Mahal": "Taj Mahal",
+"Uluru": "Uluru",
+"Wawel": "Wawel Castle",
+"Wielki Mur": "Great Wall of China",
+"Wieża Eiffla": "Eiffel Tower",
+"Anchorage": "Anchorage",
+"Auckland": "Auckland",
+"Bergen": "Bergen",
+"Bombaj": "Mumbai",
+"Colombo": "Colombo",
+"Dakar": "Dakar",
+"Esperanza (Antarktyda)": "Esperanza (Antarctica)",
+"Honolulu": "Honolulu",
+"Kapsztad": "Cape Town",
+"Lizbona": "Lisbon",
+"Los Angeles": "Los Angeles",
+"McMurdo (Antarktyda)": "McMurdo (Antarctica)",
+"Mombasa": "Mombasa",
+"Nowy Jork": "New York",
+"Perth": "Perth",
+"Recife": "Recife",
+"Reykjavik": "Reykjavik",
+"Rio de Janeiro": "Rio de Janeiro",
+"Singapur": "Singapore",
+"Sydney": "Sydney",
+"Szanghaj": "Shanghai",
+"Toamasina": "Toamasina",
+"Tokio": "Tokyo",
+"Ushuaia": "Ushuaia",
+"Valparaíso": "Valparaíso",
+"Władywostok": "Vladivostok",
+"zabytek": "landmark",
+"szybka podróż morska": "fast sea voyage",
+"port": "port",
+"numer pola i kod runiczny": "field number and rune code",
+"miejsce na pionek (podstawka do 9 mm)": "pawn spot (base up to 9 mm)",
+"TRYLOGIA · MAPA ŚWIATA · HISTORIA SIĘ DZIEJE!": "TRILOGY · WORLD MAP · HISTORY IS HAPPENING!",
+"TALIA KART": "CARD DECK",
+"1 pole ≈ 312 700 km² (≈ Polska) · odwzorowanie Equal Earth": "1 field ≈ 312,700 km² (≈ Poland) · Equal Earth projection",
+"36 kart · 89 × 57 mm": "36 cards · 89 × 57 mm",
+"HISTADA – plansza świata A1": "HISTADA – A1 world board",
+"Andora": "Andorra",
+"Anguilla": "Anguilla",
+"Antigua i Barbuda": "Antigua and Barbuda",
+"Aruba": "Aruba",
+"Australijskie Terytorium Oceanu Indyjskiego": "Australian Indian Ocean Territories",
+"Bahamy": "Bahamas",
+"Bahrajn": "Bahrain",
+"Barbados": "Barbados",
+"Brunei": "Brunei",
+"Brytyjskie Terytorium Oceanu Indyjskiego": "British Indian Ocean Territory",
+"Curaçao": "Curaçao",
+"Cypr": "Cyprus",
+"Cypr Północny": "Northern Cyprus",
+"Dania": "Denmark",
+"Dominika": "Dominica",
+"Dominikana": "Dominican Republic",
+"Falklandy": "Falkland Islands",
+"Fidżi": "Fiji",
+"Francuskie Terytoria Południowe i Antarktyczne": "French Southern and Antarctic Lands",
+"Gambia": "Gambia",
+"Georgia Południowa i Sandwich Południowy": "South Georgia and the South Sandwich Islands",
+"Grenada": "Grenada",
+"Guam": "Guam",
+"Haiti": "Haiti",
+"Hongkong": "Hong Kong",
+"Jersey": "Jersey",
+"Kajmany": "Cayman Islands",
+"Kiribati": "Kiribati",
+"Komory": "Comoros",
+"Korea Południowa": "South Korea",
+"Kostaryka": "Costa Rica",
+"Liban": "Lebanon",
+"Liechtenstein": "Liechtenstein",
+"Lodowiec Siachen": "Siachen Glacier",
+"Luksemburg": "Luxembourg",
+"Malta": "Malta",
+"Mariany Północne": "Northern Mariana Islands",
+"Mauritius": "Mauritius",
+"Mikronezja": "Micronesia",
+"Niue": "Niue",
+"Nowa Kaledonia": "New Caledonia",
+"Palau": "Palau",
+"Palestyna": "Palestine",
+"Panama": "Panama",
+"Polinezja Francuska": "French Polynesia",
+"Portoryko": "Puerto Rico",
+"Republika Zielonego Przylądka": "Cape Verde",
+"Saint Kitts i Nevis": "Saint Kitts and Nevis",
+"Saint Lucia": "Saint Lucia",
+"Saint Vincent i Grenadyny": "Saint Vincent and the Grenadines",
+"Saint-Pierre i Miquelon": "Saint Pierre and Miquelon",
+"Salwador": "El Salvador",
+"Samoa": "Samoa",
+"Samoa Amerykańskie": "American Samoa",
+"San Marino": "San Marino",
+"Seszele": "Seychelles",
+"Timor Wschodni": "East Timor",
+"Tonga": "Tonga",
+"Trynidad i Tobago": "Trinidad and Tobago",
+"Turks i Caicos": "Turks and Caicos",
+"Vanuatu": "Vanuatu",
+"Wallis i Futuna": "Wallis and Futuna",
+"Wyspa Man": "Isle of Man",
+"Wyspa Świętej Heleny": "Saint Helena",
+"Wyspy Alandzkie": "Åland Islands",
+"Wyspy Dziewicze Stanów Zjednoczonych": "U.S. Virgin Islands",
+"Wyspy Heard i McDonalda": "Heard and McDonald Islands",
+"Wyspy Marshalla": "Marshall Islands",
+"Wyspy Owcze": "Faroe Islands",
+"Wyspy Salomona": "Solomon Islands",
+"Wyspy Świętego Tomasza i Książęca": "São Tomé and Príncipe"
+};
+  let lang = 'pl';
+  try { const v = localStorage.getItem('histada.lang'); if (v === 'en' || v === 'bi' || v === 'pl') lang = v; } catch (e) {}
+  const ui = () => lang === 'pl' ? 'pl' : 'en';
+  const geo = s => { if (!s || lang === 'pl') return s; if (GEO[s]) return GEO[s]; const m = /^(.*?) (\d+)$/.exec(s); if (m && GEO[m[1]]) return GEO[m[1]] + ' ' + m[2]; return s; };
+  const geoUp = s => { if (!s || lang === 'pl') return s; for (const k in GEO) if (k.toUpperCase() === s) return GEO[k].toUpperCase(); return geo(s); };
+
+  const EN = {
+    cat: { H: 'Humanities', T: 'Technology', P: 'Nature' },
+    catColor: { H: 'blue', T: 'red', P: 'green' },
+    dom: ['archaeology', 'philosophy', 'history', 'linguistics', 'literary studies', 'culture and religion', 'economics and finance', 'psychology', 'education', 'sociology', 'law', 'other (humanities)',
+      'architecture and urban planning', 'automation, electronics and electrical engineering', 'computer science and telecommunications', 'biomedical engineering', 'chemical engineering', 'civil engineering and transport', 'materials engineering', 'mechanical engineering', 'environmental engineering, mining and energy', 'astronomy', 'mathematics', 'other (technology)',
+      'biology', 'chemistry', 'physics', 'environment', 'health', 'physical culture and sport', 'medicine', 'pharmacy', 'agriculture', 'veterinary science', 'animal science and fisheries', 'other (nature)'],
+    int: { muz: ['musical-rhythmic', 'sound, rhythm, music, instruments'], wiz: ['visual-spatial', 'shapes, maps, images, space, architecture'], jez: ['verbal-linguistic', 'words, concepts, texts, word origins'],
+      log: ['logical-mathematical', 'numbers, dates, calculations, cause and effect'], kin: ['bodily-kinesthetic', 'movement, sport, crafts, tools, the body'], inter: ['interpersonal', 'people, cooperation, agreements, communities'],
+      intra: ['intrapersonal', 'reflection, self-knowledge, values, diaries and confessions'], przyr: ['naturalistic', 'nature, plants, animals, classification'], egz: ['existential', 'meaning, faith, ultimate questions, the cosmos'] },
+    ep: ['Beginning of the Universe', 'Beginning of the Earth', 'Prehistory', 'Antiquity', 'Middle Ages', 'Renaissance – Age of Discovery', 'Industrial Revolution', 'Era of the World Wars', 'Cold War', 'Digital Age', 'Present Day', 'Future'],
+    ch: ['Cartographer', 'Astronomer', 'Alchemist', 'Chronicler', 'Sailor', 'Builder', 'Herbalist', 'Inventor', 'Philosopher', 'Musician', 'Physician', 'Architect'],
+    lv: ['—', 'Novice', 'Adept', 'Expert', 'Master', 'Grandmaster'],
+    ab: [["Cartographer's Eye", '+1 movement field every turn.'], ['Eyes on the Stars', '+5 pts for every correct answer in epochs 1, 2 and 12 (cosmos and future).'], ["Alchemist's Crucible", '+5 pts for every correct naturalistic answer.'],
+      ["Chronicler's Quill", '+5 pts for correct verbal-linguistic and interpersonal answers.'], ['Wind in the Sails', '+2 movement fields when the turn starts in a port.'], ['Plumb and Level', '+5 pts for every correct visual-spatial answer.'],
+      ['Herbarium', '+5 pts for every correct answer on a nature (green) card.'], ["Inventor's Spark", '+5 pts for every correct logical-mathematical answer.'], ['Question of Meaning', '+5 pts for correct existential and intrapersonal answers.'],
+      ['Perfect Pitch', '+5 pts for every correct musical-rhythmic answer.'], ["Physician's Hand", '+5 pts for every correct bodily-kinesthetic answer.'], ["Architect's Plan", '+5 pts for every correct answer on a technology (red) card.']],
+    ev: [['Fair Winds', 'Your caravel catches the wind. +2 movement this turn.'], ['Silk Road', 'You join a merchant caravan. +2 movement this turn.'], ['Steam Railway', 'The train leaves on time. +3 movement this turn.'],
+      ['Mounted Courier', 'The royal post gives you a ride. +1 movement this turn.'], ['Mercator Map', 'A new map shortens the way. +2 movement this turn.'], ['Balloon Flight', 'The Montgolfier brothers invite you aboard. +3 movement this turn.'],
+      ['Storm', 'A storm pushes the ship off course. −2 movement this turn.'], ['Port Quarantine', 'The ship must wait out the plague. −2 movement this turn.'], ['Blizzard on the Pass', 'Snow has buried the mountain road. −1 movement this turn.'],
+      ['Broken Bridge', 'You have to look for a ford. −1 movement this turn.'], ['Sandstorm', 'The caravan waits for the dust to settle. −2 movement this turn.'], ['Continental Blockade', 'The ports are closed. −1 movement this turn.'],
+      ['Library of Alexandria', 'You read scrolls all night. +10 verbal-linguistic pts.'], ['Observatory', 'You chart the motion of the planets. +10 logical-mathematical pts.'], ["Master's Workshop", 'A painter teaches you perspective. +10 visual-spatial pts.'],
+      ['Cathedral Concert', 'The organ sounds under the vault. +10 musical-rhythmic pts.'], ['The Games', 'You run in the race. +10 bodily-kinesthetic pts.'], ['Agora', 'You win the citizens over to a shared plan. +10 interpersonal pts.'],
+      ['Travel Journal', 'You write down what you learned. +10 intrapersonal pts.'], ['Botanical Garden', 'You meet plants from distant lands. +10 naturalistic pts.'], ['Pilgrimage', 'Talks about the meaning of life on the road. +10 existential pts.'],
+      ['Compass', 'The needle points north. +1 movement and +10 visual-spatial pts.'], ['Great Discovery', 'Your weakest intelligence gets +10 pts.'], ['Trade Exchange', 'You haggle with merchants. +10 interpersonal pts, −1 movement.']],
+  };
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  function num(v, d) { return (Math.round(v * 10 ** d) / 10 ** d).toLocaleString('en-US'); }
+  function agoEN(y, NOW) {
+    const a = NOW - y;
+    if (y > NOW) {
+      if (y >= 1e1000) return 'end of time';
+      if (y >= 1e13) return `in 10^${Math.round(Math.log10(y))} years`;
+      if (y >= 1e9) return `in ${num(y / 1e9, 1)} bn years`;
+      if (y >= 1e6) return `in ${num(y / 1e6, 1)} m years`;
+      if (y >= 1e4) return `in ${num(y / 1e3, 0)} k years`;
+      return `${Math.round(y)} AD`;
+    }
+    if (a >= 1e9) return `${num(a / 1e9, 2)} bn years ago`;
+    if (a >= 1e6) return `${num(a / 1e6, 2)} m years ago`;
+    if (a >= 1e4) return `${num(a / 1e3, 0)} k years ago`;
+    if (y < 0) return `${Math.round(-y)} BC`;
+    return `${Math.round(y)} AD`;
+  }
+  function month(y) { const yr = Math.floor(y + 1e-9), m = Math.min(11, Math.round((y - yr) * 12)); return `${MON[m]} ${yr}`; }
+  function rangeEN(a, b, NOW) {
+    if (a > 0 && b < 1e4 && b - a < 5 && (a % 1 || b % 1)) return `${month(a)} – ${month(b)}`;
+    const A = agoEN(a, NOW), B = agoEN(b, NOW);
+    if (A.endsWith(' AD') && B.endsWith(' AD')) return `${A.slice(0, -3)}–${B}`;
+    return `${A} – ${B}`;
+  }
+  function engine(E) {
+    if (!E || lang === 'pl' || E.__en) return; E.__en = true;
+    E.CATEGORIES.forEach(c => { c.name = EN.cat[c.id]; c.color = EN.catColor[c.id]; });
+    E.DOMAINS.forEach((d, i) => { d.name = EN.dom[i] || d.name; });
+    E.INTELLIGENCES.forEach(I => { const t = EN.int[I.id]; if (t) { I.name = t[0]; I.hint = t[1]; } });
+    E.EPOCHS.forEach((ep, i) => { ep.name = EN.ep[i]; ep.label = rangeEN(ep.from, ep.to, E.NOW); ep.intervals.forEach(iv => iv.label = rangeEN(iv.from, iv.to, E.NOW)); });
+    E.CHARACTERS.forEach((c, i) => { c.name = EN.ch[i] || c.name; });
+    E.LEVELS.forEach((l, i) => { l[1] = EN.lv[i] || l[1]; });
+    E.ago = y => agoEN(y, E.NOW); E.rangeLabel = (a, b) => rangeEN(a, b, E.NOW);
+    (E.ABILITIES || []).forEach((x, i) => { const t = EN.ab[i]; if (t) { x.name = t[0]; x.text = t[1]; } });
+    (E.EVENTS || []).forEach((x, i) => { const t = EN.ev[i]; if (t) { x.name = t[0]; x.text = t[1]; } });
+    const ST = { 'zgodne': 'match', 'sprzeczne': 'conflict', 'tylko numer': 'number only', 'tylko runy': 'runes only', 'nie rozpoznano': 'not recognized', 'potwierdzone przez sąsiadów': 'confirmed by neighbors', 'kilka możliwych pól': 'several possible fields', 'tylko kod': 'code only', 'tylko nazwa': 'name only' };
+    const trS = r => { if (r && typeof r.status === 'string') { r.status = ST[r.status] || r.status.replace(/^ustalone z (\d+) sąsiednich pól$/, 'found from $1 neighboring fields').replace(/^ustalone z nazwy „(.*)”$/, 'found from the name “$1”').replace(/^kilka pól „(.*)”$/, 'several “$1” fields'); } return r; };
+    ['verifyScan', 'locate', 'verifyCard'].forEach(k => { const f = E[k]; if (f) E[k] = (...a) => trS(f(...a)); });
+  }
+  // pytania: EN albo dwujęzycznie (EN + PL pod spodem)
+  function bank(list) {
+    if (!list || lang === 'pl') return;
+    for (const q of list) {
+      if (!q.q_en || q.__l) continue; q.__l = 1;
+      const pl = { q: q.q, options: q.options, answer: q.answer, explain: q.explain };
+      if (lang === 'en') {
+        q.q = q.q_en; if (q.options_en) q.options = q.options_en; if (q.explain_en) q.explain = q.explain_en;
+      } else {
+        q.q = q.q_en + '\n' + pl.q; if (q.options_en) q.options = q.options_en.map((o, i) => o === pl.options[i] ? o : `${o} · ${pl.options[i]}`);
+        q.explain = (q.explain_en || '') + '\n' + (pl.explain || '');
+      }
+      if (q.type === 'gap' && q.answer_en != null) { q.accept = [...new Set([...(q.accept || []), String(pl.answer)])]; q.answer = q.answer_en; }
+    }
+  }
+  // pola planszy: pełne dane (gra planszowa) albo skrót (Krąg, Diament)
+  function hexesFull(pola) {
+    if (!pola || lang === 'pl') return;
+    pola.hexes.forEach(h => { h.name = geo(h.name); h.continent = geo(h.continent); h.countries.forEach(c => c.name = geo(c.name)); h.landmarks = h.landmarks.map(geo); if (h.port) h.port.names = h.port.names.map(geo); });
+    (pola.seaRoutes || []).forEach(r => { r.from = geo(r.from); r.to = geo(r.to); });
+  }
+  function hexesShort(map) {
+    if (!map || lang === 'pl') return;
+    map.hexes.forEach(h => { h.n = geo(h.n); h.cn = geo(h.cn); h.lm = h.lm ? h.lm.split(', ').map(geo).join(', ') : h.lm; });
+  }
+  function svg(s) { if (!s || lang === 'pl') return s; return s.replace(/>([^<>]+)</g, (m, t) => { const k = t.trim(); if (!k || /^[\d\s.]+$/.test(k)) return m; const r = GEO[k] || geoUp(k); return r === k ? m : '>' + t.replace(k, r) + '<'; }); }
+  // przełącznik języka
+  function switcher(opts = {}) {
+    const s = document.createElement('select'); s.className = 'lang-sw'; s.setAttribute('aria-label', lang === 'pl' ? 'Język' : 'Language');
+    s.innerHTML = `<option value="pl">PL</option><option value="en">EN</option><option value="bi">PL+EN</option>`; s.value = lang;
+    s.title = lang === 'pl' ? 'Język: polski · angielski · dwujęzycznie (pytania po angielsku z polskim pod spodem)' : 'Language: Polish · English · bilingual (English questions with Polish below)';
+    s.onchange = () => { try { localStorage.setItem('histada.lang', s.value); } catch (e) {} if (opts.before) opts.before(); location.reload(); };
+    return s;
+  }
+  return { lang: () => lang, ui, geo, engine, bank, hexesFull, hexesShort, svg, switcher, story: k => { const S = window.__D && window.__D.STORIES; const s = S && S[k]; return s ? (lang === 'pl' ? s.pl : s.en) : null; } };
+})();
+
+</script>
+<template id="ui-pl">
+
+<main class="wrap">
+  <header class="top">
+    <button class="ava" id="ava" aria-label="Histada – przywitaj się"></button>
+    <div>
+      <span data-lang-slot style="float:right"></span><div class="eyebrow">Gra edukacyjna w trzech częściach</div>
+      <h1>HISTADA · TRYLOGIA</h1>
+      <p class="lede">Podróż przez czas i przestrzeń: od początku wszechświata po przyszłość, po wszystkich kontynentach. Każde pytanie sprawdza jedną z dziewięciu inteligencji, a punkty zbierają się w profilu postaci i na certyfikacie PDF.</p>
+      <div class="bubble" id="bub"><b>HISTADA</b><span id="say">Jestem Histada, Twoja przewodniczka. Wybierz, jak chcesz dziś grać.</span></div>
+    </div>
+  </header>
+
+  <div class="stats" aria-label="Zawartość gry">
+    <div><b>4 284</b><span>pytania w banku</span></div>
+    <div><b>12 × 12</b><span>epoki × przedziały czasu</span></div>
+    <div><b>36</b><span>dziedzin nauki w 3 grupach</span></div>
+    <div><b>9</b><span>typów inteligencji</span></div>
+    <div><b>502</b><span>pola lądu na mapie świata</span></div>
+  </div>
+
+  <div class="parts">
+    <article class="part p1">
+      <span class="art" aria-hidden="true"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><rect width="360" height="170" fill="#b9dcea"/><polygon points="9.9,-5.7 9.9,5.7 0.0,11.4 -9.9,5.7 -9.9,-5.7 -0.0,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="30.7,-5.7 30.7,5.7 20.8,11.4 10.9,5.7 10.9,-5.7 20.8,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="51.4,-5.7 51.4,5.7 41.6,11.4 31.7,5.7 31.7,-5.7 41.6,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="72.2,-5.7 72.2,5.7 62.4,11.4 52.5,5.7 52.5,-5.7 62.4,-11.4" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="113.8,-5.7 113.8,5.7 103.9,11.4 94.1,5.7 94.1,-5.7 103.9,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="134.6,-5.7 134.6,5.7 124.7,11.4 114.8,5.7 114.8,-5.7 124.7,-11.4" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="155.4,-5.7 155.4,5.7 145.5,11.4 135.6,5.7 135.6,-5.7 145.5,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="176.1,-5.7 176.1,5.7 166.3,11.4 156.4,5.7 156.4,-5.7 166.3,-11.4" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="217.7,-5.7 217.7,5.7 207.8,11.4 198.0,5.7 198.0,-5.7 207.8,-11.4" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="259.3,-5.7 259.3,5.7 249.4,11.4 239.5,5.7 239.5,-5.7 249.4,-11.4" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="280.1,-5.7 280.1,5.7 270.2,11.4 260.3,5.7 260.3,-5.7 270.2,-11.4" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="300.9,-5.7 300.9,5.7 291.0,11.4 281.1,5.7 281.1,-5.7 291.0,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="321.6,-5.7 321.6,5.7 311.8,11.4 301.9,5.7 301.9,-5.7 311.8,-11.4" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="363.2,-5.7 363.2,5.7 353.3,11.4 343.5,5.7 343.5,-5.7 353.3,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="103.4,12.3 103.4,23.7 93.5,29.4 83.7,23.7 83.7,12.3 93.5,6.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="124.2,12.3 124.2,23.7 114.3,29.4 104.4,23.7 104.4,12.3 114.3,6.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="165.8,12.3 165.8,23.7 155.9,29.4 146.0,23.7 146.0,12.3 155.9,6.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="186.5,12.3 186.5,23.7 176.7,29.4 166.8,23.7 166.8,12.3 176.7,6.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="228.1,12.3 228.1,23.7 218.2,29.4 208.4,23.7 208.4,12.3 218.2,6.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="269.7,12.3 269.7,23.7 259.8,29.4 249.9,23.7 249.9,12.3 259.8,6.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="311.2,12.3 311.2,23.7 301.4,29.4 291.5,23.7 291.5,12.3 301.4,6.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="93.0,30.3 93.0,41.7 83.1,47.4 73.3,41.7 73.3,30.3 83.1,24.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="196.9,30.3 196.9,41.7 187.1,47.4 177.2,41.7 177.2,30.3 187.1,24.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="217.7,30.3 217.7,41.7 207.8,47.4 198.0,41.7 198.0,30.3 207.8,24.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="238.5,30.3 238.5,41.7 228.6,47.4 218.8,41.7 218.8,30.3 228.6,24.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="280.1,30.3 280.1,41.7 270.2,47.4 260.3,41.7 260.3,30.3 270.2,24.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="300.9,30.3 300.9,41.7 291.0,47.4 281.1,41.7 281.1,30.3 291.0,24.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="321.6,30.3 321.6,41.7 311.8,47.4 301.9,41.7 301.9,30.3 311.8,24.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="20.3,48.3 20.3,59.7 10.4,65.4 0.5,59.7 0.5,48.3 10.4,42.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="61.8,48.3 61.8,59.7 52.0,65.4 42.1,59.7 42.1,48.3 52.0,42.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="82.6,48.3 82.6,59.7 72.7,65.4 62.9,59.7 62.9,48.3 72.7,42.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="103.4,48.3 103.4,59.7 93.5,65.4 83.7,59.7 83.7,48.3 93.5,42.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="124.2,48.3 124.2,59.7 114.3,65.4 104.4,59.7 104.4,48.3 114.3,42.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="145.0,48.3 145.0,59.7 135.1,65.4 125.2,59.7 125.2,48.3 135.1,42.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="165.8,48.3 165.8,59.7 155.9,65.4 146.0,59.7 146.0,48.3 155.9,42.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="207.3,48.3 207.3,59.7 197.5,65.4 187.6,59.7 187.6,48.3 197.5,42.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="228.1,48.3 228.1,59.7 218.2,65.4 208.4,59.7 208.4,48.3 218.2,42.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="269.7,48.3 269.7,59.7 259.8,65.4 249.9,59.7 249.9,48.3 259.8,42.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="332.0,48.3 332.0,59.7 322.2,65.4 312.3,59.7 312.3,48.3 322.2,42.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="373.6,48.3 373.6,59.7 363.7,65.4 353.9,59.7 353.9,48.3 363.7,42.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="30.7,66.3 30.7,77.7 20.8,83.4 10.9,77.7 10.9,66.3 20.8,60.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="51.4,66.3 51.4,77.7 41.6,83.4 31.7,77.7 31.7,66.3 41.6,60.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="93.0,66.3 93.0,77.7 83.1,83.4 73.3,77.7 73.3,66.3 83.1,60.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="113.8,66.3 113.8,77.7 103.9,83.4 94.1,77.7 94.1,66.3 103.9,60.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="134.6,66.3 134.6,77.7 124.7,83.4 114.8,77.7 114.8,66.3 124.7,60.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="155.4,66.3 155.4,77.7 145.5,83.4 135.6,77.7 135.6,66.3 145.5,60.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="196.9,66.3 196.9,77.7 187.1,83.4 177.2,77.7 177.2,66.3 187.1,60.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="259.3,66.3 259.3,77.7 249.4,83.4 239.5,77.7 239.5,66.3 249.4,60.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="280.1,66.3 280.1,77.7 270.2,83.4 260.3,77.7 260.3,66.3 270.2,60.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="321.6,66.3 321.6,77.7 311.8,83.4 301.9,77.7 301.9,66.3 311.8,60.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="342.4,66.3 342.4,77.7 332.6,83.4 322.7,77.7 322.7,66.3 332.6,60.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="363.2,66.3 363.2,77.7 353.3,83.4 343.5,77.7 343.5,66.3 353.3,60.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="41.0,84.3 41.0,95.7 31.2,101.4 21.3,95.7 21.3,84.3 31.2,78.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="61.8,84.3 61.8,95.7 52.0,101.4 42.1,95.7 42.1,84.3 52.0,78.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="82.6,84.3 82.6,95.7 72.7,101.4 62.9,95.7 62.9,84.3 72.7,78.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="103.4,84.3 103.4,95.7 93.5,101.4 83.7,95.7 83.7,84.3 93.5,78.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="124.2,84.3 124.2,95.7 114.3,101.4 104.4,95.7 104.4,84.3 114.3,78.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="165.8,84.3 165.8,95.7 155.9,101.4 146.0,95.7 146.0,84.3 155.9,78.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="186.5,84.3 186.5,95.7 176.7,101.4 166.8,95.7 166.8,84.3 176.7,78.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="248.9,84.3 248.9,95.7 239.0,101.4 229.2,95.7 229.2,84.3 239.0,78.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="269.7,84.3 269.7,95.7 259.8,101.4 249.9,95.7 249.9,84.3 259.8,78.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="290.5,84.3 290.5,95.7 280.6,101.4 270.7,95.7 270.7,84.3 280.6,78.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="352.8,84.3 352.8,95.7 342.9,101.4 333.1,95.7 333.1,84.3 342.9,78.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="373.6,84.3 373.6,95.7 363.7,101.4 353.9,95.7 353.9,84.3 363.7,78.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="30.7,102.3 30.7,113.7 20.8,119.4 10.9,113.7 10.9,102.3 20.8,96.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="51.4,102.3 51.4,113.7 41.6,119.4 31.7,113.7 31.7,102.3 41.6,96.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="113.8,102.3 113.8,113.7 103.9,119.4 94.1,113.7 94.1,102.3 103.9,96.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="155.4,102.3 155.4,113.7 145.5,119.4 135.6,113.7 135.6,102.3 145.5,96.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="176.1,102.3 176.1,113.7 166.3,119.4 156.4,113.7 156.4,102.3 166.3,96.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="196.9,102.3 196.9,113.7 187.1,119.4 177.2,113.7 177.2,102.3 187.1,96.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="217.7,102.3 217.7,113.7 207.8,119.4 198.0,113.7 198.0,102.3 207.8,96.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="238.5,102.3 238.5,113.7 228.6,119.4 218.8,113.7 218.8,102.3 228.6,96.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="259.3,102.3 259.3,113.7 249.4,119.4 239.5,113.7 239.5,102.3 249.4,96.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="280.1,102.3 280.1,113.7 270.2,119.4 260.3,113.7 260.3,102.3 270.2,96.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="321.6,102.3 321.6,113.7 311.8,119.4 301.9,113.7 301.9,102.3 311.8,96.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="363.2,102.3 363.2,113.7 353.3,119.4 343.5,113.7 343.5,102.3 353.3,96.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="20.3,120.3 20.3,131.7 10.4,137.4 0.5,131.7 0.5,120.3 10.4,114.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="41.0,120.3 41.0,131.7 31.2,137.4 21.3,131.7 21.3,120.3 31.2,114.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="61.8,120.3 61.8,131.7 52.0,137.4 42.1,131.7 42.1,120.3 52.0,114.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="103.4,120.3 103.4,131.7 93.5,137.4 83.7,131.7 83.7,120.3 93.5,114.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="124.2,120.3 124.2,131.7 114.3,137.4 104.4,131.7 104.4,120.3 114.3,114.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="145.0,120.3 145.0,131.7 135.1,137.4 125.2,131.7 125.2,120.3 135.1,114.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="207.3,120.3 207.3,131.7 197.5,137.4 187.6,131.7 187.6,120.3 197.5,114.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="290.5,120.3 290.5,131.7 280.6,137.4 270.7,131.7 270.7,120.3 280.6,114.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="311.2,120.3 311.2,131.7 301.4,137.4 291.5,131.7 291.5,120.3 301.4,114.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="332.0,120.3 332.0,131.7 322.2,137.4 312.3,131.7 312.3,120.3 322.2,114.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="30.7,138.3 30.7,149.7 20.8,155.4 10.9,149.7 10.9,138.3 20.8,132.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="51.4,138.3 51.4,149.7 41.6,155.4 31.7,149.7 31.7,138.3 41.6,132.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="72.2,138.3 72.2,149.7 62.4,155.4 52.5,149.7 52.5,138.3 62.4,132.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="93.0,138.3 93.0,149.7 83.1,155.4 73.3,149.7 73.3,138.3 83.1,132.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="113.8,138.3 113.8,149.7 103.9,155.4 94.1,149.7 94.1,138.3 103.9,132.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="134.6,138.3 134.6,149.7 124.7,155.4 114.8,149.7 114.8,138.3 124.7,132.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="155.4,138.3 155.4,149.7 145.5,155.4 135.6,149.7 135.6,138.3 145.5,132.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="176.1,138.3 176.1,149.7 166.3,155.4 156.4,149.7 156.4,138.3 166.3,132.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="196.9,138.3 196.9,149.7 187.1,155.4 177.2,149.7 177.2,138.3 187.1,132.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="217.7,138.3 217.7,149.7 207.8,155.4 198.0,149.7 198.0,138.3 207.8,132.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="238.5,138.3 238.5,149.7 228.6,155.4 218.8,149.7 218.8,138.3 228.6,132.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="321.6,138.3 321.6,149.7 311.8,155.4 301.9,149.7 301.9,138.3 311.8,132.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="363.2,138.3 363.2,149.7 353.3,155.4 343.5,149.7 343.5,138.3 353.3,132.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><g transform="translate(250 60)"><circle r="11" fill="#d1495b" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="28" r="11" fill="#2f6db5" stroke="#fff" stroke-width="2.5"/><rect x="-60" y="44" width="30" height="30" rx="5" fill="#fff" stroke="#16313a" stroke-width="2"/><circle cx="-52" cy="52" r="3" fill="#16313a"/><circle cx="-38" cy="66" r="3" fill="#16313a"/></g></svg></span>
+      <div class="body">
+        <span class="no">CZĘŚĆ 1 · 1–12 GRACZY · PLANSZOWA</span>
+        <h2>Rozgrywka planszowa</h2>
+        <p>Rzut kośćmi wybiera epokę, czas i ruch po heksagonalnej mapie świata. Karta dziedziny, dziewięć pytań, kółka zębate punktów.</p>
+        <ul><li>plansza 2D i 3D, porty i trasy morskie</li><li>skanowanie pól, kart i kości z planszy fizycznej</li><li>pytania dopasowane do miejsca i czasu</li></ul>
+        <div class="meta"><span class="tag">wspólny ekran</span><span class="tag">plansza A1</span></div>
+        <a class="go" href="/gra/">Zagraj na planszy ↗</a>
+      </div>
+    </article>
+    <article class="part p2">
+      <span class="art" aria-hidden="true"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><rect width="360" height="170" fill="#0b1220"/><circle cx="89" cy="105" r="0.9" fill="#ece5d2" opacity="0.23"/><circle cx="116" cy="139" r="1.3" fill="#ece5d2" opacity="0.67"/><circle cx="17" cy="8" r="0.9" fill="#ece5d2" opacity="0.22"/><circle cx="257" cy="88" r="0.9" fill="#ece5d2" opacity="0.29"/><circle cx="26" cy="66" r="0.8" fill="#ece5d2" opacity="0.38"/><circle cx="95" cy="168" r="0.8" fill="#ece5d2" opacity="0.28"/><circle cx="1" cy="123" r="1.3" fill="#ece5d2" opacity="0.54"/><circle cx="15" cy="78" r="1.1" fill="#ece5d2" opacity="0.52"/><circle cx="229" cy="7" r="1.4" fill="#ece5d2" opacity="0.23"/><circle cx="226" cy="129" r="0.7" fill="#ece5d2" opacity="0.77"/><circle cx="151" cy="3" r="0.6" fill="#ece5d2" opacity="0.36"/><circle cx="212" cy="137" r="0.6" fill="#ece5d2" opacity="0.28"/><circle cx="10" cy="55" r="1.5" fill="#ece5d2" opacity="0.54"/><circle cx="313" cy="21" r="1.1" fill="#ece5d2" opacity="0.76"/><circle cx="263" cy="144" r="0.9" fill="#ece5d2" opacity="0.43"/><circle cx="39" cy="54" r="0.9" fill="#ece5d2" opacity="0.69"/><circle cx="258" cy="81" r="0.6" fill="#ece5d2" opacity="0.43"/><circle cx="190" cy="96" r="1.1" fill="#ece5d2" opacity="0.43"/><circle cx="295" cy="58" r="1.3" fill="#ece5d2" opacity="0.22"/><circle cx="41" cy="82" r="1.1" fill="#ece5d2" opacity="0.37"/><circle cx="108" cy="15" r="1.5" fill="#ece5d2" opacity="0.54"/><circle cx="190" cy="41" r="1.0" fill="#ece5d2" opacity="0.26"/><circle cx="199" cy="94" r="1.3" fill="#ece5d2" opacity="0.31"/><circle cx="28" cy="170" r="1.1" fill="#ece5d2" opacity="0.47"/><circle cx="252" cy="160" r="0.6" fill="#ece5d2" opacity="0.56"/><circle cx="338" cy="95" r="1.5" fill="#ece5d2" opacity="0.43"/><circle cx="85" cy="158" r="1.3" fill="#ece5d2" opacity="0.78"/><circle cx="149" cy="97" r="1.0" fill="#ece5d2" opacity="0.75"/><circle cx="247" cy="27" r="0.8" fill="#ece5d2" opacity="0.73"/><circle cx="59" cy="85" r="0.9" fill="#ece5d2" opacity="0.62"/><circle cx="342" cy="100" r="1.3" fill="#ece5d2" opacity="0.28"/><circle cx="271" cy="25" r="0.9" fill="#ece5d2" opacity="0.76"/><circle cx="307" cy="91" r="1.2" fill="#ece5d2" opacity="0.60"/><circle cx="308" cy="101" r="1.0" fill="#ece5d2" opacity="0.79"/><circle cx="320" cy="52" r="0.6" fill="#ece5d2" opacity="0.68"/><circle cx="72" cy="97" r="0.6" fill="#ece5d2" opacity="0.49"/><circle cx="311" cy="71" r="1.1" fill="#ece5d2" opacity="0.62"/><circle cx="74" cy="99" r="1.4" fill="#ece5d2" opacity="0.59"/><circle cx="10" cy="169" r="0.4" fill="#ece5d2" opacity="0.77"/><circle cx="282" cy="150" r="0.4" fill="#ece5d2" opacity="0.75"/><circle cx="321" cy="110" r="1.2" fill="#ece5d2" opacity="0.24"/><circle cx="78" cy="43" r="1.4" fill="#ece5d2" opacity="0.67"/><circle cx="49" cy="106" r="1.1" fill="#ece5d2" opacity="0.22"/><circle cx="336" cy="29" r="0.4" fill="#ece5d2" opacity="0.31"/><circle cx="33" cy="136" r="0.4" fill="#ece5d2" opacity="0.36"/><circle cx="329" cy="6" r="0.8" fill="#ece5d2" opacity="0.64"/><circle cx="121" cy="5" r="0.7" fill="#ece5d2" opacity="0.43"/><circle cx="28" cy="110" r="1.2" fill="#ece5d2" opacity="0.49"/><circle cx="45" cy="54" r="1.4" fill="#ece5d2" opacity="0.25"/><circle cx="156" cy="75" r="0.9" fill="#ece5d2" opacity="0.35"/><circle cx="190" cy="119" r="1.1" fill="#ece5d2" opacity="0.42"/><circle cx="162" cy="113" r="1.1" fill="#ece5d2" opacity="0.77"/><circle cx="294" cy="18" r="1.4" fill="#ece5d2" opacity="0.40"/><circle cx="204" cy="89" r="1.1" fill="#ece5d2" opacity="0.51"/><circle cx="21" cy="50" r="1.2" fill="#ece5d2" opacity="0.65"/><circle cx="233" cy="124" r="0.5" fill="#ece5d2" opacity="0.42"/><circle cx="331" cy="77" r="0.4" fill="#ece5d2" opacity="0.54"/><circle cx="331" cy="110" r="1.1" fill="#ece5d2" opacity="0.45"/><circle cx="108" cy="32" r="0.9" fill="#ece5d2" opacity="0.67"/><circle cx="254" cy="18" r="0.5" fill="#ece5d2" opacity="0.53"/><circle cx="207" cy="67" r="0.4" fill="#ece5d2" opacity="0.36"/><circle cx="19" cy="23" r="0.9" fill="#ece5d2" opacity="0.36"/><circle cx="250" cy="88" r="1.4" fill="#ece5d2" opacity="0.77"/><circle cx="161" cy="138" r="0.4" fill="#ece5d2" opacity="0.50"/><circle cx="358" cy="26" r="1.0" fill="#ece5d2" opacity="0.61"/><circle cx="203" cy="155" r="0.4" fill="#ece5d2" opacity="0.62"/><circle cx="204" cy="114" r="0.8" fill="#ece5d2" opacity="0.79"/><circle cx="46" cy="103" r="1.3" fill="#ece5d2" opacity="0.68"/><circle cx="196" cy="29" r="0.5" fill="#ece5d2" opacity="0.72"/><circle cx="133" cy="50" r="1.3" fill="#ece5d2" opacity="0.47"/><circle cx="180" cy="98" r="18" fill="none" stroke="#f5f0e4" stroke-width="2.5"/><g fill-opacity=".22" stroke-width="2"><circle cx="90" cy="112" r="42" fill="#4fbd84" stroke="#4fbd84"/><circle cx="180" cy="46" r="42" fill="#5b98e6" stroke="#5b98e6"/><circle cx="270" cy="112" r="42" fill="#e4665a" stroke="#e4665a"/></g><g fill="#0b1220" stroke="#d9b25a" stroke-width="1.6"><ellipse cx="90.0" cy="80.0" rx="4" ry="5"/><ellipse cx="106.0" cy="84.3" rx="4" ry="5"/><ellipse cx="117.7" cy="96.0" rx="4" ry="5"/><ellipse cx="122.0" cy="112.0" rx="4" ry="5"/><ellipse cx="117.7" cy="128.0" rx="4" ry="5"/><ellipse cx="106.0" cy="139.7" rx="4" ry="5"/><ellipse cx="90.0" cy="144.0" rx="4" ry="5"/><ellipse cx="74.0" cy="139.7" rx="4" ry="5"/><ellipse cx="62.3" cy="128.0" rx="4" ry="5"/><ellipse cx="58.0" cy="112.0" rx="4" ry="5"/><ellipse cx="62.3" cy="96.0" rx="4" ry="5"/><ellipse cx="74.0" cy="84.3" rx="4" ry="5"/><ellipse cx="180.0" cy="14.0" rx="4" ry="5"/><ellipse cx="196.0" cy="18.3" rx="4" ry="5"/><ellipse cx="207.7" cy="30.0" rx="4" ry="5"/><ellipse cx="212.0" cy="46.0" rx="4" ry="5"/><ellipse cx="207.7" cy="62.0" rx="4" ry="5"/><ellipse cx="196.0" cy="73.7" rx="4" ry="5"/><ellipse cx="180.0" cy="78.0" rx="4" ry="5"/><ellipse cx="164.0" cy="73.7" rx="4" ry="5"/><ellipse cx="152.3" cy="62.0" rx="4" ry="5"/><ellipse cx="148.0" cy="46.0" rx="4" ry="5"/><ellipse cx="152.3" cy="30.0" rx="4" ry="5"/><ellipse cx="164.0" cy="18.3" rx="4" ry="5"/><ellipse cx="270.0" cy="80.0" rx="4" ry="5"/><ellipse cx="286.0" cy="84.3" rx="4" ry="5"/><ellipse cx="297.7" cy="96.0" rx="4" ry="5"/><ellipse cx="302.0" cy="112.0" rx="4" ry="5"/><ellipse cx="297.7" cy="128.0" rx="4" ry="5"/><ellipse cx="286.0" cy="139.7" rx="4" ry="5"/><ellipse cx="270.0" cy="144.0" rx="4" ry="5"/><ellipse cx="254.0" cy="139.7" rx="4" ry="5"/><ellipse cx="242.3" cy="128.0" rx="4" ry="5"/><ellipse cx="238.0" cy="112.0" rx="4" ry="5"/><ellipse cx="242.3" cy="96.0" rx="4" ry="5"/><ellipse cx="254.0" cy="84.3" rx="4" ry="5"/></g></svg></span>
+      <div class="body">
+        <span class="no">CZĘŚĆ 2 · WIELU GRACZY · SPOŁECZNOŚCIOWA</span>
+        <h2>W Kręgu Tajemnicy</h2>
+        <p>Z mapy świata do Kręgu z trzema podestami nauk, przez polanę epok do korytarza czasu z ciekawostkami i stanowiskiem quizu.</p>
+        <ul><li>inni gracze na żywo, czat, emotki i quiz grupowy</li><li>ranking inteligencji i 13 odznak</li><li>wszystkie sceny także w 3D</li></ul>
+        <div class="meta"><span class="tag">czat tekstowy</span><span class="tag">ranking</span></div>
+        <a class="go" href="/krag/">Wejdź do Kręgu ↗</a>
+      </div>
+    </article>
+    <article class="part p3">
+      <span class="art" aria-hidden="true"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><rect width="360" height="170" fill="#04060d"/><g stroke="#1d3a5c" stroke-width="1"><line x1="-220" y1="170" x2="100" y2="95"/><line x1="-180" y1="170" x2="108" y2="95"/><line x1="-140" y1="170" x2="116" y2="95"/><line x1="-100" y1="170" x2="124" y2="95"/><line x1="-60" y1="170" x2="132" y2="95"/><line x1="-20" y1="170" x2="140" y2="95"/><line x1="20" y1="170" x2="148" y2="95"/><line x1="60" y1="170" x2="156" y2="95"/><line x1="100" y1="170" x2="164" y2="95"/><line x1="140" y1="170" x2="172" y2="95"/><line x1="180" y1="170" x2="180" y2="95"/><line x1="220" y1="170" x2="188" y2="95"/><line x1="260" y1="170" x2="196" y2="95"/><line x1="300" y1="170" x2="204" y2="95"/><line x1="340" y1="170" x2="212" y2="95"/><line x1="380" y1="170" x2="220" y2="95"/><line x1="420" y1="170" x2="228" y2="95"/><line x1="460" y1="170" x2="236" y2="95"/><line x1="500" y1="170" x2="244" y2="95"/><line x1="540" y1="170" x2="252" y2="95"/><line x1="580" y1="170" x2="260" y2="95"/><line x1="0" y1="100" x2="360" y2="100"/><line x1="0" y1="110" x2="360" y2="110"/><line x1="0" y1="124" x2="360" y2="124"/><line x1="0" y1="142" x2="360" y2="142"/><line x1="0" y1="166" x2="360" y2="166"/></g><g fill="none" stroke="#9df3ff" stroke-width="1.6" stroke-linejoin="round" transform="translate(180 20)"><path d="M0 0l34 26-34 52-34-52Z M-34 26h68 M-17 26L0 78 17 26 M0 0-17 26M0 0l17 26"/></g><g stroke="#38e8ff" fill="#071025" stroke-width="2"><rect x="70" y="118" width="46" height="36" rx="3"/><rect x="128" y="112" width="46" height="42" rx="3" stroke="#ff4fd8"/><rect x="186" y="118" width="46" height="36" rx="3"/><rect x="244" y="118" width="46" height="36" rx="3" stroke="#4fe39a"/></g></svg></span>
+      <div class="body">
+        <span class="no">CZĘŚĆ 3 · 1 GRACZ · INDYWIDUALNA</span>
+        <h2>Cyfrowy Diament</h2>
+        <p>Cyfrowy świat ekranów. Chodzisz po pasku 36 kart dziedzin; lewy ekran wybiera czas, prawy miejsce na mapie, główny pokazuje dokument i quiz.</p>
+        <ul><li>zapis stanu – wracasz do tego samego pytania</li><li>oś czasu, mapa i linki do Wikipedii</li><li>seria, talia kart i inne odznaki</li></ul>
+        <div class="meta"><span class="tag">zapis gry</span><span class="tag">3D</span></div>
+        <a class="go" href="/diament/">Uruchom Diament ↗</a>
+      </div>
+    </article>
+    <article class="part p4">
+      <span class="art" aria-hidden="true"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><rect width="360" height="170" fill="#e8e3d6"/><g transform="rotate(-6 120 90)"><rect x="42" y="30" width="150" height="104" fill="#fdfbf5" stroke="#15303a" stroke-opacity=".2"/><rect x="50" y="38" width="134" height="80" fill="#b9dcea"/><g fill="#f3d6a4"><polygon points="60.7,41.3 60.7,46.7 56.0,49.4 51.3,46.7 51.3,41.3 56.0,38.6"/><polygon points="82.7,41.3 82.7,46.7 78.0,49.4 73.3,46.7 73.3,41.3 78.0,38.6"/><polygon points="104.7,41.3 104.7,46.7 100.0,49.4 95.3,46.7 95.3,41.3 100.0,38.6"/><polygon points="115.7,41.3 115.7,46.7 111.0,49.4 106.3,46.7 106.3,41.3 111.0,38.6"/><polygon points="170.7,41.3 170.7,46.7 166.0,49.4 161.3,46.7 161.3,41.3 166.0,38.6"/><polygon points="181.7,41.3 181.7,46.7 177.0,49.4 172.3,46.7 172.3,41.3 177.0,38.6"/><polygon points="77.2,51.3 77.2,56.7 72.5,59.4 67.8,56.7 67.8,51.3 72.5,48.6"/><polygon points="99.2,51.3 99.2,56.7 94.5,59.4 89.8,56.7 89.8,51.3 94.5,48.6"/><polygon points="110.2,51.3 110.2,56.7 105.5,59.4 100.8,56.7 100.8,51.3 105.5,48.6"/><polygon points="132.2,51.3 132.2,56.7 127.5,59.4 122.8,56.7 122.8,51.3 127.5,48.6"/><polygon points="154.2,51.3 154.2,56.7 149.5,59.4 144.8,56.7 144.8,51.3 149.5,48.6"/><polygon points="60.7,61.3 60.7,66.7 56.0,69.4 51.3,66.7 51.3,61.3 56.0,58.6"/><polygon points="71.7,61.3 71.7,66.7 67.0,69.4 62.3,66.7 62.3,61.3 67.0,58.6"/><polygon points="93.7,61.3 93.7,66.7 89.0,69.4 84.3,66.7 84.3,61.3 89.0,58.6"/><polygon points="104.7,61.3 104.7,66.7 100.0,69.4 95.3,66.7 95.3,61.3 100.0,58.6"/><polygon points="115.7,61.3 115.7,66.7 111.0,69.4 106.3,66.7 106.3,61.3 111.0,58.6"/><polygon points="137.7,61.3 137.7,66.7 133.0,69.4 128.3,66.7 128.3,61.3 133.0,58.6"/><polygon points="170.7,61.3 170.7,66.7 166.0,69.4 161.3,66.7 161.3,61.3 166.0,58.6"/><polygon points="181.7,61.3 181.7,66.7 177.0,69.4 172.3,66.7 172.3,61.3 177.0,58.6"/><polygon points="66.2,71.3 66.2,76.7 61.5,79.4 56.8,76.7 56.8,71.3 61.5,68.6"/><polygon points="77.2,71.3 77.2,76.7 72.5,79.4 67.8,76.7 67.8,71.3 72.5,68.6"/><polygon points="88.2,71.3 88.2,76.7 83.5,79.4 78.8,76.7 78.8,71.3 83.5,68.6"/><polygon points="110.2,71.3 110.2,76.7 105.5,79.4 100.8,76.7 100.8,71.3 105.5,68.6"/><polygon points="143.2,71.3 143.2,76.7 138.5,79.4 133.8,76.7 133.8,71.3 138.5,68.6"/><polygon points="154.2,71.3 154.2,76.7 149.5,79.4 144.8,76.7 144.8,71.3 149.5,68.6"/><polygon points="187.2,71.3 187.2,76.7 182.5,79.4 177.8,76.7 177.8,71.3 182.5,68.6"/><polygon points="60.7,81.3 60.7,86.7 56.0,89.4 51.3,86.7 51.3,81.3 56.0,78.6"/><polygon points="71.7,81.3 71.7,86.7 67.0,89.4 62.3,86.7 62.3,81.3 67.0,78.6"/><polygon points="93.7,81.3 93.7,86.7 89.0,89.4 84.3,86.7 84.3,81.3 89.0,78.6"/><polygon points="104.7,81.3 104.7,86.7 100.0,89.4 95.3,86.7 95.3,81.3 100.0,78.6"/><polygon points="126.7,81.3 126.7,86.7 122.0,89.4 117.3,86.7 117.3,81.3 122.0,78.6"/><polygon points="159.7,81.3 159.7,86.7 155.0,89.4 150.3,86.7 150.3,81.3 155.0,78.6"/><polygon points="170.7,81.3 170.7,86.7 166.0,89.4 161.3,86.7 161.3,81.3 166.0,78.6"/><polygon points="181.7,81.3 181.7,86.7 177.0,89.4 172.3,86.7 172.3,81.3 177.0,78.6"/><polygon points="77.2,91.3 77.2,96.7 72.5,99.4 67.8,96.7 67.8,91.3 72.5,88.6"/><polygon points="88.2,91.3 88.2,96.7 83.5,99.4 78.8,96.7 78.8,91.3 83.5,88.6"/><polygon points="99.2,91.3 99.2,96.7 94.5,99.4 89.8,96.7 89.8,91.3 94.5,88.6"/><polygon points="110.2,91.3 110.2,96.7 105.5,99.4 100.8,96.7 100.8,91.3 105.5,88.6"/><polygon points="132.2,91.3 132.2,96.7 127.5,99.4 122.8,96.7 122.8,91.3 127.5,88.6"/><polygon points="143.2,91.3 143.2,96.7 138.5,99.4 133.8,96.7 133.8,91.3 138.5,88.6"/><polygon points="154.2,91.3 154.2,96.7 149.5,99.4 144.8,96.7 144.8,91.3 149.5,88.6"/><polygon points="165.2,91.3 165.2,96.7 160.5,99.4 155.8,96.7 155.8,91.3 160.5,88.6"/><polygon points="187.2,91.3 187.2,96.7 182.5,99.4 177.8,96.7 177.8,91.3 182.5,88.6"/><polygon points="60.7,101.3 60.7,106.7 56.0,109.4 51.3,106.7 51.3,101.3 56.0,98.6"/><polygon points="71.7,101.3 71.7,106.7 67.0,109.4 62.3,106.7 62.3,101.3 67.0,98.6"/><polygon points="104.7,101.3 104.7,106.7 100.0,109.4 95.3,106.7 95.3,101.3 100.0,98.6"/><polygon points="115.7,101.3 115.7,106.7 111.0,109.4 106.3,106.7 106.3,101.3 111.0,98.6"/><polygon points="148.7,101.3 148.7,106.7 144.0,109.4 139.3,106.7 139.3,101.3 144.0,98.6"/><polygon points="159.7,101.3 159.7,106.7 155.0,109.4 150.3,106.7 150.3,101.3 155.0,98.6"/></g></g><g transform="rotate(5 262 70)"><rect x="220" y="28" width="84" height="54" rx="3" fill="#2f6db5"/><rect x="244" y="28" width="60" height="54" fill="#fdfcf8"/><rect x="226" y="92" width="84" height="54" rx="3" fill="#2e8b57"/><rect x="250" y="92" width="60" height="54" fill="#fdfcf8"/></g><g transform="translate(196 118)"><path d="M0 0l12 9-5 14H-7l-5-14Z" fill="#fdfcf8" stroke="#15303a" stroke-width="1.4"/><text x="0" y="14" font-size="9" text-anchor="middle" font-weight="700" fill="#15303a">7</text></g><path d="M300 150l14-8 14 8-14 8Z M300 150v12l14 8v-12Z M328 150v12l-14 8" fill="#c9ccd2" stroke="#555"/></svg></span>
+      <div class="body">
+        <span class="no">CZĘŚĆ 1 · DO DRUKU · PDF · PNG · SVG</span>
+        <h2>Gra do wydruku</h2>
+        <p>Prawdziwa gra na stół: mapa świata A1, karty dziedzin, zdolności, wydarzeń i pomocy, kartoniki postaci, kości, pionki, pudełko i instrukcja – po polsku i angielsku.</p>
+        <ul><li>druk w skali 1:1, także plansza z 8 kartek A4</li><li>kości k12 i k6 oraz pionki do sklejenia</li><li>pytania podaje aplikacja z części 1</li></ul>
+        <div class="meta"><span class="tag">41 stron PDF · PL / EN</span><span class="tag">432 karty opowieści i pytań</span></div>
+        <a class="go" href="/druk/">Pobierz do druku ↗</a>
+      </div>
+    </article>
+  </div>
+
+  <section class="two">
+    <div>
+      <h3>Dziewięć inteligencji</h3>
+      <div class="ints"></div>
+    </div>
+    <div>
+      <h3>Jak wygląda każda runda</h3>
+      <ol class="flow">
+        <li><span><b>Miejsce</b> – pole na mapie świata; pytania chętniej dotyczą tego regionu.</span></li>
+        <li><span><b>Czas</b> – jedna z 12 epok, od początku wszechświata po przyszłość, i jej przedział.</span></li>
+        <li><span><b>Temat</b> – jedna z 36 dziedzin: humanistyka, technika albo przyroda.</span></li>
+        <li><span><b>Dziewięć pytań</b> – po jednym dla każdej inteligencji, 10 punktów za nową dobrą odpowiedź.</span></li>
+        <li><span><b>Poziom</b> – Nowicjusz, Adept, Znawca, Mistrz, Arcymistrz; wszystko na certyfikacie PDF.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <p class="note">Postęp gry zapisuje się w tej przeglądarce. Tryby z Claude (nowe opowieści, skanowanie zdjęć) działają, gdy właściciel strony podłączy klucz API. Pytania w banku przejrzał Claude; nie zostały jeszcze sprawdzone przez człowieka ani ze źródłami.</p>
+
+  <footer><span>HISTADA · Trylogia</span><span>Rozgrywka Planszowa · W Kręgu Tajemnicy · Cyfrowy Diament</span></footer>
+</main>
+
+
+</template>
+<template id="ui-en">
+
+<main class="wrap">
+  <header class="top">
+    <button class="ava" id="ava" aria-label="Histada – say hello"></button>
+    <div>
+      <span data-lang-slot style="float:right"></span><div class="eyebrow">An educational game in three parts</div>
+      <h1>HISTADA · TRILOGY</h1>
+      <p class="lede">A journey through time and space: from the beginning of the universe to the future, across every continent. Each question tests one of nine intelligences, and your points add up in your character profile and on a PDF certificate.</p>
+      <div class="bubble" id="bub"><b>HISTADA</b><span id="say">I’m Histada, your guide. Choose how you want to play today.</span></div>
+    </div>
+  </header>
+
+  <div class="stats" aria-label="Game contents">
+    <div><b>4,284</b><span>questions in the bank</span></div>
+    <div><b>12 × 12</b><span>epochs × time intervals</span></div>
+    <div><b>36</b><span>domains of knowledge in 3 groups</span></div>
+    <div><b>9</b><span>types of intelligence</span></div>
+    <div><b>502</b><span>land fields on the world map</span></div>
+  </div>
+
+  <div class="parts">
+    <article class="part p1">
+      <span class="art" aria-hidden="true"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><rect width="360" height="170" fill="#b9dcea"/><polygon points="9.9,-5.7 9.9,5.7 0.0,11.4 -9.9,5.7 -9.9,-5.7 -0.0,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="30.7,-5.7 30.7,5.7 20.8,11.4 10.9,5.7 10.9,-5.7 20.8,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="51.4,-5.7 51.4,5.7 41.6,11.4 31.7,5.7 31.7,-5.7 41.6,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="72.2,-5.7 72.2,5.7 62.4,11.4 52.5,5.7 52.5,-5.7 62.4,-11.4" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="113.8,-5.7 113.8,5.7 103.9,11.4 94.1,5.7 94.1,-5.7 103.9,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="134.6,-5.7 134.6,5.7 124.7,11.4 114.8,5.7 114.8,-5.7 124.7,-11.4" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="155.4,-5.7 155.4,5.7 145.5,11.4 135.6,5.7 135.6,-5.7 145.5,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="176.1,-5.7 176.1,5.7 166.3,11.4 156.4,5.7 156.4,-5.7 166.3,-11.4" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="217.7,-5.7 217.7,5.7 207.8,11.4 198.0,5.7 198.0,-5.7 207.8,-11.4" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="259.3,-5.7 259.3,5.7 249.4,11.4 239.5,5.7 239.5,-5.7 249.4,-11.4" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="280.1,-5.7 280.1,5.7 270.2,11.4 260.3,5.7 260.3,-5.7 270.2,-11.4" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="300.9,-5.7 300.9,5.7 291.0,11.4 281.1,5.7 281.1,-5.7 291.0,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="321.6,-5.7 321.6,5.7 311.8,11.4 301.9,5.7 301.9,-5.7 311.8,-11.4" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="363.2,-5.7 363.2,5.7 353.3,11.4 343.5,5.7 343.5,-5.7 353.3,-11.4" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="103.4,12.3 103.4,23.7 93.5,29.4 83.7,23.7 83.7,12.3 93.5,6.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="124.2,12.3 124.2,23.7 114.3,29.4 104.4,23.7 104.4,12.3 114.3,6.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="165.8,12.3 165.8,23.7 155.9,29.4 146.0,23.7 146.0,12.3 155.9,6.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="186.5,12.3 186.5,23.7 176.7,29.4 166.8,23.7 166.8,12.3 176.7,6.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="228.1,12.3 228.1,23.7 218.2,29.4 208.4,23.7 208.4,12.3 218.2,6.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="269.7,12.3 269.7,23.7 259.8,29.4 249.9,23.7 249.9,12.3 259.8,6.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="311.2,12.3 311.2,23.7 301.4,29.4 291.5,23.7 291.5,12.3 301.4,6.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="93.0,30.3 93.0,41.7 83.1,47.4 73.3,41.7 73.3,30.3 83.1,24.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="196.9,30.3 196.9,41.7 187.1,47.4 177.2,41.7 177.2,30.3 187.1,24.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="217.7,30.3 217.7,41.7 207.8,47.4 198.0,41.7 198.0,30.3 207.8,24.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="238.5,30.3 238.5,41.7 228.6,47.4 218.8,41.7 218.8,30.3 228.6,24.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="280.1,30.3 280.1,41.7 270.2,47.4 260.3,41.7 260.3,30.3 270.2,24.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="300.9,30.3 300.9,41.7 291.0,47.4 281.1,41.7 281.1,30.3 291.0,24.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="321.6,30.3 321.6,41.7 311.8,47.4 301.9,41.7 301.9,30.3 311.8,24.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="20.3,48.3 20.3,59.7 10.4,65.4 0.5,59.7 0.5,48.3 10.4,42.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="61.8,48.3 61.8,59.7 52.0,65.4 42.1,59.7 42.1,48.3 52.0,42.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="82.6,48.3 82.6,59.7 72.7,65.4 62.9,59.7 62.9,48.3 72.7,42.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="103.4,48.3 103.4,59.7 93.5,65.4 83.7,59.7 83.7,48.3 93.5,42.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="124.2,48.3 124.2,59.7 114.3,65.4 104.4,59.7 104.4,48.3 114.3,42.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="145.0,48.3 145.0,59.7 135.1,65.4 125.2,59.7 125.2,48.3 135.1,42.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="165.8,48.3 165.8,59.7 155.9,65.4 146.0,59.7 146.0,48.3 155.9,42.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="207.3,48.3 207.3,59.7 197.5,65.4 187.6,59.7 187.6,48.3 197.5,42.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="228.1,48.3 228.1,59.7 218.2,65.4 208.4,59.7 208.4,48.3 218.2,42.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="269.7,48.3 269.7,59.7 259.8,65.4 249.9,59.7 249.9,48.3 259.8,42.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="332.0,48.3 332.0,59.7 322.2,65.4 312.3,59.7 312.3,48.3 322.2,42.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="373.6,48.3 373.6,59.7 363.7,65.4 353.9,59.7 353.9,48.3 363.7,42.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="30.7,66.3 30.7,77.7 20.8,83.4 10.9,77.7 10.9,66.3 20.8,60.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="51.4,66.3 51.4,77.7 41.6,83.4 31.7,77.7 31.7,66.3 41.6,60.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="93.0,66.3 93.0,77.7 83.1,83.4 73.3,77.7 73.3,66.3 83.1,60.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="113.8,66.3 113.8,77.7 103.9,83.4 94.1,77.7 94.1,66.3 103.9,60.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="134.6,66.3 134.6,77.7 124.7,83.4 114.8,77.7 114.8,66.3 124.7,60.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="155.4,66.3 155.4,77.7 145.5,83.4 135.6,77.7 135.6,66.3 145.5,60.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="196.9,66.3 196.9,77.7 187.1,83.4 177.2,77.7 177.2,66.3 187.1,60.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="259.3,66.3 259.3,77.7 249.4,83.4 239.5,77.7 239.5,66.3 249.4,60.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="280.1,66.3 280.1,77.7 270.2,83.4 260.3,77.7 260.3,66.3 270.2,60.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="321.6,66.3 321.6,77.7 311.8,83.4 301.9,77.7 301.9,66.3 311.8,60.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="342.4,66.3 342.4,77.7 332.6,83.4 322.7,77.7 322.7,66.3 332.6,60.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="363.2,66.3 363.2,77.7 353.3,83.4 343.5,77.7 343.5,66.3 353.3,60.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="41.0,84.3 41.0,95.7 31.2,101.4 21.3,95.7 21.3,84.3 31.2,78.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="61.8,84.3 61.8,95.7 52.0,101.4 42.1,95.7 42.1,84.3 52.0,78.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="82.6,84.3 82.6,95.7 72.7,101.4 62.9,95.7 62.9,84.3 72.7,78.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="103.4,84.3 103.4,95.7 93.5,101.4 83.7,95.7 83.7,84.3 93.5,78.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="124.2,84.3 124.2,95.7 114.3,101.4 104.4,95.7 104.4,84.3 114.3,78.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="165.8,84.3 165.8,95.7 155.9,101.4 146.0,95.7 146.0,84.3 155.9,78.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="186.5,84.3 186.5,95.7 176.7,101.4 166.8,95.7 166.8,84.3 176.7,78.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="248.9,84.3 248.9,95.7 239.0,101.4 229.2,95.7 229.2,84.3 239.0,78.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="269.7,84.3 269.7,95.7 259.8,101.4 249.9,95.7 249.9,84.3 259.8,78.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="290.5,84.3 290.5,95.7 280.6,101.4 270.7,95.7 270.7,84.3 280.6,78.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="352.8,84.3 352.8,95.7 342.9,101.4 333.1,95.7 333.1,84.3 342.9,78.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="373.6,84.3 373.6,95.7 363.7,101.4 353.9,95.7 353.9,84.3 363.7,78.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="30.7,102.3 30.7,113.7 20.8,119.4 10.9,113.7 10.9,102.3 20.8,96.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="51.4,102.3 51.4,113.7 41.6,119.4 31.7,113.7 31.7,102.3 41.6,96.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="113.8,102.3 113.8,113.7 103.9,119.4 94.1,113.7 94.1,102.3 103.9,96.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="155.4,102.3 155.4,113.7 145.5,119.4 135.6,113.7 135.6,102.3 145.5,96.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="176.1,102.3 176.1,113.7 166.3,119.4 156.4,113.7 156.4,102.3 166.3,96.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="196.9,102.3 196.9,113.7 187.1,119.4 177.2,113.7 177.2,102.3 187.1,96.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="217.7,102.3 217.7,113.7 207.8,119.4 198.0,113.7 198.0,102.3 207.8,96.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="238.5,102.3 238.5,113.7 228.6,119.4 218.8,113.7 218.8,102.3 228.6,96.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="259.3,102.3 259.3,113.7 249.4,119.4 239.5,113.7 239.5,102.3 249.4,96.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="280.1,102.3 280.1,113.7 270.2,119.4 260.3,113.7 260.3,102.3 270.2,96.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="321.6,102.3 321.6,113.7 311.8,119.4 301.9,113.7 301.9,102.3 311.8,96.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="363.2,102.3 363.2,113.7 353.3,119.4 343.5,113.7 343.5,102.3 353.3,96.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="20.3,120.3 20.3,131.7 10.4,137.4 0.5,131.7 0.5,120.3 10.4,114.6" fill="#cfe2ae" stroke="#fff" stroke-width=".8"/><polygon points="41.0,120.3 41.0,131.7 31.2,137.4 21.3,131.7 21.3,120.3 31.2,114.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="61.8,120.3 61.8,131.7 52.0,137.4 42.1,131.7 42.1,120.3 52.0,114.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="103.4,120.3 103.4,131.7 93.5,137.4 83.7,131.7 83.7,120.3 93.5,114.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="124.2,120.3 124.2,131.7 114.3,137.4 104.4,131.7 104.4,120.3 114.3,114.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="145.0,120.3 145.0,131.7 135.1,137.4 125.2,131.7 125.2,120.3 135.1,114.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="207.3,120.3 207.3,131.7 197.5,137.4 187.6,131.7 187.6,120.3 197.5,114.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="290.5,120.3 290.5,131.7 280.6,137.4 270.7,131.7 270.7,120.3 280.6,114.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="311.2,120.3 311.2,131.7 301.4,137.4 291.5,131.7 291.5,120.3 301.4,114.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="332.0,120.3 332.0,131.7 322.2,137.4 312.3,131.7 312.3,120.3 322.2,114.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="30.7,138.3 30.7,149.7 20.8,155.4 10.9,149.7 10.9,138.3 20.8,132.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="51.4,138.3 51.4,149.7 41.6,155.4 31.7,149.7 31.7,138.3 41.6,132.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="72.2,138.3 72.2,149.7 62.4,155.4 52.5,149.7 52.5,138.3 62.4,132.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="93.0,138.3 93.0,149.7 83.1,155.4 73.3,149.7 73.3,138.3 83.1,132.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="113.8,138.3 113.8,149.7 103.9,155.4 94.1,149.7 94.1,138.3 103.9,132.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="134.6,138.3 134.6,149.7 124.7,155.4 114.8,149.7 114.8,138.3 124.7,132.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="155.4,138.3 155.4,149.7 145.5,155.4 135.6,149.7 135.6,138.3 145.5,132.6" fill="#b8ded3" stroke="#fff" stroke-width=".8"/><polygon points="176.1,138.3 176.1,149.7 166.3,155.4 156.4,149.7 156.4,138.3 166.3,132.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="196.9,138.3 196.9,149.7 187.1,155.4 177.2,149.7 177.2,138.3 187.1,132.6" fill="#f3d6a4" stroke="#fff" stroke-width=".8"/><polygon points="217.7,138.3 217.7,149.7 207.8,155.4 198.0,149.7 198.0,138.3 207.8,132.6" fill="#f2c3b6" stroke="#fff" stroke-width=".8"/><polygon points="238.5,138.3 238.5,149.7 228.6,155.4 218.8,149.7 218.8,138.3 228.6,132.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><polygon points="321.6,138.3 321.6,149.7 311.8,155.4 301.9,149.7 301.9,138.3 311.8,132.6" fill="#d8cdea" stroke="#fff" stroke-width=".8"/><polygon points="363.2,138.3 363.2,149.7 353.3,155.4 343.5,149.7 343.5,138.3 353.3,132.6" fill="#f4e59f" stroke="#fff" stroke-width=".8"/><g transform="translate(250 60)"><circle r="11" fill="#d1495b" stroke="#fff" stroke-width="2.5"/><circle cx="26" cy="28" r="11" fill="#2f6db5" stroke="#fff" stroke-width="2.5"/><rect x="-60" y="44" width="30" height="30" rx="5" fill="#fff" stroke="#16313a" stroke-width="2"/><circle cx="-52" cy="52" r="3" fill="#16313a"/><circle cx="-38" cy="66" r="3" fill="#16313a"/></g></svg></span>
+      <div class="body">
+        <span class="no">PART 1 · 1–12 PLAYERS · BOARD</span>
+        <h2>Board Game</h2>
+        <p>A roll of the dice picks the epoch, the time and your move on a hexagonal world map. A domain card, nine questions, point cogwheels.</p>
+        <ul><li>2D and 3D board, ports and sea routes</li><li>scanning fields, cards and dice from the physical board</li><li>questions matched to place and time</li></ul>
+        <div class="meta"><span class="tag">shared screen</span><span class="tag">A1 board</span></div>
+        <a class="go" href="/gra/">Play on the board ↗</a>
+      </div>
+    </article>
+    <article class="part p2">
+      <span class="art" aria-hidden="true"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><rect width="360" height="170" fill="#0b1220"/><circle cx="89" cy="105" r="0.9" fill="#ece5d2" opacity="0.23"/><circle cx="116" cy="139" r="1.3" fill="#ece5d2" opacity="0.67"/><circle cx="17" cy="8" r="0.9" fill="#ece5d2" opacity="0.22"/><circle cx="257" cy="88" r="0.9" fill="#ece5d2" opacity="0.29"/><circle cx="26" cy="66" r="0.8" fill="#ece5d2" opacity="0.38"/><circle cx="95" cy="168" r="0.8" fill="#ece5d2" opacity="0.28"/><circle cx="1" cy="123" r="1.3" fill="#ece5d2" opacity="0.54"/><circle cx="15" cy="78" r="1.1" fill="#ece5d2" opacity="0.52"/><circle cx="229" cy="7" r="1.4" fill="#ece5d2" opacity="0.23"/><circle cx="226" cy="129" r="0.7" fill="#ece5d2" opacity="0.77"/><circle cx="151" cy="3" r="0.6" fill="#ece5d2" opacity="0.36"/><circle cx="212" cy="137" r="0.6" fill="#ece5d2" opacity="0.28"/><circle cx="10" cy="55" r="1.5" fill="#ece5d2" opacity="0.54"/><circle cx="313" cy="21" r="1.1" fill="#ece5d2" opacity="0.76"/><circle cx="263" cy="144" r="0.9" fill="#ece5d2" opacity="0.43"/><circle cx="39" cy="54" r="0.9" fill="#ece5d2" opacity="0.69"/><circle cx="258" cy="81" r="0.6" fill="#ece5d2" opacity="0.43"/><circle cx="190" cy="96" r="1.1" fill="#ece5d2" opacity="0.43"/><circle cx="295" cy="58" r="1.3" fill="#ece5d2" opacity="0.22"/><circle cx="41" cy="82" r="1.1" fill="#ece5d2" opacity="0.37"/><circle cx="108" cy="15" r="1.5" fill="#ece5d2" opacity="0.54"/><circle cx="190" cy="41" r="1.0" fill="#ece5d2" opacity="0.26"/><circle cx="199" cy="94" r="1.3" fill="#ece5d2" opacity="0.31"/><circle cx="28" cy="170" r="1.1" fill="#ece5d2" opacity="0.47"/><circle cx="252" cy="160" r="0.6" fill="#ece5d2" opacity="0.56"/><circle cx="338" cy="95" r="1.5" fill="#ece5d2" opacity="0.43"/><circle cx="85" cy="158" r="1.3" fill="#ece5d2" opacity="0.78"/><circle cx="149" cy="97" r="1.0" fill="#ece5d2" opacity="0.75"/><circle cx="247" cy="27" r="0.8" fill="#ece5d2" opacity="0.73"/><circle cx="59" cy="85" r="0.9" fill="#ece5d2" opacity="0.62"/><circle cx="342" cy="100" r="1.3" fill="#ece5d2" opacity="0.28"/><circle cx="271" cy="25" r="0.9" fill="#ece5d2" opacity="0.76"/><circle cx="307" cy="91" r="1.2" fill="#ece5d2" opacity="0.60"/><circle cx="308" cy="101" r="1.0" fill="#ece5d2" opacity="0.79"/><circle cx="320" cy="52" r="0.6" fill="#ece5d2" opacity="0.68"/><circle cx="72" cy="97" r="0.6" fill="#ece5d2" opacity="0.49"/><circle cx="311" cy="71" r="1.1" fill="#ece5d2" opacity="0.62"/><circle cx="74" cy="99" r="1.4" fill="#ece5d2" opacity="0.59"/><circle cx="10" cy="169" r="0.4" fill="#ece5d2" opacity="0.77"/><circle cx="282" cy="150" r="0.4" fill="#ece5d2" opacity="0.75"/><circle cx="321" cy="110" r="1.2" fill="#ece5d2" opacity="0.24"/><circle cx="78" cy="43" r="1.4" fill="#ece5d2" opacity="0.67"/><circle cx="49" cy="106" r="1.1" fill="#ece5d2" opacity="0.22"/><circle cx="336" cy="29" r="0.4" fill="#ece5d2" opacity="0.31"/><circle cx="33" cy="136" r="0.4" fill="#ece5d2" opacity="0.36"/><circle cx="329" cy="6" r="0.8" fill="#ece5d2" opacity="0.64"/><circle cx="121" cy="5" r="0.7" fill="#ece5d2" opacity="0.43"/><circle cx="28" cy="110" r="1.2" fill="#ece5d2" opacity="0.49"/><circle cx="45" cy="54" r="1.4" fill="#ece5d2" opacity="0.25"/><circle cx="156" cy="75" r="0.9" fill="#ece5d2" opacity="0.35"/><circle cx="190" cy="119" r="1.1" fill="#ece5d2" opacity="0.42"/><circle cx="162" cy="113" r="1.1" fill="#ece5d2" opacity="0.77"/><circle cx="294" cy="18" r="1.4" fill="#ece5d2" opacity="0.40"/><circle cx="204" cy="89" r="1.1" fill="#ece5d2" opacity="0.51"/><circle cx="21" cy="50" r="1.2" fill="#ece5d2" opacity="0.65"/><circle cx="233" cy="124" r="0.5" fill="#ece5d2" opacity="0.42"/><circle cx="331" cy="77" r="0.4" fill="#ece5d2" opacity="0.54"/><circle cx="331" cy="110" r="1.1" fill="#ece5d2" opacity="0.45"/><circle cx="108" cy="32" r="0.9" fill="#ece5d2" opacity="0.67"/><circle cx="254" cy="18" r="0.5" fill="#ece5d2" opacity="0.53"/><circle cx="207" cy="67" r="0.4" fill="#ece5d2" opacity="0.36"/><circle cx="19" cy="23" r="0.9" fill="#ece5d2" opacity="0.36"/><circle cx="250" cy="88" r="1.4" fill="#ece5d2" opacity="0.77"/><circle cx="161" cy="138" r="0.4" fill="#ece5d2" opacity="0.50"/><circle cx="358" cy="26" r="1.0" fill="#ece5d2" opacity="0.61"/><circle cx="203" cy="155" r="0.4" fill="#ece5d2" opacity="0.62"/><circle cx="204" cy="114" r="0.8" fill="#ece5d2" opacity="0.79"/><circle cx="46" cy="103" r="1.3" fill="#ece5d2" opacity="0.68"/><circle cx="196" cy="29" r="0.5" fill="#ece5d2" opacity="0.72"/><circle cx="133" cy="50" r="1.3" fill="#ece5d2" opacity="0.47"/><circle cx="180" cy="98" r="18" fill="none" stroke="#f5f0e4" stroke-width="2.5"/><g fill-opacity=".22" stroke-width="2"><circle cx="90" cy="112" r="42" fill="#4fbd84" stroke="#4fbd84"/><circle cx="180" cy="46" r="42" fill="#5b98e6" stroke="#5b98e6"/><circle cx="270" cy="112" r="42" fill="#e4665a" stroke="#e4665a"/></g><g fill="#0b1220" stroke="#d9b25a" stroke-width="1.6"><ellipse cx="90.0" cy="80.0" rx="4" ry="5"/><ellipse cx="106.0" cy="84.3" rx="4" ry="5"/><ellipse cx="117.7" cy="96.0" rx="4" ry="5"/><ellipse cx="122.0" cy="112.0" rx="4" ry="5"/><ellipse cx="117.7" cy="128.0" rx="4" ry="5"/><ellipse cx="106.0" cy="139.7" rx="4" ry="5"/><ellipse cx="90.0" cy="144.0" rx="4" ry="5"/><ellipse cx="74.0" cy="139.7" rx="4" ry="5"/><ellipse cx="62.3" cy="128.0" rx="4" ry="5"/><ellipse cx="58.0" cy="112.0" rx="4" ry="5"/><ellipse cx="62.3" cy="96.0" rx="4" ry="5"/><ellipse cx="74.0" cy="84.3" rx="4" ry="5"/><ellipse cx="180.0" cy="14.0" rx="4" ry="5"/><ellipse cx="196.0" cy="18.3" rx="4" ry="5"/><ellipse cx="207.7" cy="30.0" rx="4" ry="5"/><ellipse cx="212.0" cy="46.0" rx="4" ry="5"/><ellipse cx="207.7" cy="62.0" rx="4" ry="5"/><ellipse cx="196.0" cy="73.7" rx="4" ry="5"/><ellipse cx="180.0" cy="78.0" rx="4" ry="5"/><ellipse cx="164.0" cy="73.7" rx="4" ry="5"/><ellipse cx="152.3" cy="62.0" rx="4" ry="5"/><ellipse cx="148.0" cy="46.0" rx="4" ry="5"/><ellipse cx="152.3" cy="30.0" rx="4" ry="5"/><ellipse cx="164.0" cy="18.3" rx="4" ry="5"/><ellipse cx="270.0" cy="80.0" rx="4" ry="5"/><ellipse cx="286.0" cy="84.3" rx="4" ry="5"/><ellipse cx="297.7" cy="96.0" rx="4" ry="5"/><ellipse cx="302.0" cy="112.0" rx="4" ry="5"/><ellipse cx="297.7" cy="128.0" rx="4" ry="5"/><ellipse cx="286.0" cy="139.7" rx="4" ry="5"/><ellipse cx="270.0" cy="144.0" rx="4" ry="5"/><ellipse cx="254.0" cy="139.7" rx="4" ry="5"/><ellipse cx="242.3" cy="128.0" rx="4" ry="5"/><ellipse cx="238.0" cy="112.0" rx="4" ry="5"/><ellipse cx="242.3" cy="96.0" rx="4" ry="5"/><ellipse cx="254.0" cy="84.3" rx="4" ry="5"/></g></svg></span>
+      <div class="body">
+        <span class="no">PART 2 · MULTIPLAYER · SOCIAL</span>
+        <h2>Circle of Mystery</h2>
+        <p>From the world map into the Circle with three science podiums, across the glade of epochs to the time corridor with fun facts and a quiz station.</p>
+        <ul><li>other players live, chat, emotes and group quiz</li><li>intelligence leaderboard and 13 badges</li><li>all scenes also in 3D</li></ul>
+        <div class="meta"><span class="tag">text chat</span><span class="tag">leaderboard</span></div>
+        <a class="go" href="/krag/">Enter the Circle ↗</a>
+      </div>
+    </article>
+    <article class="part p3">
+      <span class="art" aria-hidden="true"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><rect width="360" height="170" fill="#04060d"/><g stroke="#1d3a5c" stroke-width="1"><line x1="-220" y1="170" x2="100" y2="95"/><line x1="-180" y1="170" x2="108" y2="95"/><line x1="-140" y1="170" x2="116" y2="95"/><line x1="-100" y1="170" x2="124" y2="95"/><line x1="-60" y1="170" x2="132" y2="95"/><line x1="-20" y1="170" x2="140" y2="95"/><line x1="20" y1="170" x2="148" y2="95"/><line x1="60" y1="170" x2="156" y2="95"/><line x1="100" y1="170" x2="164" y2="95"/><line x1="140" y1="170" x2="172" y2="95"/><line x1="180" y1="170" x2="180" y2="95"/><line x1="220" y1="170" x2="188" y2="95"/><line x1="260" y1="170" x2="196" y2="95"/><line x1="300" y1="170" x2="204" y2="95"/><line x1="340" y1="170" x2="212" y2="95"/><line x1="380" y1="170" x2="220" y2="95"/><line x1="420" y1="170" x2="228" y2="95"/><line x1="460" y1="170" x2="236" y2="95"/><line x1="500" y1="170" x2="244" y2="95"/><line x1="540" y1="170" x2="252" y2="95"/><line x1="580" y1="170" x2="260" y2="95"/><line x1="0" y1="100" x2="360" y2="100"/><line x1="0" y1="110" x2="360" y2="110"/><line x1="0" y1="124" x2="360" y2="124"/><line x1="0" y1="142" x2="360" y2="142"/><line x1="0" y1="166" x2="360" y2="166"/></g><g fill="none" stroke="#9df3ff" stroke-width="1.6" stroke-linejoin="round" transform="translate(180 20)"><path d="M0 0l34 26-34 52-34-52Z M-34 26h68 M-17 26L0 78 17 26 M0 0-17 26M0 0l17 26"/></g><g stroke="#38e8ff" fill="#071025" stroke-width="2"><rect x="70" y="118" width="46" height="36" rx="3"/><rect x="128" y="112" width="46" height="42" rx="3" stroke="#ff4fd8"/><rect x="186" y="118" width="46" height="36" rx="3"/><rect x="244" y="118" width="46" height="36" rx="3" stroke="#4fe39a"/></g></svg></span>
+      <div class="body">
+        <span class="no">PART 3 · 1 PLAYER · SOLO</span>
+        <h2>Digital Diamond</h2>
+        <p>A digital world of screens. You walk along a strip of 36 domain cards; the left screen picks the time, the right a place on the map, and the main one shows a document and a quiz.</p>
+        <ul><li>state saving – you return to the same question</li><li>timeline, map and Wikipedia links</li><li>streak, card deck and other badges</li></ul>
+        <div class="meta"><span class="tag">game save</span><span class="tag">3D</span></div>
+        <a class="go" href="/diament/">Launch the Diamond ↗</a>
+      </div>
+    </article>
+    <article class="part p4">
+      <span class="art" aria-hidden="true"><svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><rect width="360" height="170" fill="#e8e3d6"/><g transform="rotate(-6 120 90)"><rect x="42" y="30" width="150" height="104" fill="#fdfbf5" stroke="#15303a" stroke-opacity=".2"/><rect x="50" y="38" width="134" height="80" fill="#b9dcea"/><g fill="#f3d6a4"><polygon points="60.7,41.3 60.7,46.7 56.0,49.4 51.3,46.7 51.3,41.3 56.0,38.6"/><polygon points="82.7,41.3 82.7,46.7 78.0,49.4 73.3,46.7 73.3,41.3 78.0,38.6"/><polygon points="104.7,41.3 104.7,46.7 100.0,49.4 95.3,46.7 95.3,41.3 100.0,38.6"/><polygon points="115.7,41.3 115.7,46.7 111.0,49.4 106.3,46.7 106.3,41.3 111.0,38.6"/><polygon points="170.7,41.3 170.7,46.7 166.0,49.4 161.3,46.7 161.3,41.3 166.0,38.6"/><polygon points="181.7,41.3 181.7,46.7 177.0,49.4 172.3,46.7 172.3,41.3 177.0,38.6"/><polygon points="77.2,51.3 77.2,56.7 72.5,59.4 67.8,56.7 67.8,51.3 72.5,48.6"/><polygon points="99.2,51.3 99.2,56.7 94.5,59.4 89.8,56.7 89.8,51.3 94.5,48.6"/><polygon points="110.2,51.3 110.2,56.7 105.5,59.4 100.8,56.7 100.8,51.3 105.5,48.6"/><polygon points="132.2,51.3 132.2,56.7 127.5,59.4 122.8,56.7 122.8,51.3 127.5,48.6"/><polygon points="154.2,51.3 154.2,56.7 149.5,59.4 144.8,56.7 144.8,51.3 149.5,48.6"/><polygon points="60.7,61.3 60.7,66.7 56.0,69.4 51.3,66.7 51.3,61.3 56.0,58.6"/><polygon points="71.7,61.3 71.7,66.7 67.0,69.4 62.3,66.7 62.3,61.3 67.0,58.6"/><polygon points="93.7,61.3 93.7,66.7 89.0,69.4 84.3,66.7 84.3,61.3 89.0,58.6"/><polygon points="104.7,61.3 104.7,66.7 100.0,69.4 95.3,66.7 95.3,61.3 100.0,58.6"/><polygon points="115.7,61.3 115.7,66.7 111.0,69.4 106.3,66.7 106.3,61.3 111.0,58.6"/><polygon points="137.7,61.3 137.7,66.7 133.0,69.4 128.3,66.7 128.3,61.3 133.0,58.6"/><polygon points="170.7,61.3 170.7,66.7 166.0,69.4 161.3,66.7 161.3,61.3 166.0,58.6"/><polygon points="181.7,61.3 181.7,66.7 177.0,69.4 172.3,66.7 172.3,61.3 177.0,58.6"/><polygon points="66.2,71.3 66.2,76.7 61.5,79.4 56.8,76.7 56.8,71.3 61.5,68.6"/><polygon points="77.2,71.3 77.2,76.7 72.5,79.4 67.8,76.7 67.8,71.3 72.5,68.6"/><polygon points="88.2,71.3 88.2,76.7 83.5,79.4 78.8,76.7 78.8,71.3 83.5,68.6"/><polygon points="110.2,71.3 110.2,76.7 105.5,79.4 100.8,76.7 100.8,71.3 105.5,68.6"/><polygon points="143.2,71.3 143.2,76.7 138.5,79.4 133.8,76.7 133.8,71.3 138.5,68.6"/><polygon points="154.2,71.3 154.2,76.7 149.5,79.4 144.8,76.7 144.8,71.3 149.5,68.6"/><polygon points="187.2,71.3 187.2,76.7 182.5,79.4 177.8,76.7 177.8,71.3 182.5,68.6"/><polygon points="60.7,81.3 60.7,86.7 56.0,89.4 51.3,86.7 51.3,81.3 56.0,78.6"/><polygon points="71.7,81.3 71.7,86.7 67.0,89.4 62.3,86.7 62.3,81.3 67.0,78.6"/><polygon points="93.7,81.3 93.7,86.7 89.0,89.4 84.3,86.7 84.3,81.3 89.0,78.6"/><polygon points="104.7,81.3 104.7,86.7 100.0,89.4 95.3,86.7 95.3,81.3 100.0,78.6"/><polygon points="126.7,81.3 126.7,86.7 122.0,89.4 117.3,86.7 117.3,81.3 122.0,78.6"/><polygon points="159.7,81.3 159.7,86.7 155.0,89.4 150.3,86.7 150.3,81.3 155.0,78.6"/><polygon points="170.7,81.3 170.7,86.7 166.0,89.4 161.3,86.7 161.3,81.3 166.0,78.6"/><polygon points="181.7,81.3 181.7,86.7 177.0,89.4 172.3,86.7 172.3,81.3 177.0,78.6"/><polygon points="77.2,91.3 77.2,96.7 72.5,99.4 67.8,96.7 67.8,91.3 72.5,88.6"/><polygon points="88.2,91.3 88.2,96.7 83.5,99.4 78.8,96.7 78.8,91.3 83.5,88.6"/><polygon points="99.2,91.3 99.2,96.7 94.5,99.4 89.8,96.7 89.8,91.3 94.5,88.6"/><polygon points="110.2,91.3 110.2,96.7 105.5,99.4 100.8,96.7 100.8,91.3 105.5,88.6"/><polygon points="132.2,91.3 132.2,96.7 127.5,99.4 122.8,96.7 122.8,91.3 127.5,88.6"/><polygon points="143.2,91.3 143.2,96.7 138.5,99.4 133.8,96.7 133.8,91.3 138.5,88.6"/><polygon points="154.2,91.3 154.2,96.7 149.5,99.4 144.8,96.7 144.8,91.3 149.5,88.6"/><polygon points="165.2,91.3 165.2,96.7 160.5,99.4 155.8,96.7 155.8,91.3 160.5,88.6"/><polygon points="187.2,91.3 187.2,96.7 182.5,99.4 177.8,96.7 177.8,91.3 182.5,88.6"/><polygon points="60.7,101.3 60.7,106.7 56.0,109.4 51.3,106.7 51.3,101.3 56.0,98.6"/><polygon points="71.7,101.3 71.7,106.7 67.0,109.4 62.3,106.7 62.3,101.3 67.0,98.6"/><polygon points="104.7,101.3 104.7,106.7 100.0,109.4 95.3,106.7 95.3,101.3 100.0,98.6"/><polygon points="115.7,101.3 115.7,106.7 111.0,109.4 106.3,106.7 106.3,101.3 111.0,98.6"/><polygon points="148.7,101.3 148.7,106.7 144.0,109.4 139.3,106.7 139.3,101.3 144.0,98.6"/><polygon points="159.7,101.3 159.7,106.7 155.0,109.4 150.3,106.7 150.3,101.3 155.0,98.6"/></g></g><g transform="rotate(5 262 70)"><rect x="220" y="28" width="84" height="54" rx="3" fill="#2f6db5"/><rect x="244" y="28" width="60" height="54" fill="#fdfcf8"/><rect x="226" y="92" width="84" height="54" rx="3" fill="#2e8b57"/><rect x="250" y="92" width="60" height="54" fill="#fdfcf8"/></g><g transform="translate(196 118)"><path d="M0 0l12 9-5 14H-7l-5-14Z" fill="#fdfcf8" stroke="#15303a" stroke-width="1.4"/><text x="0" y="14" font-size="9" text-anchor="middle" font-weight="700" fill="#15303a">7</text></g><path d="M300 150l14-8 14 8-14 8Z M300 150v12l14 8v-12Z M328 150v12l-14 8" fill="#c9ccd2" stroke="#555"/></svg></span>
+      <div class="body">
+        <span class="no">PART 1 · PRINTABLE · PDF · PNG · SVG</span>
+        <h2>Print-and-play</h2>
+        <p>A real tabletop game: A1 world map, domain, ability, event and player aid cards, character sheets, dice, pawns, a card box and the rules – in Polish and English.</p>
+        <ul><li>1:1 print scale, board also as 8 A4 sheets</li><li>d12 and d6 dice and pawns to assemble</li><li>questions come from the part 1 app</li></ul>
+        <div class="meta"><span class="tag">41 PDF pages · PL / EN</span><span class="tag">432 story and question cards</span></div>
+        <a class="go" href="/druk/">Download to print ↗</a>
+      </div>
+    </article>
+  </div>
+
+  <section class="two">
+    <div>
+      <h3>Nine intelligences</h3>
+      <div class="ints"></div>
+    </div>
+    <div>
+      <h3>How each round works</h3>
+      <ol class="flow">
+        <li><span><b>Place</b> – a field on the world map; questions favor that region.</span></li>
+        <li><span><b>Time</b> – one of 12 epochs, from the beginning of the universe to the future, and its interval.</span></li>
+        <li><span><b>Topic</b> – one of 36 domains: humanities, technology or nature.</span></li>
+        <li><span><b>Nine questions</b> – one for each intelligence, 10 points for each new correct answer.</span></li>
+        <li><span><b>Level</b> – Novice, Adept, Expert, Master, Grandmaster; all on the PDF certificate.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <p class="note">Game progress is saved in this browser. The Claude modes (new stories, photo scanning) work once the site owner connects an API key. The questions in the bank were reviewed by Claude; they have not yet been checked by a human or against sources.</p>
+
+  <footer><span>HISTADA · Trilogy</span><span>Board Game · Circle of Mystery · Digital Diamond</span></footer>
+</main>
+
+
+</template>
+<script type="text/plain" id="js-pl">
+'use strict';
+const INT_COL = {muz:'#c2185b',wiz:'#1e78c8',jez:'#795548',log:'#3949ab',kin:'#e65100',inter:'#00897b',intra:'#8e24aa',przyr:'#3f9142',egz:'#b58900'};
+const INT_ICO = {
+  muz:'M3.5 8.5a1.6 1.6 0 1 1 0-.01M5.1 8.3V1.6l3.6 1.1v1.7L5.1 3.3',
+  wiz:'M1 5c2-3.2 6-3.2 8 0c-2 3.2-6 3.2-8 0ZM5 3.8a1.2 1.2 0 1 0 .01 0',
+  jez:'M1.5 1.8h7v4.6H4.2L2.2 8.4V6.4h-.7Z',
+  log:'M1.5 3.2h3M3 1.7v3M5.8 3.2h3M1.5 6.8h3M5.8 6.2h3M5.8 7.6h3',
+  kin:'M1 5h8M2.2 3v4M7.8 3v4M3.4 3.8v2.4M6.6 3.8v2.4',
+  inter:'M3.4 2.3a1.2 1.2 0 1 0 .01 0M.9 8.6c0-2.1 5-2.1 5 0M7 2.2a1 1 0 1 0 .01 0M6.6 5.4c1.5-.3 2.7.5 2.7 2.2',
+  intra:'M5 8.6L1.7 5.2a1.9 1.9 0 0 1 3.3-2.6a1.9 1.9 0 0 1 3.3 2.6Z',
+  przyr:'M1.8 8.2C1.8 3.2 5 1.6 8.6 1.6c0 3.6-1.6 6.6-6.8 6.6ZM1.8 8.2L6 4',
+  egz:'M5 1l1.2 2.8 2.8.3-2.1 1.9.6 2.9L5 7.4 2.5 8.9l.6-2.9L1 4.1l2.8-.3Z',
+};
+const ico = (id, col, size = 16) => `<svg class="ico" width="${size}" height="${size}" viewBox="0 0 10 10" aria-hidden="true"><path d="${INT_ICO[id]}" fill="none" stroke="${col || INT_COL[id]}" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+/* ============ HISTADA – animowana przewodniczka (wspólna dla gry planszowej i Kręgu) ============ */
+const GUIDE_SVG = `<svg class="hx" viewBox="0 0 120 120" aria-hidden="true">
+  <defs><radialGradient id="gbg" cx="50%" cy="35%" r="70%"><stop offset="0" stop-color="#2c6f7a"/><stop offset="1" stop-color="#132c35"/></radialGradient>
+  <radialGradient id="ggem" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#e8fdff"/><stop offset=".5" stop-color="#6fd0d8"/><stop offset="1" stop-color="#6fd0d8" stop-opacity="0"/></radialGradient>
+  <clipPath id="gcl"><circle cx="60" cy="60" r="58"/></clipPath></defs>
+  <circle cx="60" cy="60" r="58" fill="url(#gbg)"/>
+  <g clip-path="url(#gcl)">
+    <g class="h-hexes" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="1">${[0, 1, 2, 3, 4].map(r => [0, 1, 2, 3, 4, 5].map(c => { const x = c * 22 + (r % 2) * 11, y = r * 19 + 4; return `<path d="M${x} ${y - 11}l9.5 5.5v11L${x} ${y + 11}l-9.5-5.5v-11Z"/>`; }).join('')).join('')}</g>
+    <g class="h-sparks">${[[22, 30], [96, 26], [102, 64], [16, 70], [30, 100], [92, 98]].map(([x, y], i) => `<path style="animation-delay:${i * .14}s" d="M${x} ${y - 4}l1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" fill="#f0d48f"/>`).join('')}</g>
+    <g class="h-fig">
+      <g class="h-breath">
+        <path d="M20 125c2-24 16-36 40-38 24 2 38 14 40 38Z" fill="#1d3f6e"/>
+        <path d="M38 92c6 8 16 12 22 12s16-4 22-12" fill="none" stroke="#d6b04a" stroke-width="2.4"/>
+        <path class="h-amulet" d="M60 104l-3.4 6.5h6.8Z M60 117l-3.4-6.5h6.8Z" fill="#d6b04a"/>
+        <path d="M52 78h16v12c0 3-16 3-16 0Z" fill="#c98f6c"/>
+      </g>
+      <g class="h-head"><g class="h-nod"><g class="h-idle">
+        <path d="M33 58c-2-22 10-38 27-38s29 16 27 38c-1 12-4 24-9 30-8-6-10-20-10-26h-16c0 6-2 20-10 26-5-6-8-18-9-30Z" fill="#3a2418"/>
+        <ellipse cx="60" cy="58" rx="17" ry="21" fill="#e2ac86"/>
+        <g class="h-bun"><circle cx="60" cy="19" r="9" fill="#3a2418"/><path d="M53 15q7-5 14 0" fill="none" stroke="#5a3a28" stroke-width="1.2"/></g>
+        <path d="M42 44c6-6 12-8 18-8s12 2 18 8" fill="none" stroke="#d6b04a" stroke-width="2.2"/>
+        <circle class="h-glow" cx="60" cy="39.6" r="7" fill="url(#ggem)"/>
+        <path d="M60 36l3.2 1.8v3.7L60 43.3l-3.2-1.8v-3.7Z" fill="#6fd0d8" stroke="#d6b04a" stroke-width=".8"/>
+        <g class="h-eyes"><g class="h-look"><ellipse cx="53" cy="57" rx="2.2" ry="2.6" fill="#1b1b1b"/><ellipse cx="67" cy="57" rx="2.2" ry="2.6" fill="#1b1b1b"/>
+          <circle cx="53.8" cy="56" r=".7" fill="#fff"/><circle cx="67.8" cy="56" r=".7" fill="#fff"/></g></g>
+        <path class="h-eyes-happy" d="M50.6 58q2.4-3.2 4.8 0M64.6 58q2.4-3.2 4.8 0" fill="none" stroke="#1b1b1b" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="h-brow h-brow-l" d="M49.5 52.5q3.5-2 7 0" fill="none" stroke="#3a2418" stroke-width="1.3" stroke-linecap="round"/>
+        <path class="h-brow h-brow-r" d="M63.5 52.5q3.5-2 7 0" fill="none" stroke="#3a2418" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M60 60v5l-1.8 1" fill="none" stroke="#b77d5c" stroke-width="1.1" stroke-linecap="round"/>
+        <g class="h-blush"><ellipse cx="50" cy="65" rx="3" ry="1.8" fill="#e8908a"/><ellipse cx="70" cy="65" rx="3" ry="1.8" fill="#e8908a"/></g>
+        <g class="h-mouth">
+          <path class="h-m h-m-c" d="M55 70.5q5 3.2 10 0" fill="none" stroke="#9c3f3a" stroke-width="1.6" stroke-linecap="round"/>
+          <path class="h-m h-m-smile" d="M54 69.5q6 1 12 0q-1 6-6 6t-6-6Z" fill="#7c2b2a" stroke="#9c3f3a" stroke-width=".8" stroke-linejoin="round"/>
+          <path class="h-m h-m-sad" d="M55.5 73q4.5-3 9 0" fill="none" stroke="#9c3f3a" stroke-width="1.6" stroke-linecap="round"/>
+          <path class="h-m h-m-hmm" d="M56 71.6q3 .6 8-1" fill="none" stroke="#9c3f3a" stroke-width="1.6" stroke-linecap="round"/>
+          <ellipse class="h-m h-m-wow" cx="60" cy="72" rx="2.4" ry="3" fill="#7c2b2a"/>
+        </g>
+        <path class="h-m-o" d="M55.5 70q4.5-1.2 9 0q-.6 5-4.5 5t-4.5-5Z" fill="#7c2b2a"/>
+      </g></g></g>
+      <g class="h-hand h-hand-r"><path d="M79 76l10-2 12 50H84Z" fill="#1d3f6e"/><path d="M79.5 76.4l9.6-2" stroke="#d6b04a" stroke-width="1.6"/>
+        <path d="M81 72c-1.5-4-.5-9 1-12.5.6-1.4 2.4-1 2.2.5l-.6 6 1-8.6c.2-1.6 2.5-1.6 2.5 0l-.2 8.4 1.2-7.7c.3-1.6 2.6-1.4 2.4.2l-.9 8 1.5-5.8c.4-1.5 2.5-1 2.2.5l-1.5 8.2c-.6 3.8-3 6.8-6.6 6.8-2.2 0-3.6-1.2-4.2-4Z" fill="#e2ac86" stroke="#c98f6c" stroke-width=".5"/></g>
+      <g class="h-hand h-hand-l"><path d="M41 76l-10-2-12 50h17Z" fill="#1d3f6e"/><path d="M40.5 76.4l-9.6-2" stroke="#d6b04a" stroke-width="1.6"/>
+        <path d="M39 72c1.5-4 .5-9-1-12.5-.6-1.4-2.4-1-2.2.5l.6 6-1-8.6c-.2-1.6-2.5-1.6-2.5 0l.2 8.4-1.2-7.7c-.3-1.6-2.6-1.4-2.4.2l.9 8-1.5-5.8c-.4-1.5-2.5-1-2.2.5l1.5 8.2c.6 3.8 3 6.8 6.6 6.8 2.2 0 3.6-1.2 4.2-4Z" fill="#e2ac86" stroke="#c98f6c" stroke-width=".5"/></g>
+    </g>
+  </g>
+  <circle class="h-ring" cx="60" cy="60" r="58" fill="none" stroke="#d6b04a" stroke-width="2"/>
+</svg>`;
+
+const HISTADA_CSS = `
+.hx{--lx:0px;--ly:0px;overflow:visible}
+.hx g,.hx path,.hx ellipse,.hx circle{transform-box:view-box}
+.hx .h-fig{transform-origin:60px 120px;animation:hx-sway 9s ease-in-out infinite}
+.hx .h-breath{transform-origin:60px 120px;animation:hx-breath 4.2s ease-in-out infinite}
+.hx .h-head{transform-origin:60px 84px;transition:transform .5s cubic-bezier(.3,1.4,.5,1)}
+.hx .h-nod,.hx .h-idle{transform-origin:60px 84px;transition:transform .7s ease}
+.hx .h-look{transform:translate(var(--lx),var(--ly));transition:transform .25s ease-out}
+.hx .h-eyes{transform-origin:60px 57px;transition:transform .08s,opacity .15s}
+.hx.bl .h-eyes{transform:scaleY(.08)}
+.hx .h-eyes-happy{opacity:0;transition:opacity .15s}
+.hx .h-brow{transition:transform .3s ease}
+.hx .h-brow-l{transform-origin:53px 52px}.hx .h-brow-r{transform-origin:67px 52px}
+.hx .h-blush{opacity:.45;transition:opacity .4s}
+.hx .h-m{opacity:0;transition:opacity .12s}.hx .h-m-c{opacity:1}
+.hx .h-m-o{opacity:0}
+.hx .h-glow{opacity:.35;transform-origin:60px 39.6px}
+.hx .h-sparks path{opacity:0;transform-origin:center;transform-box:fill-box}
+.hx .h-hand{transition:transform .5s cubic-bezier(.3,1.2,.5,1)}
+.hx .h-hand-r{transform:translate(6px,58px);transform-origin:88px 96px}
+.hx .h-hand-l{transform:translate(-6px,58px);transform-origin:32px 96px}
+/* mówienie */
+.talk .hx .h-m-o{animation:hx-talk .3s steps(2) infinite}
+.talk .hx .h-mouth{animation:hx-talk2 .3s steps(2) infinite}
+.talk .hx .h-glow{animation:hx-glow 1.1s ease-in-out infinite}
+.talk .hx .h-idle{animation:hx-talkhead 2.4s ease-in-out infinite}
+/* nastroje */
+.hx.m-happy .h-m-c,.hx.m-sad .h-m-c,.hx.m-think .h-m-c,.hx.m-wow .h-m-c{opacity:0}
+.hx.m-happy .h-m-smile,.hx.m-sad .h-m-sad,.hx.m-think .h-m-hmm,.hx.m-wow .h-m-wow{opacity:1}
+.hx.m-happy .h-eyes{opacity:0}.hx.m-happy .h-eyes-happy{opacity:1}
+.hx.m-happy .h-brow{transform:translateY(-1.6px)}
+.hx.m-happy .h-blush{opacity:.85}
+.hx.m-happy .h-head{transform:rotate(4deg)}
+.hx.m-happy .h-sparks path{animation:hx-spark 1.4s ease-out 2}
+.hx.m-sad .h-brow-l{transform:rotate(-14deg) translateY(.4px)}.hx.m-sad .h-brow-r{transform:rotate(14deg) translateY(.4px)}
+.hx.m-sad .h-head{transform:translateY(1.2px) rotate(-3deg)}
+.hx.m-sad .h-blush{opacity:.15}
+.hx.m-sad .h-look{transform:translate(0,.8px)}
+.hx.m-think .h-brow-r{transform:translateY(-2.4px) rotate(-6deg)}.hx.m-think .h-brow-l{transform:translateY(.4px)}
+.hx.m-think .h-look{transform:translate(1.4px,-1.5px)}
+.hx.m-think .h-head{transform:rotate(-5deg)}
+.hx.m-wow .h-brow{transform:translateY(-3.2px)}
+.hx.m-wow .h-eyes{transform:scale(1.15)}
+.hx.m-wow .h-head{transform:translateY(-1px)}
+.hx.m-wow .h-glow{opacity:.9}
+/* gesty */
+.hx.g-wave .h-hand-r{animation:hx-wave 2.2s ease-in-out both}
+.hx.g-point .h-hand-r{animation:hx-point 2.4s ease-in-out both}
+.hx.g-think .h-hand-r{animation:hx-thinkhand 3.2s ease-in-out both}
+.hx.g-clap .h-hand-r{animation:hx-clap-r 1.8s ease-in-out both}
+.hx.g-clap .h-hand-l{animation:hx-clap-l 1.8s ease-in-out both}
+.hx.g-nod .h-nod{animation:hx-nod .9s ease-in-out both}
+.hx.g-shake .h-nod{animation:hx-shake .9s ease-in-out both}
+.hx.tilt-l .h-idle{transform:rotate(-4deg)}.hx.tilt-r .h-idle{transform:rotate(4deg)}
+@keyframes hx-sway{50%{transform:rotate(1.2deg)}}
+@keyframes hx-breath{50%{transform:translateY(-1.1px) scale(1.012)}}
+@keyframes hx-talk{50%{opacity:1}} @keyframes hx-talk2{50%{opacity:0}}
+@keyframes hx-glow{50%{opacity:.95;transform:scale(1.25)}}
+@keyframes hx-talkhead{25%{transform:rotate(1.6deg)}75%{transform:rotate(-1.4deg)}}
+@keyframes hx-spark{0%{opacity:0;transform:scale(.2)}30%{opacity:1;transform:scale(1.2)}100%{opacity:0;transform:scale(.4) rotate(90deg)}}
+@keyframes hx-wave{0%,100%{transform:translate(6px,58px)}14%{transform:translate(0,0) rotate(-10deg)}28%{transform:translate(0,0) rotate(14deg)}42%{transform:translate(0,0) rotate(-10deg)}56%{transform:translate(0,0) rotate(14deg)}70%{transform:translate(0,0) rotate(-4deg)}86%{transform:translate(0,4px) rotate(0)}}
+@keyframes hx-point{0%,100%{transform:translate(6px,58px)}20%,78%{transform:translate(4px,-4px) rotate(-22deg)}50%{transform:translate(5px,-6px) rotate(-26deg)}}
+@keyframes hx-thinkhand{0%,100%{transform:translate(6px,58px)}22%,80%{transform:translate(-17px,15px) rotate(-38deg)}}
+@keyframes hx-clap-r{0%,100%{transform:translate(6px,58px)}18%{transform:translate(-20px,22px) rotate(-30deg)}30%,54%,78%{transform:translate(-24px,22px) rotate(-34deg)}42%,66%{transform:translate(-18px,22px) rotate(-28deg)}90%{transform:translate(-10px,40px) rotate(-10deg)}}
+@keyframes hx-clap-l{0%,100%{transform:translate(-6px,58px)}18%{transform:translate(20px,22px) rotate(30deg)}30%,54%,78%{transform:translate(24px,22px) rotate(34deg)}42%,66%{transform:translate(18px,22px) rotate(28deg)}90%{transform:translate(10px,40px) rotate(10deg)}}
+@keyframes hx-nod{30%{transform:rotate(0) translateY(2px)}60%{transform:translateY(-1px)}}
+@keyframes hx-shake{20%{transform:rotate(-6deg)}45%{transform:rotate(6deg)}70%{transform:rotate(-4deg)}90%{transform:rotate(2deg)}}
+@media (prefers-reduced-motion:reduce){.hx *{animation:none!important;transition:none!important}}
+`;
+
+/* kontroler mimiki i gestów: HistadaFx(element z SVG) */
+function HistadaFx(host) {
+  const svg = host && host.querySelector('svg.hx');
+  const noop = { mood() {}, gesture() {}, react() {}, look() {} };
+  if (!svg) return noop;
+  if (!document.getElementById('hx-css')) { const st = document.createElement('style'); st.id = 'hx-css'; st.textContent = HISTADA_CSS; document.head.appendChild(st); }
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const MOODS = ['happy', 'sad', 'think', 'wow'], GEST = { wave: 2200, point: 2400, think: 3200, clap: 1800, nod: 900, shake: 900 };
+  let mT = null, gT = null, lastPtr = 0, busyUntil = 0;
+  const cls = svg.classList;
+  function mood(m, ms = 2800) {
+    MOODS.forEach(x => cls.remove('m-' + x)); if (m) cls.add('m-' + m);
+    clearTimeout(mT); if (m && ms) mT = setTimeout(() => mood(null), ms);
+  }
+  function gesture(gs) {
+    if (RM || !GEST[gs]) return;
+    Object.keys(GEST).forEach(x => cls.remove('g-' + x)); void svg.getBoundingClientRect(); cls.add('g-' + gs);
+    busyUntil = performance.now() + GEST[gs];
+    clearTimeout(gT); gT = setTimeout(() => cls.remove('g-' + gs), GEST[gs]);
+  }
+  function look(x, y) { svg.style.setProperty('--lx', x.toFixed(2) + 'px'); svg.style.setProperty('--ly', y.toFixed(2) + 'px'); }
+  // gotowe reakcje na sytuacje w grze
+  function react(kind) {
+    switch (kind) {
+      case 'hi': mood('happy', 2400); gesture('wave'); break;
+      case 'ok': mood('happy', 2600); gesture(Math.random() < .6 ? 'clap' : 'nod'); break;
+      case 'no': mood('sad', 2600); gesture('shake'); break;
+      case 'q': mood('think', 0); if (Math.random() < .5) gesture('think'); break;
+      case 'point': gesture('point'); break;
+      case 'wow': mood('wow', 1800); break;
+      case 'win': mood('happy', 4000); gesture('clap'); setTimeout(() => gesture('wave'), 1900); break;
+      case 'calm': mood(null); break;
+    }
+  }
+  if (!RM) {
+    // oczy śledzą kursor
+    let raf = 0, px = 0, py = 0;
+    window.addEventListener('pointermove', e => { px = e.clientX; py = e.clientY; lastPtr = performance.now(); if (raf) return; raf = requestAnimationFrame(() => {
+      raf = 0; if (cls.contains('m-think') || cls.contains('m-sad')) return;
+      const r = host.getBoundingClientRect(); if (!r.width) return;
+      const dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height * .47), d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 260);
+      look(dx / d * 1.7 * k, dy / d * 1.3 * k); }); }, { passive: true });
+    // życie w spoczynku: mruganie, rozglądanie się, przechylenie głowy
+    const idle = () => {
+      const now = performance.now();
+      if (!document.hidden && now > busyUntil) {
+        const r = Math.random();
+        if (r < .55) { cls.add('bl'); setTimeout(() => cls.remove('bl'), 140); if (Math.random() < .2) setTimeout(() => { cls.add('bl'); setTimeout(() => cls.remove('bl'), 120); }, 260); }
+        else if (r < .8 && now - lastPtr > 3000) { look((Math.random() - .5) * 3, (Math.random() - .5) * 1.6); setTimeout(() => { if (performance.now() - lastPtr > 3000) look(0, 0); }, 1400); }
+        else { const t = Math.random() < .5 ? 'tilt-l' : 'tilt-r'; cls.add(t); setTimeout(() => cls.remove(t), 1600); }
+      }
+      setTimeout(idle, 1800 + Math.random() * 3400);
+    };
+    setTimeout(idle, 1500);
+  }
+  return { mood, gesture, react, look };
+}
+
+document.getElementById('ava').innerHTML = GUIDE_SVG;
+document.querySelector('.ints').innerHTML = [["muz", "muzyczno-rytmiczna"], ["wiz", "wizualno-przestrzenna"], ["jez", "werbalno-językowa"], ["log", "logiczno-matematyczna"], ["kin", "cielesno-kinestetyczna"], ["inter", "interpersonalna"], ["intra", "intrapersonalna"], ["przyr", "przyrodnicza"], ["egz", "egzystencjalna"]].map(([id, n]) => `<div>${ico(id, {"muz": "#f06ba0", "wiz": "#6fb3f0", "jez": "#c9a07f", "log": "#8f9cf2", "kin": "#f39a4c", "inter": "#4fd0bf", "intra": "#c38af0", "przyr": "#79cf6b", "egz": "#e9c24c"}[id], 18)}<span>${n}</span></div>`).join('');
+(() => {
+  const fx = HistadaFx(document.getElementById('ava'));
+  const lines = ['Jestem Histada, Twoja przewodniczka. Wybierz, jak chcesz dziś grać.', 'Przy stole z przyjaciółmi? Wybierz planszę – zagra nawet dwanaście osób.', 'Chcesz spotkać innych podróżników? Krąg Tajemnicy czeka.', 'Wolisz sam? Cyfrowy Diament zapamięta, gdzie skończyłeś.'];
+  let i = 0; const say = document.getElementById('say');
+  setTimeout(() => fx.react('hi'), 600);
+  document.getElementById('ava').onclick = () => { i = (i + 1) % lines.length; say.textContent = lines[i]; fx.react(i % 2 ? 'point' : 'hi'); document.getElementById('ava').classList.add('talk'); setTimeout(() => document.getElementById('ava').classList.remove('talk'), 1800); };
+  document.querySelectorAll('.part').forEach((p, k) => p.addEventListener('pointerenter', () => { i = k + 1; say.textContent = lines[k + 1]; fx.react('point'); }));
+})();
+</script>
+<script type="text/plain" id="js-en">
+'use strict';
+const INT_COL = {muz:'#c2185b',wiz:'#1e78c8',jez:'#795548',log:'#3949ab',kin:'#e65100',inter:'#00897b',intra:'#8e24aa',przyr:'#3f9142',egz:'#b58900'};
+const INT_ICO = {
+  muz:'M3.5 8.5a1.6 1.6 0 1 1 0-.01M5.1 8.3V1.6l3.6 1.1v1.7L5.1 3.3',
+  wiz:'M1 5c2-3.2 6-3.2 8 0c-2 3.2-6 3.2-8 0ZM5 3.8a1.2 1.2 0 1 0 .01 0',
+  jez:'M1.5 1.8h7v4.6H4.2L2.2 8.4V6.4h-.7Z',
+  log:'M1.5 3.2h3M3 1.7v3M5.8 3.2h3M1.5 6.8h3M5.8 6.2h3M5.8 7.6h3',
+  kin:'M1 5h8M2.2 3v4M7.8 3v4M3.4 3.8v2.4M6.6 3.8v2.4',
+  inter:'M3.4 2.3a1.2 1.2 0 1 0 .01 0M.9 8.6c0-2.1 5-2.1 5 0M7 2.2a1 1 0 1 0 .01 0M6.6 5.4c1.5-.3 2.7.5 2.7 2.2',
+  intra:'M5 8.6L1.7 5.2a1.9 1.9 0 0 1 3.3-2.6a1.9 1.9 0 0 1 3.3 2.6Z',
+  przyr:'M1.8 8.2C1.8 3.2 5 1.6 8.6 1.6c0 3.6-1.6 6.6-6.8 6.6ZM1.8 8.2L6 4',
+  egz:'M5 1l1.2 2.8 2.8.3-2.1 1.9.6 2.9L5 7.4 2.5 8.9l.6-2.9L1 4.1l2.8-.3Z',
+};
+const ico = (id, col, size = 16) => `<svg class="ico" width="${size}" height="${size}" viewBox="0 0 10 10" aria-hidden="true"><path d="${INT_ICO[id]}" fill="none" stroke="${col || INT_COL[id]}" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+/* ============ HISTADA – animowana przewodniczka (wspólna dla gry planszowej i Kręgu) ============ */
+const GUIDE_SVG = `<svg class="hx" viewBox="0 0 120 120" aria-hidden="true">
+  <defs><radialGradient id="gbg" cx="50%" cy="35%" r="70%"><stop offset="0" stop-color="#2c6f7a"/><stop offset="1" stop-color="#132c35"/></radialGradient>
+  <radialGradient id="ggem" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#e8fdff"/><stop offset=".5" stop-color="#6fd0d8"/><stop offset="1" stop-color="#6fd0d8" stop-opacity="0"/></radialGradient>
+  <clipPath id="gcl"><circle cx="60" cy="60" r="58"/></clipPath></defs>
+  <circle cx="60" cy="60" r="58" fill="url(#gbg)"/>
+  <g clip-path="url(#gcl)">
+    <g class="h-hexes" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="1">${[0, 1, 2, 3, 4].map(r => [0, 1, 2, 3, 4, 5].map(c => { const x = c * 22 + (r % 2) * 11, y = r * 19 + 4; return `<path d="M${x} ${y - 11}l9.5 5.5v11L${x} ${y + 11}l-9.5-5.5v-11Z"/>`; }).join('')).join('')}</g>
+    <g class="h-sparks">${[[22, 30], [96, 26], [102, 64], [16, 70], [30, 100], [92, 98]].map(([x, y], i) => `<path style="animation-delay:${i * .14}s" d="M${x} ${y - 4}l1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" fill="#f0d48f"/>`).join('')}</g>
+    <g class="h-fig">
+      <g class="h-breath">
+        <path d="M20 125c2-24 16-36 40-38 24 2 38 14 40 38Z" fill="#1d3f6e"/>
+        <path d="M38 92c6 8 16 12 22 12s16-4 22-12" fill="none" stroke="#d6b04a" stroke-width="2.4"/>
+        <path class="h-amulet" d="M60 104l-3.4 6.5h6.8Z M60 117l-3.4-6.5h6.8Z" fill="#d6b04a"/>
+        <path d="M52 78h16v12c0 3-16 3-16 0Z" fill="#c98f6c"/>
+      </g>
+      <g class="h-head"><g class="h-nod"><g class="h-idle">
+        <path d="M33 58c-2-22 10-38 27-38s29 16 27 38c-1 12-4 24-9 30-8-6-10-20-10-26h-16c0 6-2 20-10 26-5-6-8-18-9-30Z" fill="#3a2418"/>
+        <ellipse cx="60" cy="58" rx="17" ry="21" fill="#e2ac86"/>
+        <g class="h-bun"><circle cx="60" cy="19" r="9" fill="#3a2418"/><path d="M53 15q7-5 14 0" fill="none" stroke="#5a3a28" stroke-width="1.2"/></g>
+        <path d="M42 44c6-6 12-8 18-8s12 2 18 8" fill="none" stroke="#d6b04a" stroke-width="2.2"/>
+        <circle class="h-glow" cx="60" cy="39.6" r="7" fill="url(#ggem)"/>
+        <path d="M60 36l3.2 1.8v3.7L60 43.3l-3.2-1.8v-3.7Z" fill="#6fd0d8" stroke="#d6b04a" stroke-width=".8"/>
+        <g class="h-eyes"><g class="h-look"><ellipse cx="53" cy="57" rx="2.2" ry="2.6" fill="#1b1b1b"/><ellipse cx="67" cy="57" rx="2.2" ry="2.6" fill="#1b1b1b"/>
+          <circle cx="53.8" cy="56" r=".7" fill="#fff"/><circle cx="67.8" cy="56" r=".7" fill="#fff"/></g></g>
+        <path class="h-eyes-happy" d="M50.6 58q2.4-3.2 4.8 0M64.6 58q2.4-3.2 4.8 0" fill="none" stroke="#1b1b1b" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="h-brow h-brow-l" d="M49.5 52.5q3.5-2 7 0" fill="none" stroke="#3a2418" stroke-width="1.3" stroke-linecap="round"/>
+        <path class="h-brow h-brow-r" d="M63.5 52.5q3.5-2 7 0" fill="none" stroke="#3a2418" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M60 60v5l-1.8 1" fill="none" stroke="#b77d5c" stroke-width="1.1" stroke-linecap="round"/>
+        <g class="h-blush"><ellipse cx="50" cy="65" rx="3" ry="1.8" fill="#e8908a"/><ellipse cx="70" cy="65" rx="3" ry="1.8" fill="#e8908a"/></g>
+        <g class="h-mouth">
+          <path class="h-m h-m-c" d="M55 70.5q5 3.2 10 0" fill="none" stroke="#9c3f3a" stroke-width="1.6" stroke-linecap="round"/>
+          <path class="h-m h-m-smile" d="M54 69.5q6 1 12 0q-1 6-6 6t-6-6Z" fill="#7c2b2a" stroke="#9c3f3a" stroke-width=".8" stroke-linejoin="round"/>
+          <path class="h-m h-m-sad" d="M55.5 73q4.5-3 9 0" fill="none" stroke="#9c3f3a" stroke-width="1.6" stroke-linecap="round"/>
+          <path class="h-m h-m-hmm" d="M56 71.6q3 .6 8-1" fill="none" stroke="#9c3f3a" stroke-width="1.6" stroke-linecap="round"/>
+          <ellipse class="h-m h-m-wow" cx="60" cy="72" rx="2.4" ry="3" fill="#7c2b2a"/>
+        </g>
+        <path class="h-m-o" d="M55.5 70q4.5-1.2 9 0q-.6 5-4.5 5t-4.5-5Z" fill="#7c2b2a"/>
+      </g></g></g>
+      <g class="h-hand h-hand-r"><path d="M79 76l10-2 12 50H84Z" fill="#1d3f6e"/><path d="M79.5 76.4l9.6-2" stroke="#d6b04a" stroke-width="1.6"/>
+        <path d="M81 72c-1.5-4-.5-9 1-12.5.6-1.4 2.4-1 2.2.5l-.6 6 1-8.6c.2-1.6 2.5-1.6 2.5 0l-.2 8.4 1.2-7.7c.3-1.6 2.6-1.4 2.4.2l-.9 8 1.5-5.8c.4-1.5 2.5-1 2.2.5l-1.5 8.2c-.6 3.8-3 6.8-6.6 6.8-2.2 0-3.6-1.2-4.2-4Z" fill="#e2ac86" stroke="#c98f6c" stroke-width=".5"/></g>
+      <g class="h-hand h-hand-l"><path d="M41 76l-10-2-12 50h17Z" fill="#1d3f6e"/><path d="M40.5 76.4l-9.6-2" stroke="#d6b04a" stroke-width="1.6"/>
+        <path d="M39 72c1.5-4 .5-9-1-12.5-.6-1.4-2.4-1-2.2.5l.6 6-1-8.6c-.2-1.6-2.5-1.6-2.5 0l.2 8.4-1.2-7.7c-.3-1.6-2.6-1.4-2.4.2l.9 8-1.5-5.8c-.4-1.5-2.5-1-2.2.5l1.5 8.2c.6 3.8 3 6.8 6.6 6.8 2.2 0 3.6-1.2 4.2-4Z" fill="#e2ac86" stroke="#c98f6c" stroke-width=".5"/></g>
+    </g>
+  </g>
+  <circle class="h-ring" cx="60" cy="60" r="58" fill="none" stroke="#d6b04a" stroke-width="2"/>
+</svg>`;
+
+const HISTADA_CSS = `
+.hx{--lx:0px;--ly:0px;overflow:visible}
+.hx g,.hx path,.hx ellipse,.hx circle{transform-box:view-box}
+.hx .h-fig{transform-origin:60px 120px;animation:hx-sway 9s ease-in-out infinite}
+.hx .h-breath{transform-origin:60px 120px;animation:hx-breath 4.2s ease-in-out infinite}
+.hx .h-head{transform-origin:60px 84px;transition:transform .5s cubic-bezier(.3,1.4,.5,1)}
+.hx .h-nod,.hx .h-idle{transform-origin:60px 84px;transition:transform .7s ease}
+.hx .h-look{transform:translate(var(--lx),var(--ly));transition:transform .25s ease-out}
+.hx .h-eyes{transform-origin:60px 57px;transition:transform .08s,opacity .15s}
+.hx.bl .h-eyes{transform:scaleY(.08)}
+.hx .h-eyes-happy{opacity:0;transition:opacity .15s}
+.hx .h-brow{transition:transform .3s ease}
+.hx .h-brow-l{transform-origin:53px 52px}.hx .h-brow-r{transform-origin:67px 52px}
+.hx .h-blush{opacity:.45;transition:opacity .4s}
+.hx .h-m{opacity:0;transition:opacity .12s}.hx .h-m-c{opacity:1}
+.hx .h-m-o{opacity:0}
+.hx .h-glow{opacity:.35;transform-origin:60px 39.6px}
+.hx .h-sparks path{opacity:0;transform-origin:center;transform-box:fill-box}
+.hx .h-hand{transition:transform .5s cubic-bezier(.3,1.2,.5,1)}
+.hx .h-hand-r{transform:translate(6px,58px);transform-origin:88px 96px}
+.hx .h-hand-l{transform:translate(-6px,58px);transform-origin:32px 96px}
+/* mówienie */
+.talk .hx .h-m-o{animation:hx-talk .3s steps(2) infinite}
+.talk .hx .h-mouth{animation:hx-talk2 .3s steps(2) infinite}
+.talk .hx .h-glow{animation:hx-glow 1.1s ease-in-out infinite}
+.talk .hx .h-idle{animation:hx-talkhead 2.4s ease-in-out infinite}
+/* nastroje */
+.hx.m-happy .h-m-c,.hx.m-sad .h-m-c,.hx.m-think .h-m-c,.hx.m-wow .h-m-c{opacity:0}
+.hx.m-happy .h-m-smile,.hx.m-sad .h-m-sad,.hx.m-think .h-m-hmm,.hx.m-wow .h-m-wow{opacity:1}
+.hx.m-happy .h-eyes{opacity:0}.hx.m-happy .h-eyes-happy{opacity:1}
+.hx.m-happy .h-brow{transform:translateY(-1.6px)}
+.hx.m-happy .h-blush{opacity:.85}
+.hx.m-happy .h-head{transform:rotate(4deg)}
+.hx.m-happy .h-sparks path{animation:hx-spark 1.4s ease-out 2}
+.hx.m-sad .h-brow-l{transform:rotate(-14deg) translateY(.4px)}.hx.m-sad .h-brow-r{transform:rotate(14deg) translateY(.4px)}
+.hx.m-sad .h-head{transform:translateY(1.2px) rotate(-3deg)}
+.hx.m-sad .h-blush{opacity:.15}
+.hx.m-sad .h-look{transform:translate(0,.8px)}
+.hx.m-think .h-brow-r{transform:translateY(-2.4px) rotate(-6deg)}.hx.m-think .h-brow-l{transform:translateY(.4px)}
+.hx.m-think .h-look{transform:translate(1.4px,-1.5px)}
+.hx.m-think .h-head{transform:rotate(-5deg)}
+.hx.m-wow .h-brow{transform:translateY(-3.2px)}
+.hx.m-wow .h-eyes{transform:scale(1.15)}
+.hx.m-wow .h-head{transform:translateY(-1px)}
+.hx.m-wow .h-glow{opacity:.9}
+/* gesty */
+.hx.g-wave .h-hand-r{animation:hx-wave 2.2s ease-in-out both}
+.hx.g-point .h-hand-r{animation:hx-point 2.4s ease-in-out both}
+.hx.g-think .h-hand-r{animation:hx-thinkhand 3.2s ease-in-out both}
+.hx.g-clap .h-hand-r{animation:hx-clap-r 1.8s ease-in-out both}
+.hx.g-clap .h-hand-l{animation:hx-clap-l 1.8s ease-in-out both}
+.hx.g-nod .h-nod{animation:hx-nod .9s ease-in-out both}
+.hx.g-shake .h-nod{animation:hx-shake .9s ease-in-out both}
+.hx.tilt-l .h-idle{transform:rotate(-4deg)}.hx.tilt-r .h-idle{transform:rotate(4deg)}
+@keyframes hx-sway{50%{transform:rotate(1.2deg)}}
+@keyframes hx-breath{50%{transform:translateY(-1.1px) scale(1.012)}}
+@keyframes hx-talk{50%{opacity:1}} @keyframes hx-talk2{50%{opacity:0}}
+@keyframes hx-glow{50%{opacity:.95;transform:scale(1.25)}}
+@keyframes hx-talkhead{25%{transform:rotate(1.6deg)}75%{transform:rotate(-1.4deg)}}
+@keyframes hx-spark{0%{opacity:0;transform:scale(.2)}30%{opacity:1;transform:scale(1.2)}100%{opacity:0;transform:scale(.4) rotate(90deg)}}
+@keyframes hx-wave{0%,100%{transform:translate(6px,58px)}14%{transform:translate(0,0) rotate(-10deg)}28%{transform:translate(0,0) rotate(14deg)}42%{transform:translate(0,0) rotate(-10deg)}56%{transform:translate(0,0) rotate(14deg)}70%{transform:translate(0,0) rotate(-4deg)}86%{transform:translate(0,4px) rotate(0)}}
+@keyframes hx-point{0%,100%{transform:translate(6px,58px)}20%,78%{transform:translate(4px,-4px) rotate(-22deg)}50%{transform:translate(5px,-6px) rotate(-26deg)}}
+@keyframes hx-thinkhand{0%,100%{transform:translate(6px,58px)}22%,80%{transform:translate(-17px,15px) rotate(-38deg)}}
+@keyframes hx-clap-r{0%,100%{transform:translate(6px,58px)}18%{transform:translate(-20px,22px) rotate(-30deg)}30%,54%,78%{transform:translate(-24px,22px) rotate(-34deg)}42%,66%{transform:translate(-18px,22px) rotate(-28deg)}90%{transform:translate(-10px,40px) rotate(-10deg)}}
+@keyframes hx-clap-l{0%,100%{transform:translate(-6px,58px)}18%{transform:translate(20px,22px) rotate(30deg)}30%,54%,78%{transform:translate(24px,22px) rotate(34deg)}42%,66%{transform:translate(18px,22px) rotate(28deg)}90%{transform:translate(10px,40px) rotate(10deg)}}
+@keyframes hx-nod{30%{transform:rotate(0) translateY(2px)}60%{transform:translateY(-1px)}}
+@keyframes hx-shake{20%{transform:rotate(-6deg)}45%{transform:rotate(6deg)}70%{transform:rotate(-4deg)}90%{transform:rotate(2deg)}}
+@media (prefers-reduced-motion:reduce){.hx *{animation:none!important;transition:none!important}}
+`;
+
+/* kontroler mimiki i gestów: HistadaFx(element z SVG) */
+function HistadaFx(host) {
+  const svg = host && host.querySelector('svg.hx');
+  const noop = { mood() {}, gesture() {}, react() {}, look() {} };
+  if (!svg) return noop;
+  if (!document.getElementById('hx-css')) { const st = document.createElement('style'); st.id = 'hx-css'; st.textContent = HISTADA_CSS; document.head.appendChild(st); }
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const MOODS = ['happy', 'sad', 'think', 'wow'], GEST = { wave: 2200, point: 2400, think: 3200, clap: 1800, nod: 900, shake: 900 };
+  let mT = null, gT = null, lastPtr = 0, busyUntil = 0;
+  const cls = svg.classList;
+  function mood(m, ms = 2800) {
+    MOODS.forEach(x => cls.remove('m-' + x)); if (m) cls.add('m-' + m);
+    clearTimeout(mT); if (m && ms) mT = setTimeout(() => mood(null), ms);
+  }
+  function gesture(gs) {
+    if (RM || !GEST[gs]) return;
+    Object.keys(GEST).forEach(x => cls.remove('g-' + x)); void svg.getBoundingClientRect(); cls.add('g-' + gs);
+    busyUntil = performance.now() + GEST[gs];
+    clearTimeout(gT); gT = setTimeout(() => cls.remove('g-' + gs), GEST[gs]);
+  }
+  function look(x, y) { svg.style.setProperty('--lx', x.toFixed(2) + 'px'); svg.style.setProperty('--ly', y.toFixed(2) + 'px'); }
+  // gotowe reakcje na sytuacje w grze
+  function react(kind) {
+    switch (kind) {
+      case 'hi': mood('happy', 2400); gesture('wave'); break;
+      case 'ok': mood('happy', 2600); gesture(Math.random() < .6 ? 'clap' : 'nod'); break;
+      case 'no': mood('sad', 2600); gesture('shake'); break;
+      case 'q': mood('think', 0); if (Math.random() < .5) gesture('think'); break;
+      case 'point': gesture('point'); break;
+      case 'wow': mood('wow', 1800); break;
+      case 'win': mood('happy', 4000); gesture('clap'); setTimeout(() => gesture('wave'), 1900); break;
+      case 'calm': mood(null); break;
+    }
+  }
+  if (!RM) {
+    // oczy śledzą kursor
+    let raf = 0, px = 0, py = 0;
+    window.addEventListener('pointermove', e => { px = e.clientX; py = e.clientY; lastPtr = performance.now(); if (raf) return; raf = requestAnimationFrame(() => {
+      raf = 0; if (cls.contains('m-think') || cls.contains('m-sad')) return;
+      const r = host.getBoundingClientRect(); if (!r.width) return;
+      const dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height * .47), d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 260);
+      look(dx / d * 1.7 * k, dy / d * 1.3 * k); }); }, { passive: true });
+    // życie w spoczynku: mruganie, rozglądanie się, przechylenie głowy
+    const idle = () => {
+      const now = performance.now();
+      if (!document.hidden && now > busyUntil) {
+        const r = Math.random();
+        if (r < .55) { cls.add('bl'); setTimeout(() => cls.remove('bl'), 140); if (Math.random() < .2) setTimeout(() => { cls.add('bl'); setTimeout(() => cls.remove('bl'), 120); }, 260); }
+        else if (r < .8 && now - lastPtr > 3000) { look((Math.random() - .5) * 3, (Math.random() - .5) * 1.6); setTimeout(() => { if (performance.now() - lastPtr > 3000) look(0, 0); }, 1400); }
+        else { const t = Math.random() < .5 ? 'tilt-l' : 'tilt-r'; cls.add(t); setTimeout(() => cls.remove(t), 1600); }
+      }
+      setTimeout(idle, 1800 + Math.random() * 3400);
+    };
+    setTimeout(idle, 1500);
+  }
+  return { mood, gesture, react, look };
+}
+
+document.getElementById('ava').innerHTML = GUIDE_SVG;
+document.querySelector('.ints').innerHTML = [["muz", "musical-rhythmic"], ["wiz", "visual-spatial"], ["jez", "verbal-linguistic"], ["log", "logical-mathematical"], ["kin", "bodily-kinesthetic"], ["inter", "interpersonal"], ["intra", "intrapersonal"], ["przyr", "naturalistic"], ["egz", "existential"]].map(([id, n]) => `<div>${ico(id, {"muz": "#f06ba0", "wiz": "#6fb3f0", "jez": "#c9a07f", "log": "#8f9cf2", "kin": "#f39a4c", "inter": "#4fd0bf", "intra": "#c38af0", "przyr": "#79cf6b", "egz": "#e9c24c"}[id], 18)}<span>${n}</span></div>`).join('');
+(() => {
+  const fx = HistadaFx(document.getElementById('ava'));
+  const lines = ['I’m Histada, your guide. Choose how you want to play today.', 'At the table with friends? Choose the board – up to twelve people can play.', 'Want to meet other travelers? The Circle of Mystery awaits.', 'Prefer to play solo? The Digital Diamond will remember where you left off.'];
+  let i = 0; const say = document.getElementById('say');
+  setTimeout(() => fx.react('hi'), 600);
+  document.getElementById('ava').onclick = () => { i = (i + 1) % lines.length; say.textContent = lines[i]; fx.react(i % 2 ? 'point' : 'hi'); document.getElementById('ava').classList.add('talk'); setTimeout(() => document.getElementById('ava').classList.remove('talk'), 1800); };
+  document.querySelectorAll('.part').forEach((p, k) => p.addEventListener('pointerenter', () => { i = k + 1; say.textContent = lines[k + 1]; fx.react('point'); }));
+})();
+</script>
+<script>
+(() => {
+  const L = HistadaI18n.ui(); document.documentElement.lang = L;
+  document.body.appendChild(document.getElementById('ui-' + L).content.cloneNode(true));
+  if (L === 'en') document.title = "HISTADA Trilogy";
+  document.querySelectorAll('#langSlot,[data-lang-slot]').forEach(slot => slot.appendChild(HistadaI18n.switcher()));
+  const s = document.createElement('script'); s.textContent = document.getElementById('js-' + L).textContent; document.body.appendChild(s);
+})();
+</script>
+</body></html>

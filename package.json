@@ -1,0 +1,12 @@
+{
+  "name": "histada",
+  "private": true,
+  "description": "HISTADA Trylogia – gra edukacyjna (Cloudflare Pages)",
+  "scripts": {
+    "dev": "wrangler pages dev",
+    "deploy": "wrangler pages deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
