@@ -2743,16 +2743,14 @@ Wybierz jeden z trybów poniżej i ruszajmy w podróż! Choose your mode below a
       return;
     }
 
-    // Wykrywanie iOS Safari
     const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
     if (isStandalone) {
-      alert('Aplikacja HISTADA PWA jest już zainstalowana i działa w trybie pełnoekranowym!');
+      alert('Aplikacja HISTADA PWA jest już zainstalowana i działa w trybie pełnoekranowym na Twoim urządzeniu!');
       return;
     }
 
-    // Otwórz modal informacyjny PWA
     const modal = document.getElementById('modalPwa');
     const iosGuide = document.getElementById('pwaIosGuide');
     const genGuide = document.getElementById('pwaGeneralGuide');
@@ -2762,6 +2760,9 @@ Wybierz jeden z trybów poniżej i ruszajmy w podróż! Choose your mode below a
     }
     if (modal) modal.classList.add('open');
   }
+
+  window.triggerPwaInstall = triggerPwaInstall;
+  window.triggerPwaInstallPrompt = triggerPwaInstall;
 
   // --- MODALE DYSTRYBUCJI ---
   function openWebAppModal() {
@@ -3027,23 +3028,20 @@ Wybierz jeden z trybów poniżej i ruszajmy w podróż! Choose your mode below a
       </p>
 
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin:4px 0;">
-        <button type="button" class="modal-dl-btn" style="background:linear-gradient(135deg, #00c853, #009688);border-color:#69f0ae;width:100%;justify-content:center;" onclick="triggerPwaInstallPrompt()">
-          <span>⚡ 1-Kliknięcie: Zainstaluj jako Aplikację Natywną (Zalecane)</span>
+        <button type="button" class="modal-dl-btn" style="background:linear-gradient(135deg, #00c853, #009688);border-color:#69f0ae;width:100%;justify-content:center;font-weight:bold;" onclick="triggerPwaInstall()">
+          <span>⚡ 1-Kliknięcie: Zainstaluj na Androidzie (Zalecane / Bez błędów APK)</span>
         </button>
-        <a href="/downloads/HISTADA_v2.0_Android_Universal.apk" download="HISTADA_v2.0_Android_Universal.apk" class="modal-dl-btn">
-          <span>📥 Pobierz Pakiet Instalacyjny Android (.apk)</span>
-        </a>
-        <a href="/downloads/HISTADA-Mobile-Capacitor-Android-iOS.zip" download="HISTADA-Mobile-Capacitor-Android-iOS.zip" class="modal-sec-btn">
-          <span>📦 Pobierz Projekt Źródłowy Google Play (.zip)</span>
+        <a href="/downloads/HISTADA-Mobile-Capacitor-Android-iOS.zip" download="HISTADA-Mobile-Capacitor-Android-iOS.zip" class="modal-sec-btn" style="width:100%;justify-content:center;">
+          <span>📦 Pobierz Kompletny Projekt Android / iOS (.zip)</span>
         </a>
       </div>
 
       <div style="background:#0a121e;border:1px solid #253754;border-radius:12px;padding:16px;">
-        <h4 style="margin:0 0 8px;color:#f0d48f;font-size:14px;">🚀 Instrukcja instalacji (Sideload APK & PWA WebAPK):</h4>
+        <h4 style="margin:0 0 8px;color:#f0d48f;font-size:14px;">🚀 Instrukcja instalacji (Natywna Aplikacja Android):</h4>
         <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.7;color:#cfdbe8;">
-          <li><strong>Najprostsza metoda (WebAPK):</strong> Kliknij zielony przycisk <em>„⚡ 1-Kliknięcie: Zainstaluj jako Aplikację Natywną”</em>. Google Play Services wygeneruje bezbłędną aplikację z ikoną na pulpicie.</li>
-          <li><strong>Pobieranie pliku APK:</strong> Pobierz plik <code>HISTADA_v2.0_Android_Universal.apk</code>. W menedżerze plików dotknij plik i włącz w Ustawieniach <em>„Zezwalaj na instalację nieznanych aplikacji”</em>.</li>
-          <li>Aplikacja HISTADA działa w 100% offline, z dostępem do lektora i skanera run!</li>
+          <li><strong>Najprostsza i najpewniejsza metoda (Android WebAPK):</strong> Kliknij zielony przycisk <em>„⚡ 1-Kliknięcie: Zainstaluj na Androidzie”</em> (lub w menu przeglądarki Chrome / Samsung Internet wybierz <em>„Zainstaluj aplikację” / „Dodaj do ekranu głównego”</em>). System Android utworzy natywną aplikację z ikoną na pulpicie, pełnym wsparciem offline i brakiem jakichkolwiek błędów analizowania pakietów!</li>
+          <li><strong>Projekt dla programistów (Google Play Store & Android Studio):</strong> Pobierz projekt <code>HISTADA-Mobile-Capacitor-Android-iOS.zip</code>. Zawiera on zweryfikowany plik <code>AndroidManifest.xml</code> oraz <code>build.gradle</code> pod Android 14+ (API 34) do kompilacji pakietów .apk i .aab.</li>
+          <li>Aplikacja HISTADA po zainstalowaniu działa w 100% offline, z pełnym wsparciem dla lektorki Histady i skanera run!</li>
         </ol>
       </div>
 

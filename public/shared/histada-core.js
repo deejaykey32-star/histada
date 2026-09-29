@@ -2761,9 +2761,7 @@
 
       const playNext = () => {
         if (!this.isSpeaking || this.chunkIdx >= this.chunks.length) {
-          this.isSpeaking = false;
-          this.isPaused = false;
-          if (typeof window !== 'undefined') window._histada_active_utts = [];
+          this.stop();
           if (onEnd) onEnd();
           return;
         }
@@ -2779,14 +2777,18 @@
         if (this.selectedVoice) utt.voice = this.selectedVoice;
 
         if (typeof window !== 'undefined') {
+          window._histada_active_utt = utt;
           window._histada_active_utts.push(utt);
-          if (window._histada_active_utts.length > 8) window._histada_active_utts.shift();
+          if (window._histada_active_utts.length > 15) window._histada_active_utts.shift();
         }
 
         let advanced = false;
+        let watchdogTimer = null;
+
         const advance = () => {
           if (advanced) return;
           advanced = true;
+          if (watchdogTimer) clearTimeout(watchdogTimer);
           this.chunkIdx++;
           playNext();
         };
@@ -2794,12 +2796,32 @@
         utt.onend = advance;
         utt.onerror = advance;
 
+        const estimatedMs = Math.max(3500, (chunk.length / 10) * 1000 + 4000);
+        watchdogTimer = setTimeout(() => {
+          if (!advanced && this.isSpeaking) {
+            advance();
+          }
+        }, estimatedMs);
+
         try {
           this.synth.speak(utt);
         } catch (e) {
           advance();
         }
       };
+
+      if (this.heartbeatTimer) clearInterval(this.heartbeatTimer);
+      this.heartbeatTimer = setInterval(() => {
+        if (this.isSpeaking && this.synth) {
+          try {
+            if (this.synth.paused) this.synth.resume();
+            else { this.synth.pause(); this.synth.resume(); }
+          } catch (e) {}
+        } else {
+          clearInterval(this.heartbeatTimer);
+          this.heartbeatTimer = null;
+        }
+      }, 4500);
 
       playNext();
     }
