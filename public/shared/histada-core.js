@@ -6,7 +6,7 @@
  * Includes 9 Intelligences Question Synthesizer with Verified Answers,
  * TTS Lektor (Histada), Smartphone Camera Rune Scanner & Claude AI Gateway.
  */
-window.HistadaCore = (() => {
+(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HistadaCore = (() => {
 
   // --- DUAL EDITION DEFINITIONS ---
   const EDITIONS = {
@@ -2470,12 +2470,147 @@ window.HistadaCore = (() => {
   }
 
 
-  // --- BULLETPROOF FEMALE TTS LEKTOR HISTADA (SPEECHSYNTHESIS) ---
+  // --- DOMAIN ICONS & THEME SYSTEM ---
+  const RELIGION_DOMAIN_ICONS = {
+    H01: "✡️", H02: "✝️", H03: "⛪", H04: "☦️", H05: "📖", H06: "🕊️", H07: "🏛️", H08: "☪️", H09: "🕌", H10: "🌀", H11: "🔥", H12: "🤝",
+    P01: "🕉️", P02: "🛕", P03: "☸️", P04: "🪷", P05: "📿", P06: "✋", P07: "☯️", P08: "📜", P09: "⛩️", P10: "☬", P11: "🌺", P12: "🧘",
+    T01: "🏛️", T02: "☥", T03: "🏛️", T04: "🪶", T05: "🔨", T06: "🗿", T07: "🐍", T08: "🔮", T09: "🌟", T10: "🕯️", T11: "🎺", T12: "👑"
+  };
+
+  const STANDARD_DOMAIN_ICONS = {
+    H01: "🌾", H02: "🏭", H03: "⚙️", H04: "💻", H05: "🚂", H06: "🏗️", H07: "🧪", H08: "⚡", H09: "🚀", H10: "🏥", H11: "💰", H12: "📱",
+    P01: "👑", P02: "🗳️", P03: "🛡️", P04: "⚔️", P05: "📜", P06: "⚖️", P07: "🗺️", P08: "🇵🇱", P09: "🕊️", P10: "🌍", P11: "🏛️", P12: "🚩",
+    T01: "🎨", T02: "📐", T03: "📖", T04: "🎵", T05: "🎭", T06: "🏛️", T07: "📷", T08: "🎬", T09: "🧠", T10: "🌌", T11: "🎓", T12: "🌐"
+  };
+
+  function getDomainIcon(code, ed) {
+    const isRel = (ed === 'religion' || ed === EDITIONS.RELIGION || (!ed && getEdition() === 'religion'));
+    const map = isRel ? RELIGION_DOMAIN_ICONS : STANDARD_DOMAIN_ICONS;
+    return map[code] || (isRel ? "📜" : "🏛️");
+  }
+
+  function getTheme() {
+    if (typeof localStorage !== 'undefined') {
+      const stored = localStorage.getItem('histada_theme');
+      if (stored) return stored;
+    }
+    return 'dark';
+  }
+
+  function setTheme(theme) {
+    const val = (theme === 'light') ? 'light' : 'dark';
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('data-theme', val);
+      if (document.body) document.body.setAttribute('data-theme', val);
+    }
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('histada_theme', val);
+    }
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('histada:themeChanged', { detail: { theme: val } }));
+    }
+  }
+
+  function initThemeToggle() {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    const currentTheme = getTheme();
+    setTheme(currentTheme);
+
+    let btn = document.getElementById('histadaThemeToggleTrigger');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.id = 'histadaThemeToggleTrigger';
+      btn.className = 'histada-theme-toggle-trigger';
+      document.body.appendChild(btn);
+    }
+    updateThemeBtnUI(btn);
+
+    btn.onclick = () => {
+      const nextTheme = getTheme() === 'light' ? 'dark' : 'light';
+      setTheme(nextTheme);
+      updateThemeBtnUI(btn);
+    };
+  }
+
+  function updateThemeBtnUI(btn) {
+    if (!btn) return;
+    const isLight = (getTheme() === 'light');
+    btn.innerHTML = isLight ? `<span>☀️</span><span>Motyw Jasny</span>` : `<span>🌙</span><span>Motyw Ciemny</span>`;
+    btn.title = isLight ? 'Przełącz na motyw ciemny (Dark Mode)' : 'Przełącz na motyw jasny (Light Mode)';
+  }
+
+  // --- TTS ABBREVIATIONS & FEMALE VOICE LEKTOR HISTADA ---
+  function expandAbbreviationsForTTS(text) {
+    if (!text || typeof text !== 'string') return '';
+    let s = text;
+    // Fix abbreviation p.n.e. -> przed naszą erą
+    s = s.replace(/\bp\.?\s*n\.?\s*e\.?\b/gi, 'przed naszą erą');
+    // Fix abbreviation n.e. -> naszej ery
+    s = s.replace(/\bn\.?\s*e\.?\b/gi, 'naszej ery');
+    // Fix r. after a year number
+    s = s.replace(/(\d+)\s*r\b/gi, '$1 roku');
+    s = s.replace(/\br\.\s*/gi, ' roku ');
+    // Fix w. after century number
+    s = s.replace(/([IVXLCDM\d]+)\s*w\.\s*/gi, '$1 wieku ');
+    s = s.replace(/\bw\.\s*/gi, ' wieku ');
+    // Fix ok. -> około
+    s = s.replace(/\bok\.\s*/gi, 'około ');
+    // Fix np. -> na przykład
+    s = s.replace(/\bnp\.\s*/gi, 'na przykład ');
+    // Fix tj. -> to jest
+    s = s.replace(/\btj\.\s*/gi, 'to jest ');
+    // Fix tzn. -> to znaczy
+    s = s.replace(/\btzn\.\s*/gi, 'to znaczy ');
+    // Fix tzw. -> tak zwany
+    s = s.replace(/\btzw\.\s*/gi, 'tak zwany ');
+
+    // Ensure name "Histada" is never spelled out letter by letter (H-i-s-t-a-d-a)
+    s = s.replace(/\bH-i-s-t-a-d-a\b/gi, 'Histada');
+    s = s.replace(/\bH\.I\.S\.T\.A\.D\.A\b/gi, 'Histada');
+    s = s.replace(/\bHISTADA\b/g, 'Histada');
+    return s;
+  }
+
+  function splitTextForTTS(text) {
+    const expanded = expandAbbreviationsForTTS(text);
+    const rawChunks = expanded.split(/(?<=[.!?;\n])\s+/);
+    const result = [];
+    for (let chunk of rawChunks) {
+      chunk = chunk.trim();
+      if (!chunk) continue;
+      if (chunk.length > 110) {
+        const subParts = chunk.split(/(?<=[,])\s+/);
+        for (let sub of subParts) {
+          sub = sub.trim();
+          if (!sub) continue;
+          if (sub.length > 110) {
+            let words = sub.split(/\s+/);
+            let buf = '';
+            for (let w of words) {
+              if ((buf + ' ' + w).length > 100) {
+                if (buf) result.push(buf.trim());
+                buf = w;
+              } else {
+                buf = buf ? buf + ' ' + w : w;
+              }
+            }
+            if (buf) result.push(buf.trim());
+          } else {
+            result.push(sub);
+          }
+        }
+      } else {
+        result.push(chunk);
+      }
+    }
+    return result.length ? result : [expanded];
+  }
+
   class TTS {
     constructor() {
       this.synth = (typeof window !== 'undefined' && window.speechSynthesis) ? window.speechSynthesis : null;
       this.rate = 1.0;
-      this.pitch = 1.20; // Wyrazisty, kobiecy tembr głosu Histady
+      this.pitch = 1.20;
       this.voices = [];
       this.selectedVoice = null;
       this.isSpeaking = false;
@@ -2501,22 +2636,33 @@ window.HistadaCore = (() => {
       this.voices = this.synth.getVoices() || [];
       if (!this.voices.length) return;
 
-      const langPref = (typeof window !== 'undefined' && window.HistadaI18n && window.HistadaI18n.ui && window.HistadaI18n.ui() === 'en') ? 'en' : 'pl';
+      const storedVoiceName = (typeof localStorage !== 'undefined') ? localStorage.getItem('histada_tts_voice') : null;
+      const storedPitch = (typeof localStorage !== 'undefined') ? localStorage.getItem('histada_tts_pitch') : null;
+      const storedRate = (typeof localStorage !== 'undefined') ? localStorage.getItem('histada_tts_rate') : null;
+
+      if (storedPitch) this.pitch = parseFloat(storedPitch);
+      if (storedRate) this.rate = parseFloat(storedRate);
+
+      if (storedVoiceName) {
+        const found = this.voices.find(v => v.name === storedVoiceName);
+        if (found) {
+          this.selectedVoice = found;
+          return;
+        }
+      }
+
       const femaleKeywords = [
         'zofia', 'paulina', 'ewa', 'maja', 'agnieszka', 'zosia', 'marta', 'anna', 'monika', 'kasia', 'aleksandra', 'magdalena', 'helena',
         'kobiecy', 'female', 'woman', 'zira', 'samantha', 'victoria', 'karen', 'catherine', 'susan', 'fiona', 'natural', 'neural', 'wavenet', 'online'
       ];
       const maleKeywords = ['adam', 'jan', 'marek', 'krzysztof', 'piotr', 'tomasz', 'michal', 'male', 'david', 'george', 'mark', 'richard', 'james', 'guy', 'stefan'];
 
+      const langPref = (typeof window !== 'undefined' && window.HistadaI18n && window.HistadaI18n.ui && window.HistadaI18n.ui() === 'en') ? 'en' : 'pl';
       if (langPref === 'pl') {
         const plVoices = this.voices.filter(v => v.lang && /^pl/i.test(v.lang));
-        // 1. Polski głos z kobiecą nazwą (np. Paulina, Zofia, Maja, Agnieszka)
         let match = plVoices.find(v => femaleKeywords.some(kw => v.name.toLowerCase().includes(kw)) && !maleKeywords.some(m => v.name.toLowerCase().includes(m)));
-        // 2. Polski głos niebędący jawnie oznaczony jako męski
         if (!match) match = plVoices.find(v => !maleKeywords.some(m => v.name.toLowerCase().includes(m)));
-        // 3. Dowolny polski głos
         if (!match && plVoices.length > 0) match = plVoices[0];
-        // 4. Dowolny głos kobiecy w systemie
         if (!match) {
           match = this.voices.find(v => femaleKeywords.some(kw => v.name.toLowerCase().includes(kw)) && !maleKeywords.some(m => v.name.toLowerCase().includes(m)));
         }
@@ -2528,12 +2674,48 @@ window.HistadaCore = (() => {
         this.selectedVoice = match || this.voices[0] || null;
       }
 
-      // Jeśli głos w systemie to głos męski lub neutralny, podwyższ pitch aby zapewnić kobiecy tembr
       if (this.selectedVoice && maleKeywords.some(m => this.selectedVoice.name.toLowerCase().includes(m))) {
         this.pitch = 1.28;
-      } else {
-        this.pitch = 1.20;
       }
+    }
+
+    getFemaleVoices() {
+      this.loadVoices();
+      if (!this.voices.length) return [];
+      const femaleKeywords = [
+        'zofia', 'paulina', 'ewa', 'maja', 'agnieszka', 'zosia', 'marta', 'anna', 'monika', 'kasia', 'aleksandra', 'magdalena', 'helena',
+        'kobiecy', 'female', 'woman', 'zira', 'samantha', 'victoria', 'karen', 'catherine', 'susan', 'fiona', 'natural', 'neural', 'wavenet', 'online'
+      ];
+      const maleKeywords = ['adam', 'jan', 'marek', 'krzysztof', 'piotr', 'tomasz', 'michal', 'male', 'david', 'george', 'mark', 'richard', 'james', 'guy', 'stefan'];
+
+      const list = this.voices.filter(v => {
+        const name = v.name.toLowerCase();
+        const isPl = /^pl/i.test(v.lang);
+        const isFemaleName = femaleKeywords.some(k => name.includes(k));
+        const isMaleName = maleKeywords.some(m => name.includes(m));
+        return (isPl || isFemaleName) && !isMaleName;
+      });
+
+      return list.length ? list : this.voices;
+    }
+
+    setVoiceByName(name) {
+      this.loadVoices();
+      const found = this.voices.find(v => v.name === name);
+      if (found) {
+        this.selectedVoice = found;
+        if (typeof localStorage !== 'undefined') localStorage.setItem('histada_tts_voice', name);
+      }
+    }
+
+    setPitch(pitchVal) {
+      this.pitch = parseFloat(pitchVal);
+      if (typeof localStorage !== 'undefined') localStorage.setItem('histada_tts_pitch', String(pitchVal));
+    }
+
+    setRate(rateVal) {
+      this.rate = parseFloat(rateVal);
+      if (typeof localStorage !== 'undefined') localStorage.setItem('histada_tts_rate', String(rateVal));
     }
 
     getVoiceName() {
@@ -2555,7 +2737,6 @@ window.HistadaCore = (() => {
       this.stop();
       this.loadVoices();
 
-      // Un-stick Chromium audio engine
       try {
         if (this.synth.paused) this.synth.resume();
       } catch (e) {}
@@ -2571,35 +2752,17 @@ window.HistadaCore = (() => {
         return;
       }
 
-      // Chunk by sentence/punctuation to bypass Chrome 15s cutoff
-      const raw = clean.match(/[^.!?:]+[.!?:]+/g) || [clean];
-      this.chunks = raw.map(c => c.trim()).filter(Boolean);
+      this.chunks = splitTextForTTS(clean);
       this.chunkIdx = 0;
       this.isSpeaking = true;
       this.isPaused = false;
 
       if (onStart) onStart();
 
-      // Chrome heartbeat timer to prevent speech stalls
-      clearInterval(this.heartbeatTimer);
-      this.heartbeatTimer = setInterval(() => {
-        if (!this.isSpeaking) {
-          clearInterval(this.heartbeatTimer);
-          return;
-        }
-        try {
-          if (this.synth && this.synth.speaking && !this.isPaused) {
-            this.synth.pause();
-            this.synth.resume();
-          }
-        } catch (err) {}
-      }, 9000);
-
       const playNext = () => {
         if (!this.isSpeaking || this.chunkIdx >= this.chunks.length) {
           this.isSpeaking = false;
           this.isPaused = false;
-          clearInterval(this.heartbeatTimer);
           if (typeof window !== 'undefined') window._histada_active_utts = [];
           if (onEnd) onEnd();
           return;
@@ -2615,7 +2778,6 @@ window.HistadaCore = (() => {
         utt.pitch = this.pitch;
         if (this.selectedVoice) utt.voice = this.selectedVoice;
 
-        // Retain global reference to avoid Chromium GC discarding utterance
         if (typeof window !== 'undefined') {
           window._histada_active_utts.push(utt);
           if (window._histada_active_utts.length > 8) window._histada_active_utts.shift();
@@ -3229,6 +3391,9 @@ window.HistadaCore = (() => {
 
   function initGlobalNavMenu() {
     if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+    initThemeToggle();
+
     if (document.getElementById('histadaGlobalMenuTrigger')) return;
 
     const path = window.location.pathname;
@@ -3262,6 +3427,11 @@ window.HistadaCore = (() => {
     EDITIONS,
     getEdition,
     setEdition,
+    getTheme,
+    setTheme,
+    initThemeToggle,
+    getDomainIcon,
+    expandAbbreviationsForTTS,
     STANDARD: STANDARD_DATA,
     RELIGION: RELIGION_DATA,
     getActiveData,

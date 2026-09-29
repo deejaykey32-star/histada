@@ -3023,12 +3023,15 @@ Wybierz jeden z trybów poniżej i ruszajmy w podróż! Choose your mode below a
     <!-- Zakładka ANDROID -->
     <div id="tabContentAndroid" style="display:flex;flex-direction:column;gap:14px;">
       <p style="color:#cfdbe8;line-height:1.6;font-size:14px;margin:0;">
-        Pobierz ostateczną wersję aplikacji na system Android. Plik <strong>.apk</strong> możesz zainstalować bezpośrednio na telefonie lub tablecie, a pakiet <strong>Capacitor</strong> jest w 100% gotowy do publikacji w <strong>Google Play Console</strong>.
+        Wybierz metodę instalacji na systemie Android (Smartfony i Tablety). Zalecaną metodą jest <strong>Instalacja PWA WebAPK 1-kliknięciem</strong>, która błyskawicznie dodaje ikonę aplikacji HISTADA na pulpit ze 100% wsparciem offline i brakiem ostrzeżeń systemu!
       </p>
 
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin:4px 0;">
+        <button type="button" class="modal-dl-btn" style="background:linear-gradient(135deg, #00c853, #009688);border-color:#69f0ae;width:100%;justify-content:center;" onclick="triggerPwaInstallPrompt()">
+          <span>⚡ 1-Kliknięcie: Zainstaluj jako Aplikację Natywną (Zalecane)</span>
+        </button>
         <a href="/downloads/HISTADA_v2.0_Android_Universal.apk" download="HISTADA_v2.0_Android_Universal.apk" class="modal-dl-btn">
-          <span>📥 Pobierz Plik Instalacyjny Android (.apk)</span>
+          <span>📥 Pobierz Pakiet Instalacyjny Android (.apk)</span>
         </a>
         <a href="/downloads/HISTADA-Mobile-Capacitor-Android-iOS.zip" download="HISTADA-Mobile-Capacitor-Android-iOS.zip" class="modal-sec-btn">
           <span>📦 Pobierz Projekt Źródłowy Google Play (.zip)</span>
@@ -3036,17 +3039,16 @@ Wybierz jeden z trybów poniżej i ruszajmy w podróż! Choose your mode below a
       </div>
 
       <div style="background:#0a121e;border:1px solid #253754;border-radius:12px;padding:16px;">
-        <h4 style="margin:0 0 8px;color:#f0d48f;font-size:14px;">🚀 Bezpośrednia instalacja na telefonie (Sideloading):</h4>
+        <h4 style="margin:0 0 8px;color:#f0d48f;font-size:14px;">🚀 Instrukcja instalacji (Sideload APK & PWA WebAPK):</h4>
         <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.7;color:#cfdbe8;">
-          <li>Kliknij powyższy przycisk <strong>„Pobierz Plik Instalacyjny Android (.apk)”</strong>.</li>
-          <li>Po pobraniu dotknij plik w powiadomieniach lub menedżerze plików telefonu.</li>
-          <li>Jeśli telefon zapyta, włącz opcję <em>„Zezwalaj na instalację z tego źródła”</em> w Ustawieniach.</li>
-          <li>Kliknij <strong>„Zainstaluj”</strong>. Ikona HISTADA pojawi się na pulpicie i działa w 100% offline!</li>
+          <li><strong>Najprostsza metoda (WebAPK):</strong> Kliknij zielony przycisk <em>„⚡ 1-Kliknięcie: Zainstaluj jako Aplikację Natywną”</em>. Google Play Services wygeneruje bezbłędną aplikację z ikoną na pulpicie.</li>
+          <li><strong>Pobieranie pliku APK:</strong> Pobierz plik <code>HISTADA_v2.0_Android_Universal.apk</code>. W menedżerze plików dotknij plik i włącz w Ustawieniach <em>„Zezwalaj na instalację nieznanych aplikacji”</em>.</li>
+          <li>Aplikacja HISTADA działa w 100% offline, z dostępem do lektora i skanera run!</li>
         </ol>
       </div>
 
       <div style="background:rgba(44,143,153,0.1);border:1px solid rgba(44,143,153,0.3);border-radius:12px;padding:14px;font-size:12.5px;color:#a8d5dc;">
-        <strong>Publikacja w Google Play:</strong> Pakiet Capacitor zawiera pliki <code>AndroidManifest.xml</code> oraz <code>build.gradle</code> skonfigurowane pod Android 14+ (API 34). Kompilacja App Bundle: <code>./gradlew bundleRelease</code>.
+        <strong>Publikacja w Google Play Store:</strong> Pakiet Capacitor zawiera zweryfikowane pliki <code>AndroidManifest.xml</code> oraz <code>build.gradle</code> skonfigurowane pod Android 14+ (API 34). Kompilacja pliku .aab: <code>./gradlew bundleRelease</code>.
       </div>
     </div>
 

@@ -607,3 +607,177 @@
   background: #c02d44 !important;
   transform: translateY(-1px) !important;
 }
+
+/* ==========================================================================
+   LIGHT MODE & DARK MODE SYSTEM OVERRIDES
+   ========================================================================== */
+html[data-theme="light"], body[data-theme="light"] {
+  --h-bg: #f8fafc;
+  --h-bg2: #ffffff;
+  --h-line: #cbd5e1;
+  --h-ink: #0f172a;
+  --h-muted: #475569;
+  --h-gold: #d97706;
+  --h-gold2: #b45309;
+  --h-teal: #0284c7;
+  --h-cyan: #0d9488;
+  --h-green: #16a34a;
+  --h-red: #dc2626;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .histada-story-card,
+html[data-theme="light"] .histada-scanner-card,
+html[data-theme="light"] .histada-quiz-card,
+html[data-theme="light"] .histada-exit-modal-card {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+html[data-theme="light"] .story-header,
+html[data-theme="light"] .scanner-header,
+html[data-theme="light"] .quiz-header,
+html[data-theme="light"] .hem-header {
+  background: rgba(217, 119, 6, 0.08) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+html[data-theme="light"] .story-body,
+html[data-theme="light"] .st-text-box,
+html[data-theme="light"] .story-tts-bar,
+html[data-theme="light"] .quiz-explain,
+html[data-theme="light"] .hem-link-btn {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+html[data-theme="light"] .story-titles h2,
+html[data-theme="light"] .quiz-title-box h3,
+html[data-theme="light"] .scanner-title,
+html[data-theme="light"] .hem-header h3 {
+  color: #b45309 !important;
+}
+
+html[data-theme="light"] .qz-opt-btn {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .qz-opt-btn:hover:not(:disabled) {
+  background: rgba(217, 119, 6, 0.1) !important;
+  border-color: #d97706 !important;
+}
+
+html[data-theme="light"] .story-footer,
+html[data-theme="light"] .quiz-footer,
+html[data-theme="light"] .scanner-controls {
+  background: #ffffff !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+html[data-theme="light"] .histada-global-menu-trigger,
+html[data-theme="light"] .histada-theme-toggle-trigger {
+  background: #ffffff !important;
+  border-color: #d97706 !important;
+  color: #b45309 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="light"] .histada-global-menu-trigger:hover,
+html[data-theme="light"] .histada-theme-toggle-trigger:hover {
+  background: #fef3c7 !important;
+}
+
+/* Floating Theme Switcher Button (Header / Top Bar) */
+.histada-theme-toggle-trigger {
+  position: fixed;
+  top: 14px;
+  right: 175px;
+  z-index: 99999;
+  background: rgba(15, 26, 43, 0.94);
+  border: 1.5px solid var(--h-gold, #d9b25a);
+  color: var(--h-gold2, #f0d48f);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font: 700 13px system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.histada-theme-toggle-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(217, 178, 90, 0.4);
+}
+
+/* Extended TTS Control Panel */
+.tts-voice-select {
+  background: var(--h-bg);
+  color: var(--h-ink);
+  border: 1px solid var(--h-line);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  max-width: 230px;
+  outline: none;
+}
+
+html[data-theme="light"] .tts-voice-select {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+/* Sacred Religion Edition R Badging */
+.edition-r-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(142, 36, 170, 0.25), rgba(106, 27, 154, 0.35));
+  border: 1px solid #ab47bc;
+  color: #f3e5f5;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+html[data-theme="light"] .edition-r-badge {
+  background: linear-gradient(135deg, rgba(142, 36, 170, 0.12), rgba(106, 27, 154, 0.18));
+  border-color: #8e24aa;
+  color: #4a148c;
+}
+
+.edition-std-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(44, 143, 153, 0.2);
+  border: 1px solid var(--h-teal);
+  color: var(--h-cyan);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+html[data-theme="light"] .edition-std-badge {
+  background: rgba(2, 132, 199, 0.12);
+  border-color: #0284c7;
+  color: #0369a1;
+}
+

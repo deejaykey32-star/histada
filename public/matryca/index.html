@@ -589,9 +589,10 @@
         core.DOMAINS_36.forEach(d => {
           const opt = document.createElement('option');
           opt.value = d.code;
+          const icon = (core && core.getDomainIcon) ? core.getDomainIcon(d.code, isRel ? 'religion' : 'standard') : (isRel ? '📜' : '🏛️');
           opt.textContent = isRel
-            ? `${d.code}: ${d.name} [Nurt: ${d.cat}]`
-            : `${d.code}: ${d.name} [Filar: ${d.cat}]`;
+            ? `${icon} ${d.code}: ${d.name} [Nurt Religijny: ${d.cat}]`
+            : `${icon} ${d.code}: ${d.name} [Filar Nauki: ${d.cat}]`;
           selDomain.appendChild(opt);
         });
         if (core.DOMAINS_36.some(d => d.code === curDomainVal)) {
