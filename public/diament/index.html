@@ -1867,10 +1867,24 @@ function renderCenter() {
     const storyObj = drawn ? drawn.story : null;
     const story = storyObj ? storyObj.text : (window.HistadaI18n && HistadaI18n.story(d.id + '|' + ST.ep));
     const storyBox = story ? `<div class="storybox"><div class="lab">Opowieść Histady${drawn ? ` · Seria ${drawn.seriesIndex} z 10` : ''} – źródło tego dokumentu</div><p>${esc(story)}</p></div>` : '';
+function attachTextReaders(container) {
+  if (!container) return;
+  container.querySelectorAll('.fact, .qtext, .explain, .storybox, .ach div').forEach(el => {
+    if (el.dataset.hasSay) return;
+    el.dataset.hasSay = '1';
+    el.title = 'Kliknij, aby posłuchać lektorki Histady';
+    el.addEventListener('click', e => {
+      if (e.target.closest('button, a, input')) return;
+      const txt = el.innerText || el.textContent;
+      if (txt && txt.trim().length > 3) G.say(txt.trim(), { bubble: 'Czytam treść…' });
+    });
+  });
+}
     b.innerHTML = hero + storyBox + `<div class="row"><div class="subtabs" role="group" aria-label="Widok dokumentu"><button data-dt="txt" aria-pressed="${dt === 'txt'}">Tekst</button><button data-dt="gfx" aria-pressed="${dt === 'gfx'}">Grafika</button></div><span class="lab" style="flex:1;text-align:right">${fs.length} ${fs.length === 1 ? 'ciekawostka' : 'ciekawostek'}${h.iso ? ` · najpierw ${esc(h.iso)}` : ''}</span></div>
-      ${dt === 'gfx' ? gfxHTML(fs) : `<div class="facts">${fs.map(q => { const I = E.INTELLIGENCES.find(i => i.id === q.int), fp = factParts(q); return `<div class="fact" style="--c:${INT_UI[q.int]}"><span class="t">${ico(q.int, INT_UI[q.int], 13)} ${esc(I.name)}${q.region ? ' · ' + esc(q.region) : ''}</span><p>${fp.html}</p>${q.explain ? `<small>${esc(q.explain)}</small>` : ''}<a href="${wiki(q)}" target="_blank" rel="noopener">więcej w Wikipedii ↗</a></div>`; }).join('') || '<p class="muted">Brak ciekawostek dla tej karty i epoki – quiz dobierze pytania z tej dziedziny.</p>'}</div>`}
-      <div class="row end"><button id="cRead">${story ? '▶ Posłuchaj historii' : '▶ Czytaj pierwszą'}</button><button class="pri" id="cQuiz">Rozpocznij quiz · 9 pytań</button></div>`;
+      ${dt === 'gfx' ? gfxHTML(fs) : `<div class="facts">${fs.map(q => { const I = E.INTELLIGENCES.find(i => i.id === q.int), fp = factParts(q); return `<div class="fact" style="--c:${INT_UI[q.int]}"><div class="row" style="margin:0 0 6px 0;width:100%"><span class="t">${ico(q.int, INT_UI[q.int], 13)} ${esc(I.name)}${q.region ? ' · ' + esc(q.region) : ''}</span><button class="btn-say-fact" data-say-text="${esc(fp.plain + (q.explain ? ' ' + q.explain : ''))}" style="background:none;border:none;cursor:pointer;font-size:14px;margin-left:auto;color:var(--text)" title="Posłuchaj lektorki Histady">🔊 Czytaj</button></div><p>${fp.html}</p>${q.explain ? `<small>${esc(q.explain)}</small>` : ''}<a href="${wiki(q)}" target="_blank" rel="noopener">więcej w Wikipedii ↗</a></div>`; }).join('') || '<p class="muted">Brak ciekawostek dla tej karty i epoki – quiz dobierze pytania z tej dziedziny.</p>'}</div>`}
+      <div class="row end"><button id="cRead">${story ? '▶ Posłuchaj historii' : '▶ Posłuchaj dokumentu'}</button><button class="pri" id="cQuiz">Rozpocznij quiz · 9 pytań</button></div>`;
     b.querySelectorAll('[data-dt]').forEach(x => x.onclick = () => { ST.docTab = x.dataset.dt; SND.fx('blip'); renderCenter(); persist(); });
+    b.querySelectorAll('.btn-say-fact').forEach(btn => btn.onclick = (e) => { e.stopPropagation(); G.say(btn.dataset.sayText, { bubble: 'Czytam ciekawostkę…' }); });
     $('cRead').onclick = () => {
       if (window.HistadaCore && window.HistadaCore.tts) {
         window.HistadaCore.tts.speakWithGuidance(storyObj || { text: story }, { seriesIndex: drawn ? drawn.seriesIndex : 1, lang: 'pl' });
@@ -1878,6 +1892,7 @@ function renderCenter() {
       }
       if (story) { G.say(story, { bubble: 'Opowiadam historię…' }); return; } const q = fs[0]; if (q) G.say(factParts(q).plain + (q.explain ? ' ' + q.explain : ''), { bubble: 'Czytam dokument…' }); };
     $('cQuiz').onclick = startQuiz;
+    attachTextReaders(b);
     return;
   }
   if (ST.view === 'quiz' && ST.quiz) { renderQuestion(); return; }
@@ -1935,7 +1950,7 @@ function startQuiz() {
 function renderQuestion() {
   const z = ST.quiz, q = prepQ(z.ids[z.i], z.perms[z.i]), I = E.INTELLIGENCES.find(i => i.id === q.int), b = $('cBody');
   const prog = z.ids.map((_, i) => `<i class="${i < z.res.length ? (z.res[i].ok ? 'ok' : 'no') : i === z.i ? 'cur' : ''}"></i>`).join('');
-  b.innerHTML = `<div class="row"><span class="lab" style="flex:1">Pytanie ${z.i + 1} z 9 · ${esc(curDom().name)} · ${esc(epShort(ST.ep))}</span><button class="ghost" id="qX" style="padding:2px 8px;font-size:12px">Przerwij</button></div>
+  b.innerHTML = `<div class="row"><span class="lab" style="flex:1">Pytanie ${z.i + 1} z 9 · ${esc(curDom().name)} · ${esc(epShort(ST.ep))}</span><button class="btn-say-q" style="background:none;border:none;cursor:pointer;font-size:13px;margin-right:8px;color:var(--text)" title="Posłuchaj pytania przez lektorkę Histadę">🔊 Czytaj pytanie</button><button class="ghost" id="qX" style="padding:2px 8px;font-size:12px">Przerwij</button></div>
     <div class="prog" aria-hidden="true">${prog}</div>
     <span class="tag" style="align-self:flex-start">${ico(q.int, INT_UI[q.int], 13)} ${esc(I.name)}</span>
     <p class="qtext">${esc(q.q)}</p>
@@ -1943,9 +1958,13 @@ function renderQuestion() {
       : `<div class="opts">${q.options.map((o, i) => `<button data-i="${i}"><span class="k">${'ABCD'[i]}</span><span>${esc(o)}</span></button>`).join('')}</div>`}
     <div id="qFb"></div>`;
   $('qX').onclick = () => { ST.quiz = null; ST.view = 'doc'; changed(); toast('Quiz przerwany – bez punktów.'); };
+  const bSay = b.querySelector('.btn-say-q');
+  if (bSay) bSay.onclick = () => G.sayQ(q);
   if (z.answered) { showVerdict(q, z.res[z.res.length - 1]); return; }
   if (q.type === 'gap') { $('gF').onsubmit = e => { e.preventDefault(); answer(q, $('gIn').value); }; } else b.querySelectorAll('.opts button').forEach(x => x.onclick = () => answer(q, +x.dataset.i));
   G.fx.react('q');
+  if (G.on) G.sayQ(q);
+  attachTextReaders(b);
 }
 function answer(q, v) {
   const z = ST.quiz; if (z.answered) return;
@@ -1960,8 +1979,10 @@ function showVerdict(q, r) {
   else if ($('gIn')) { $('gIn').value = r.v; $('gIn').disabled = true; }
   const right = q.type === 'gap' ? q.answer : q.options[q.correct];
   $('qFb').innerHTML = `<div style="display:flex;flex-direction:column;gap:8px"><div class="verdict ${r.ok ? 'ok' : 'no'}">${r.ok ? (r.fresh ? 'Dobrze! +10 pkt' : 'Dobrze! (już zaliczone – bez nowych punktów)') : 'Niestety. Poprawnie: ' + esc(right)}</div>
-    ${q.explain ? `<p class="explain">${esc(q.explain)}</p>` : ''}<div class="row end"><button class="pri" id="qN">${z.i < 8 ? 'Następne pytanie' : 'Wynik'}</button></div></div>`;
+    ${q.explain ? `<div class="row" style="align-items:center;gap:6px"><p class="explain" style="flex:1;margin:0">${esc(q.explain)}</p><button id="bSayExp" style="background:none;border:none;cursor:pointer;font-size:13px;padding:2px 6px;color:var(--text)" title="Posłuchaj wyjaśnienia">🔊 Wyjaśnienie</button></div>` : ''}<div class="row end"><button class="pri" id="qN">${z.i < 8 ? 'Następne pytanie' : 'Wynik'}</button></div></div>`;
   $('qN').onclick = () => { z.i++; z.answered = false; if (z.i < 9) { persist(); renderCenter(); } else finishQuiz(); };
+  if ($('bSayExp')) $('bSayExp').onclick = () => G.say(q.explain, { bubble: 'Wyjaśnienie odpowiedzi…' });
+  attachTextReaders($('cBody'));
 }
 function finishQuiz() {
   const z = ST.quiz, d = curDom().id, ok = z.res.filter(r => r.ok).length, gained = z.res.filter(r => r.fresh).length * PTS;
@@ -2218,15 +2239,75 @@ const G = (() => {
   };
   if (TTS) { load(); speechSynthesis.onvoiceschanged = load; }
   const vb = () => $('gV').textContent = on ? '🔊 Głos' : '🔇 Bez głosu'; vb();
-  $('gV').onclick = () => { on = !on; lsSet('histada.diament.glos', on ? '1' : '0'); vb(); if (!on && TTS) speechSynthesis.cancel(); };
-  $('gH').onclick = () => { $('gBub').hidden = true; if (TTS) speechSynthesis.cancel(); el.classList.remove('talk'); };
+  $('gV').onclick = () => {
+    on = !on;
+    lsSet('histada.diament.glos', on ? '1' : '0');
+    vb();
+    if (!on) {
+      if (window.HistadaCore && window.HistadaCore.tts) window.HistadaCore.tts.stop();
+      if (TTS) try { speechSynthesis.cancel(); } catch (e) {}
+      el.classList.remove('talk');
+    }
+  };
+  $('gH').onclick = () => {
+    $('gBub').hidden = true;
+    if (window.HistadaCore && window.HistadaCore.tts) window.HistadaCore.tts.stop();
+    if (TTS) try { speechSynthesis.cancel(); } catch (e) {}
+    el.classList.remove('talk');
+  };
   $('gAva').onclick = () => { $('gBub').hidden = !$('gBub').hidden; };
+
   function say(text, o = {}) {
-    $('gTxt').textContent = o.bubble || text; $('gBub').hidden = false; clearTimeout(hideT); hideT = setTimeout(() => { if (!el.classList.contains('talk')) $('gBub').hidden = true; }, Math.max(7000, text.length * 75));
-    if (!(TTS && on && voices.length)) { el.classList.add('talk'); setTimeout(() => el.classList.remove('talk'), Math.min(3500, 400 + text.length * 28)); return; }
-    speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.voice = voices[0]; u.lang = voices[0].lang; u.pitch = 1.20; u.onstart = () => el.classList.add('talk'); u.onend = u.onerror = () => el.classList.remove('talk'); speechSynthesis.speak(u);
+    if (!text) return;
+    const cleanText = text.replace(/<[^>]*>/g, '').trim();
+    $('gTxt').textContent = o.bubble || cleanText;
+    $('gBub').hidden = false;
+    clearTimeout(hideT);
+    hideT = setTimeout(() => { if (!el.classList.contains('talk')) $('gBub').hidden = true; }, Math.max(7000, cleanText.length * 75));
+
+    if (!on) return;
+
+    if (window.HistadaCore && window.HistadaCore.tts && typeof window.HistadaCore.tts.speak === 'function') {
+      el.classList.add('talk');
+      window.HistadaCore.tts.speak(
+        cleanText,
+        () => el.classList.add('talk'),
+        () => el.classList.remove('talk'),
+        () => el.classList.add('talk')
+      );
+      return;
+    }
+
+    if (!(TTS && voices.length)) {
+      el.classList.add('talk');
+      setTimeout(() => el.classList.remove('talk'), Math.min(3500, 400 + cleanText.length * 28));
+      return;
+    }
+
+    try { speechSynthesis.cancel(); } catch (e) {}
+    const prepText = cleanText.replace(/\s*·\s*/g, ', ').replace(/–/g, ', ');
+    const u = new SpeechSynthesisUtterance(prepText);
+    u.voice = voices[0];
+    u.lang = voices[0].lang || 'pl-PL';
+    u.pitch = 1.20;
+    u.onstart = () => el.classList.add('talk');
+    u.onend = u.onerror = () => el.classList.remove('talk');
+    speechSynthesis.speak(u);
   }
-  return { say, fx: HX };
+
+  function sayQ(q) {
+    if (!q) return;
+    const text = q.q.replace(/…$/, ' …') + (q.type === 'gap' ? '' : '. Odpowiedzi: ' + q.options.map((o, i) => 'ABCD'[i] + ', ' + o).join('. '));
+    say(text, { bubble: 'Czytam pytanie quizowe…' });
+  }
+
+  function stop() {
+    if (window.HistadaCore && window.HistadaCore.tts) window.HistadaCore.tts.stop();
+    if (TTS) try { speechSynthesis.cancel(); } catch (e) {}
+    el.classList.remove('talk');
+  }
+
+  return { say, sayQ, stop, fx: HX, get on() { return on; } };
 })();
 
 /* ======================= start ======================= */
@@ -2881,12 +2962,27 @@ function renderCenter() {
     const wiki = q => `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(q.type === 'gap' ? String(q.answer) : q.options[0])}`;
     const story = window.HistadaI18n && HistadaI18n.story(d.id + '|' + ST.ep);
     const storyBox = story ? `<div class="storybox"><div class="lab">Histada's story – the source of this document</div><p>${esc(story)}</p></div>` : '';
+function attachTextReaders(container) {
+  if (!container) return;
+  container.querySelectorAll('.fact, .qtext, .explain, .storybox, .ach div').forEach(el => {
+    if (el.dataset.hasSay) return;
+    el.dataset.hasSay = '1';
+    el.title = 'Click to listen to Histada reading this';
+    el.addEventListener('click', e => {
+      if (e.target.closest('button, a, input')) return;
+      const txt = el.innerText || el.textContent;
+      if (txt && txt.trim().length > 3) G.say(txt.trim(), { bubble: 'Reading text…' });
+    });
+  });
+}
     b.innerHTML = hero + storyBox + `<div class="row"><div class="subtabs" role="group" aria-label="Document view"><button data-dt="txt" aria-pressed="${dt === 'txt'}">Text</button><button data-dt="gfx" aria-pressed="${dt === 'gfx'}">Graphics</button></div><span class="lab" style="flex:1;text-align:right">${fs.length} ${fs.length === 1 ? 'fun fact' : 'fun facts'}${h.iso ? ` · prioritizing ${esc(h.iso)}` : ''}</span></div>
-      ${dt === 'gfx' ? gfxHTML(fs) : `<div class="facts">${fs.map(q => { const I = E.INTELLIGENCES.find(i => i.id === q.int), fp = factParts(q); return `<div class="fact" style="--c:${INT_UI[q.int]}"><span class="t">${ico(q.int, INT_UI[q.int], 13)} ${esc(I.name)}${q.region ? ' · ' + esc(q.region) : ''}</span><p>${fp.html}</p>${q.explain ? `<small>${esc(q.explain)}</small>` : ''}<a href="${wiki(q)}" target="_blank" rel="noopener">more on Wikipedia ↗</a></div>`; }).join('') || '<p class="muted">No fun facts for this card and epoch – the quiz will pick questions from this domain.</p>'}</div>`}
-      <div class="row end"><button id="cRead">${story ? '▶ Listen to the story' : '▶ Read the first one'}</button><button class="pri" id="cQuiz">Start quiz · 9 questions</button></div>`;
+      ${dt === 'gfx' ? gfxHTML(fs) : `<div class="facts">${fs.map(q => { const I = E.INTELLIGENCES.find(i => i.id === q.int), fp = factParts(q); return `<div class="fact" style="--c:${INT_UI[q.int]}"><div class="row" style="margin:0 0 6px 0;width:100%"><span class="t">${ico(q.int, INT_UI[q.int], 13)} ${esc(I.name)}${q.region ? ' · ' + esc(q.region) : ''}</span><button class="btn-say-fact" data-say-text="${esc(fp.plain + (q.explain ? ' ' + q.explain : ''))}" style="background:none;border:none;cursor:pointer;font-size:14px;margin-left:auto;color:var(--text)" title="Listen to Histada">🔊 Read</button></div><p>${fp.html}</p>${q.explain ? `<small>${esc(q.explain)}</small>` : ''}<a href="${wiki(q)}" target="_blank" rel="noopener">more on Wikipedia ↗</a></div>`; }).join('') || '<p class="muted">No fun facts for this card and epoch – the quiz will pick questions from this domain.</p>'}</div>`}
+      <div class="row end"><button id="cRead">${story ? '▶ Listen to the story' : '▶ Listen to document'}</button><button class="pri" id="cQuiz">Start quiz · 9 questions</button></div>`;
     b.querySelectorAll('[data-dt]').forEach(x => x.onclick = () => { ST.docTab = x.dataset.dt; SND.fx('blip'); renderCenter(); persist(); });
+    b.querySelectorAll('.btn-say-fact').forEach(btn => btn.onclick = (e) => { e.stopPropagation(); G.say(btn.dataset.sayText, { bubble: 'Reading fun fact…' }); });
     $('cRead').onclick = () => { if (story) { G.say(story, { bubble: 'Telling the story…' }); return; } const q = fs[0]; if (q) G.say(factParts(q).plain + (q.explain ? ' ' + q.explain : ''), { bubble: 'Reading the document…' }); };
     $('cQuiz').onclick = startQuiz;
+    attachTextReaders(b);
     return;
   }
   if (ST.view === 'quiz' && ST.quiz) { renderQuestion(); return; }
@@ -2944,7 +3040,7 @@ function startQuiz() {
 function renderQuestion() {
   const z = ST.quiz, q = prepQ(z.ids[z.i], z.perms[z.i]), I = E.INTELLIGENCES.find(i => i.id === q.int), b = $('cBody');
   const prog = z.ids.map((_, i) => `<i class="${i < z.res.length ? (z.res[i].ok ? 'ok' : 'no') : i === z.i ? 'cur' : ''}"></i>`).join('');
-  b.innerHTML = `<div class="row"><span class="lab" style="flex:1">Question ${z.i + 1} of 9 · ${esc(curDom().name)} · ${esc(epShort(ST.ep))}</span><button class="ghost" id="qX" style="padding:2px 8px;font-size:12px">Quit</button></div>
+  b.innerHTML = `<div class="row"><span class="lab" style="flex:1">Question ${z.i + 1} of 9 · ${esc(curDom().name)} · ${esc(epShort(ST.ep))}</span><button class="btn-say-q" style="background:none;border:none;cursor:pointer;font-size:13px;margin-right:8px;color:var(--text)" title="Listen to question by Histada">🔊 Read question</button><button class="ghost" id="qX" style="padding:2px 8px;font-size:12px">Quit</button></div>
     <div class="prog" aria-hidden="true">${prog}</div>
     <span class="tag" style="align-self:flex-start">${ico(q.int, INT_UI[q.int], 13)} ${esc(I.name)}</span>
     <p class="qtext">${esc(q.q)}</p>
@@ -2952,9 +3048,13 @@ function renderQuestion() {
       : `<div class="opts">${q.options.map((o, i) => `<button data-i="${i}"><span class="k">${'ABCD'[i]}</span><span>${esc(o)}</span></button>`).join('')}</div>`}
     <div id="qFb"></div>`;
   $('qX').onclick = () => { ST.quiz = null; ST.view = 'doc'; changed(); toast('Quiz stopped – no points.'); };
+  const bSay = b.querySelector('.btn-say-q');
+  if (bSay) bSay.onclick = () => G.sayQ(q);
   if (z.answered) { showVerdict(q, z.res[z.res.length - 1]); return; }
   if (q.type === 'gap') { $('gF').onsubmit = e => { e.preventDefault(); answer(q, $('gIn').value); }; } else b.querySelectorAll('.opts button').forEach(x => x.onclick = () => answer(q, +x.dataset.i));
   G.fx.react('q');
+  if (G.on) G.sayQ(q);
+  attachTextReaders(b);
 }
 function answer(q, v) {
   const z = ST.quiz; if (z.answered) return;
@@ -2969,8 +3069,10 @@ function showVerdict(q, r) {
   else if ($('gIn')) { $('gIn').value = r.v; $('gIn').disabled = true; }
   const right = q.type === 'gap' ? q.answer : q.options[q.correct];
   $('qFb').innerHTML = `<div style="display:flex;flex-direction:column;gap:8px"><div class="verdict ${r.ok ? 'ok' : 'no'}">${r.ok ? (r.fresh ? 'Correct! +10 pts' : 'Correct! (already counted – no new points)') : 'Sorry. Correct answer: ' + esc(right)}</div>
-    ${q.explain ? `<p class="explain">${esc(q.explain)}</p>` : ''}<div class="row end"><button class="pri" id="qN">${z.i < 8 ? 'Next question' : 'Result'}</button></div></div>`;
+    ${q.explain ? `<div class="row" style="align-items:center;gap:6px"><p class="explain" style="flex:1;margin:0">${esc(q.explain)}</p><button id="bSayExp" style="background:none;border:none;cursor:pointer;font-size:13px;padding:2px 6px;color:var(--text)" title="Listen to explanation">🔊 Explanation</button></div>` : ''}<div class="row end"><button class="pri" id="qN">${z.i < 8 ? 'Next question' : 'Result'}</button></div></div>`;
   $('qN').onclick = () => { z.i++; z.answered = false; if (z.i < 9) { persist(); renderCenter(); } else finishQuiz(); };
+  if ($('bSayExp')) $('bSayExp').onclick = () => G.say(q.explain, { bubble: 'Explanation…' });
+  attachTextReaders($('cBody'));
 }
 function finishQuiz() {
   const z = ST.quiz, d = curDom().id, ok = z.res.filter(r => r.ok).length, gained = z.res.filter(r => r.fresh).length * PTS;
@@ -3227,15 +3329,75 @@ const G = (() => {
   };
   if (TTS) { load(); speechSynthesis.onvoiceschanged = load; }
   const vb = () => $('gV').textContent = on ? '🔊 Voice' : '🔇 No voice'; vb();
-  $('gV').onclick = () => { on = !on; lsSet('histada.diament.glos', on ? '1' : '0'); vb(); if (!on && TTS) speechSynthesis.cancel(); };
-  $('gH').onclick = () => { $('gBub').hidden = true; if (TTS) speechSynthesis.cancel(); el.classList.remove('talk'); };
+  $('gV').onclick = () => {
+    on = !on;
+    lsSet('histada.diament.glos', on ? '1' : '0');
+    vb();
+    if (!on) {
+      if (window.HistadaCore && window.HistadaCore.tts) window.HistadaCore.tts.stop();
+      if (TTS) try { speechSynthesis.cancel(); } catch (e) {}
+      el.classList.remove('talk');
+    }
+  };
+  $('gH').onclick = () => {
+    $('gBub').hidden = true;
+    if (window.HistadaCore && window.HistadaCore.tts) window.HistadaCore.tts.stop();
+    if (TTS) try { speechSynthesis.cancel(); } catch (e) {}
+    el.classList.remove('talk');
+  };
   $('gAva').onclick = () => { $('gBub').hidden = !$('gBub').hidden; };
+
   function say(text, o = {}) {
-    $('gTxt').textContent = o.bubble || text; $('gBub').hidden = false; clearTimeout(hideT); hideT = setTimeout(() => { if (!el.classList.contains('talk')) $('gBub').hidden = true; }, Math.max(7000, text.length * 75));
-    if (!(TTS && on && voices.length)) { el.classList.add('talk'); setTimeout(() => el.classList.remove('talk'), Math.min(3500, 400 + text.length * 28)); return; }
-    speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.voice = voices[0]; u.lang = voices[0].lang; u.pitch = 1.20; u.onstart = () => el.classList.add('talk'); u.onend = u.onerror = () => el.classList.remove('talk'); speechSynthesis.speak(u);
+    if (!text) return;
+    const cleanText = text.replace(/<[^>]*>/g, '').trim();
+    $('gTxt').textContent = o.bubble || cleanText;
+    $('gBub').hidden = false;
+    clearTimeout(hideT);
+    hideT = setTimeout(() => { if (!el.classList.contains('talk')) $('gBub').hidden = true; }, Math.max(7000, cleanText.length * 75));
+
+    if (!on) return;
+
+    if (window.HistadaCore && window.HistadaCore.tts && typeof window.HistadaCore.tts.speak === 'function') {
+      el.classList.add('talk');
+      window.HistadaCore.tts.speak(
+        cleanText,
+        () => el.classList.add('talk'),
+        () => el.classList.remove('talk'),
+        () => el.classList.add('talk')
+      );
+      return;
+    }
+
+    if (!(TTS && voices.length)) {
+      el.classList.add('talk');
+      setTimeout(() => el.classList.remove('talk'), Math.min(3500, 400 + cleanText.length * 28));
+      return;
+    }
+
+    try { speechSynthesis.cancel(); } catch (e) {}
+    const prepText = cleanText.replace(/\s*·\s*/g, ', ').replace(/–/g, ', ');
+    const u = new SpeechSynthesisUtterance(prepText);
+    u.voice = voices[0];
+    u.lang = voices[0].lang || 'en-US';
+    u.pitch = 1.20;
+    u.onstart = () => el.classList.add('talk');
+    u.onend = u.onerror = () => el.classList.remove('talk');
+    speechSynthesis.speak(u);
   }
-  return { say, fx: HX };
+
+  function sayQ(q) {
+    if (!q) return;
+    const text = q.q.replace(/…$/, ' …') + (q.type === 'gap' ? '' : '. Options: ' + q.options.map((o, i) => 'ABCD'[i] + ', ' + o).join('. '));
+    say(text, { bubble: 'Reading quiz question…' });
+  }
+
+  function stop() {
+    if (window.HistadaCore && window.HistadaCore.tts) window.HistadaCore.tts.stop();
+    if (TTS) try { speechSynthesis.cancel(); } catch (e) {}
+    el.classList.remove('talk');
+  }
+
+  return { say, sayQ, stop, fx: HX, get on() { return on; } };
 })();
 
 /* ======================= start ======================= */
