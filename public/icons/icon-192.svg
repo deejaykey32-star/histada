@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <radialGradient id="bgG" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1c334d"/>
+      <stop offset="100%" stop-color="#0a111d"/>
+    </radialGradient>
+    <linearGradient id="goldG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5e1a4"/>
+      <stop offset="50%" stop-color="#d9b25a"/>
+      <stop offset="100%" stop-color="#9a711c"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#d9b25a" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="192" height="192" rx="36" fill="url(#bgG)"/>
+  <path d="M96 22 L162 60 L162 132 L96 170 L30 132 L30 60 Z" fill="#132338" stroke="url(#goldG)" stroke-width="6" filter="url(#glow)"/>
+  <path d="M96 36 L148 66 L148 126 L96 156 L44 126 L44 66 Z" fill="none" stroke="#2c8f99" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+  <text x="96" y="116" font-family="'Cinzel', Georgia, serif" font-size="76" font-weight="700" text-anchor="middle" fill="url(#goldG)" filter="url(#glow)">H</text>
+  <circle cx="96" cy="22" r="5" fill="#f0d48f"/>
+  <circle cx="162" cy="60" r="5" fill="#f0d48f"/>
+  <circle cx="162" cy="132" r="5" fill="#f0d48f"/>
+  <circle cx="96" cy="170" r="5" fill="#f0d48f"/>
+  <circle cx="30" cy="132" r="5" fill="#f0d48f"/>
+  <circle cx="30" cy="60" r="5" fill="#f0d48f"/>
+</svg>

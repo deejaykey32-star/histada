@@ -1,4 +1,7 @@
-<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/shared/favicon.svg" type="image/svg+xml"><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]{display:none!important}</style><script src="/shared/claude-shim.js"></script></head><body>
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="/shared/favicon.svg" type="image/svg+xml"><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]{display:none!important}</style><script src="/shared/claude-shim.js"></script>
+<script src="/shared/histada-network.js"></script>
+<link rel="stylesheet" href="/shared/histada-core.css">
+<script src="/shared/histada-core.js"></script></head><body>
 <title>Cyfrowy Diament</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&family=Cinzel:wght@700&display=swap">
@@ -170,19 +173,16 @@ input,select{font:14px var(--sans);color:var(--ink);background:var(--deep);borde
   /* ------------------------------------------------------------------ */
   /* DANE GRY (wg GDD)                                                   */
   /* ------------------------------------------------------------------ */
-  const CATEGORIES = [
-    { id: 'H', name: 'Humanistyka', color: 'niebieski', hex: '#2f6db5' },
-    { id: 'T', name: 'Technika', color: 'czerwony', hex: '#c0392b' },
-    { id: 'P', name: 'Przyroda', color: 'zielony', hex: '#2e8b57' },
+  const _activeCore = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getActiveData) ? window.HistadaCore.getActiveData() : null;
+  const CATEGORIES = (_activeCore && _activeCore.categories) ? _activeCore.categories : [
+    { id: 'H', name: 'Religie Księgi i Tradycje Abrahamowe', color: 'niebieski', hex: '#2f6db5' },
+    { id: 'P', name: 'Religie Wschodu, Dharmy i Drogi Mądrości', color: 'zielony', hex: '#2e8b57' },
+    { id: 'T', name: 'Wierzenia Pierwotne, Ezoteryka i Eschatologia', color: 'czerwony', hex: '#c0392b' },
   ];
-  const DOMAIN_NAMES = {
-    H: ['archeologia', 'filozofia', 'historia', 'językoznawstwo', 'literaturoznawstwo', 'kultura i religia',
-        'ekonomia i finanse', 'psychologia', 'pedagogika', 'socjologia', 'prawo', 'inne (humanistyka)'],
-    T: ['architektura i urbanistyka', 'automatyka, elektronika i elektrotechnika', 'informatyka i telekomunikacja',
-        'inżynieria biomedyczna', 'inżynieria chemiczna', 'inżynieria lądowa i transport', 'inżynieria materiałowa',
-        'inżynieria mechaniczna', 'inżynieria środowiska, górnictwo i energetyka', 'astronomia', 'matematyka', 'inne (technika)'],
-    P: ['biologia', 'chemia', 'fizyka', 'środowisko', 'zdrowie', 'kultura fizyczna i sport', 'medycyna', 'farmacja',
-        'rolnictwo', 'weterynaria', 'zootechnika i rybactwo', 'inne (przyroda)'],
+  const DOMAIN_NAMES = (_activeCore && _activeCore.domainNames) ? _activeCore.domainNames : {
+    H: ["judaizm biblijny i rabinistyczny","wczesne chrześcijaństwo i patrystyka","katolicyzm i sobory powszechne","prawosławie i tradycja bizantyjska","protestantyzm i reformacja","ewangelikalizm i wolne kościoły","ruchy restauracjonistyczne i świadkowie jehowy","islam klasyczny i sunnizm","szyizm i nurty imamiczne","mistycyzm: kabała, sufizm i mistyka chrześcijańska","zaratusztrianizm i monoteizmy starożytne","ekumenizm i dialog międzyreligijny"],
+    T: ["religie pradawnej mezopotamii","wierzenia starożytnego egiptu","kulty misteryjne i politeizm antyku","szamanizm i animizm pierwotny","wierzenia słowiańskie, nordyckie i celtyckie","rdzenne duchowości afryki i pacyfiku","gnoza starożytna i hermetyzm","ezoteryka, teozofia i okultyzm","nowe ruchy religijne i alternatywne","psychologia religii i doświadczenie mistyczne","apokaliptyka biblijna i paruzja","królestwo boże i odnowienie wszechrzeczy"],
+    P: ["hinduizm wedyjski i upaniszady","nurty bhakti, wisznuizm i śiwaizm","buddyzm therawada i kanon pali","buddyzm mahajana, zen i czan","buddyzm tybetański i wadżrajana","dżinizm i etyka ahinsy","taoizm i harmonia dao","konfucjonizm i etyka nieba","shinto i duchy kami","sikhizm i tradycja guru","synkretyzmy i wierzenia azjatyckie","joga, medytacja i oświecenie"],
   };
   // 36 dziedzin = 36 kart w talii. id: H01…H12, T01…T12, P01…P12
   const DOMAINS = [];
@@ -203,19 +203,19 @@ input,select{font:14px var(--sans);color:var(--ink);background:var(--deep);borde
 
   // 12 epok. Przedziały: 12 równych części do początku następnej epoki
   // (Przyszłość ma skalę rosnącą – GDD: "10 do potęgi …").
-  const EPOCH_DEF = [
-    ['Początek wszechświata', -13.8e9],
-    ['Początek Ziemi', -4.5e9],
-    ['Prehistoria', -5e6],
-    ['Starożytność', -5000],
-    ['Średniowiecze', 500],
-    ['Renesans – odkrycia geograficzne', 1500],
-    ['Rewolucja przemysłowa', 1800],
-    ['Okres dwóch wojen światowych', 1900],
-    ['Zimna wojna', 1950],
-    ['Cyfryzacja', 1990],
-    ['Współczesność', 2020],
-    ['Przyszłość', NOW],
+  const EPOCH_DEF = (_activeCore && _activeCore.epochDef) ? _activeCore.epochDef : [
+    ['Zaranie duchowości – Homo Religiosus', -100000],
+    ['Kulty Mezopotamii i pierwsze świątynie', -4000],
+    ['Wiek Patriarchów i Przymierza', -2000],
+    ['Epoka Osiowa i mędrcy Wschodu', -800],
+    ['Wcielenie i Kościół Apostolski', -4],
+    ['Ojcowie Kościoła i monastycyzm', 400],
+    ['Złoty wiek islamu i średniowiecze wiary', 622],
+    ['Schizmy, katedry i wielki mistycyzm', 1200],
+    ['Reformacja i globalne misje', 1517],
+    ['Wielkie przebudzenia i nowe wyznania', 1800],
+    ['Świadectwo wiary w dobie prób i ekumenizm', 1914],
+    ['Paruzja i Objawienie Królestwa Bożego', NOW],
   ];
   const FUTURE_BOUNDS = [NOW, 2050, 2100, 2200, 2500, 3000, 1e4, 1e5, 1e6, 1e9, 1e12, 1e100, 1e1200];
   const EPOCHS = EPOCH_DEF.map(([name, start], i) => {
@@ -999,9 +999,23 @@ window.HistadaI18n = (() => {
 };
   let lang = 'pl';
   try { const v = localStorage.getItem('histada.lang'); if (v === 'en' || v === 'bi' || v === 'pl') lang = v; } catch (e) {}
-  const ui = () => lang === 'pl' ? 'pl' : 'en';
-  const geo = s => { if (!s || lang === 'pl') return s; if (GEO[s]) return GEO[s]; const m = /^(.*?) (\d+)$/.exec(s); if (m && GEO[m[1]]) return GEO[m[1]] + ' ' + m[2]; return s; };
-  const geoUp = s => { if (!s || lang === 'pl') return s; for (const k in GEO) if (k.toUpperCase() === s) return GEO[k].toUpperCase(); return geo(s); };
+  const ui = () => lang === 'pl' ? 'pl' : (lang === 'en' ? 'en' : 'bi');
+  const geo = s => {
+    if (!s || lang === 'pl') return s;
+    const en = GEO[s] || (() => { const m = /^(.*?) (\d+)$/.exec(s); return (m && GEO[m[1]]) ? GEO[m[1]] + ' ' + m[2] : null; })();
+    if (lang === 'en') return en || s;
+    return (en && en !== s) ? `${s} / ${en}` : s;
+  };
+  const geoUp = s => {
+    if (!s || lang === 'pl') return s;
+    for (const k in GEO) {
+      if (k.toUpperCase() === s) {
+        if (lang === 'en') return GEO[k].toUpperCase();
+        return `${s} / ${GEO[k].toUpperCase()}`;
+      }
+    }
+    return geo(s);
+  };
 
   const EN = {
     cat: { H: 'Humanities', T: 'Technology', P: 'Nature' },
@@ -1073,14 +1087,23 @@ window.HistadaI18n = (() => {
     if (!list || lang === 'pl') return;
     for (const q of list) {
       if (!q.q_en || q.__l) continue; q.__l = 1;
-      const pl = { q: q.q, options: q.options, answer: q.answer, explain: q.explain };
+      const pl = { q: q.q, options: q.options ? [...q.options] : [], answer: q.answer, explain: q.explain };
       if (lang === 'en') {
         q.q = q.q_en; if (q.options_en) q.options = q.options_en; if (q.explain_en) q.explain = q.explain_en;
-      } else {
-        q.q = q.q_en + '\n' + pl.q; if (q.options_en) q.options = q.options_en.map((o, i) => o === pl.options[i] ? o : `${o} · ${pl.options[i]}`);
-        q.explain = (q.explain_en || '') + '\n' + (pl.explain || '');
+      } else { // 'bi' (dwujęzycznie: polski i angielski)
+        q.q = pl.q + '\n\n[EN] ' + q.q_en;
+        if (q.options_en && pl.options) {
+          q.options = pl.options.map((o, i) => {
+            const enOpt = q.options_en[i];
+            return (enOpt && enOpt !== o) ? `${o} / ${enOpt}` : o;
+          });
+        }
+        q.explain = (pl.explain ? pl.explain : '') + (q.explain_en ? '\n\n[EN] ' + q.explain_en : '');
       }
-      if (q.type === 'gap' && q.answer_en != null) { q.accept = [...new Set([...(q.accept || []), String(pl.answer)])]; q.answer = q.answer_en; }
+      if (q.type === 'gap' && q.answer_en != null) {
+        q.accept = [...new Set([...(q.accept || []), String(pl.answer), String(q.answer_en)])];
+        if (lang === 'en') q.answer = q.answer_en;
+      }
     }
   }
   // pola planszy: pełne dane (gra planszowa) albo skrót (Krąg, Diament)
@@ -1098,11 +1121,21 @@ window.HistadaI18n = (() => {
   function switcher(opts = {}) {
     const s = document.createElement('select'); s.className = 'lang-sw'; s.setAttribute('aria-label', lang === 'pl' ? 'Język' : 'Language');
     s.innerHTML = `<option value="pl">PL</option><option value="en">EN</option><option value="bi">PL+EN</option>`; s.value = lang;
-    s.title = lang === 'pl' ? 'Język: polski · angielski · dwujęzycznie (pytania po angielsku z polskim pod spodem)' : 'Language: Polish · English · bilingual (English questions with Polish below)';
+    s.title = lang === 'pl' ? 'Język: polski' : (lang === 'en' ? 'Language: English' : 'Język / Language: dwujęzycznie / bilingual (polski + angielski)');
     s.onchange = () => { try { localStorage.setItem('histada.lang', s.value); } catch (e) {} if (opts.before) opts.before(); location.reload(); };
     return s;
   }
-  return { lang: () => lang, ui, geo, engine, bank, hexesFull, hexesShort, svg, switcher, story: k => { const S = window.__D && window.__D.STORIES; const s = S && S[k]; return s ? (lang === 'pl' ? s.pl : s.en) : null; } };
+  return { lang: () => lang, ui, geo, engine, bank, hexesFull, hexesShort, svg, switcher, story: k => {
+    const S = window.__D && window.__D.STORIES;
+    const s = S && S[k];
+    if (!s) return null;
+    if (lang === 'pl') return s.pl;
+    if (lang === 'en') return s.en;
+    if (s.pl && s.en && s.pl !== s.en) {
+      return s.pl + '\n\n---\n\n[EN]\n' + s.en;
+    }
+    return s.pl || s.en;
+  } };
 })();
 
 HistadaI18n.engine(window.HistadaEngine);HistadaI18n.bank(window.__D.BANK);HistadaI18n.hexesShort(window.__D.MAP);</script>
@@ -1122,8 +1155,12 @@ HistadaI18n.engine(window.HistadaEngine);HistadaI18n.bank(window.__D.BANK);Hista
 </div>
 <div class="tabs" id="tabs"><button data-t="l" aria-pressed="false">Czas</button><button data-t="c" aria-pressed="true">Treść</button><button data-t="r" aria-pressed="false">Mapa</button></div>
 <div class="screens">
-  <section class="scr l" id="sL" aria-label="Lewy ekran: epoka i przedział czasu"><header>⏳ Czas<span class="sp"></span><span id="lSel" class="muted" style="font:500 11px var(--mono);letter-spacing:0;text-transform:none"></span></header><div class="body" id="lBody"></div></section>
-  <section class="scr c show" id="sC" aria-label="Główny ekran"><header id="cHead">◆ Ekran główny</header><div class="body" id="cBody" aria-live="polite"></div></section>
+  <section class="scr l" id="sL" aria-label="Lewy ekran: epoka i przedział czasu"><header>⏳ Czas<span class="sp"></span><span id="lSel" class="muted" style="font:500 11px var(--mono);letter-spacing:0;text-transform:none"></span>  <a href="/matryca/" style="color:#d9b25a;font-weight:600;margin-left:12px;text-decoration:none;">✨ Matryca 12×12×502</a>
+</header><div class="body" id="lBody"></div></section>
+  <section class="scr c show" id="sC" aria-label="Główny ekran"><header id="cHead" style="display:flex;justify-content:space-between;align-items:center;">
+  <span>◆ Ekran główny</span>
+  <button id="bExitToMenu" style="background:#8b1e2f;border:1px solid #ff5975;color:#fff;font-weight:700;padding:3px 10px;border-radius:6px;cursor:pointer;font-size:12px;" onclick="if(window.HistadaCore&&window.HistadaCore.openExitModal)window.HistadaCore.openExitModal();else window.location.href='/';">🚪 Wyjdź z gry</button>
+</header><div class="body" id="cBody" aria-live="polite"></div></section>
   <section class="scr r" id="sR" aria-label="Prawy ekran: mapa świata"><header>🌍 Mapa<span class="sp"></span><button class="ghost" id="mFit" title="Cała mapa" style="padding:2px 6px">⤢</button></header>
     <div class="body" style="padding:8px;gap:0"><canvas id="mapc" aria-label="Mapa świata – kliknij pole, by wybrać miejsce; przeciągnij, by przesunąć; kółko – zoom"></canvas></div>
     <div class="mapinfo"><div id="mInfo"></div><select id="mSel" aria-label="Wybierz miejsce z listy"></select></div></section>
@@ -1151,7 +1188,10 @@ HistadaI18n.engine(window.HistadaEngine);HistadaI18n.bank(window.__D.BANK);Hista
 <div class="tabs" id="tabs"><button data-t="l" aria-pressed="false">Time</button><button data-t="c" aria-pressed="true">Content</button><button data-t="r" aria-pressed="false">Map</button></div>
 <div class="screens">
   <section class="scr l" id="sL" aria-label="Left screen: epoch and time interval"><header>⏳ Time<span class="sp"></span><span id="lSel" class="muted" style="font:500 11px var(--mono);letter-spacing:0;text-transform:none"></span></header><div class="body" id="lBody"></div></section>
-  <section class="scr c show" id="sC" aria-label="Main screen"><header id="cHead">◆ Main screen</header><div class="body" id="cBody" aria-live="polite"></div></section>
+  <section class="scr c show" id="sC" aria-label="Main screen"><header id="cHead" style="display:flex;justify-content:space-between;align-items:center;">
+  <span>◆ Main screen</span>
+  <button id="bExitToMenu" style="background:#8b1e2f;border:1px solid #ff5975;color:#fff;font-weight:700;padding:3px 10px;border-radius:6px;cursor:pointer;font-size:12px;" onclick="if(window.HistadaCore&&window.HistadaCore.openExitModal)window.HistadaCore.openExitModal();else window.location.href='/';">🚪 Exit Game</button>
+</header><div class="body" id="cBody" aria-live="polite"></div></section>
   <section class="scr r" id="sR" aria-label="Right screen: world map"><header>🌍 Map<span class="sp"></span><button class="ghost" id="mFit" title="Whole map" style="padding:2px 6px">⤢</button></header>
     <div class="body" style="padding:8px;gap:0"><canvas id="mapc" aria-label="World map – click a field to choose a place; drag to pan; scroll wheel – zoom"></canvas></div>
     <div class="mapinfo"><div id="mInfo"></div><select id="mSel" aria-label="Choose a place from the list"></select></div></section>
@@ -1162,6 +1202,39 @@ HistadaI18n.engine(window.HistadaEngine);HistadaI18n.bank(window.__D.BANK);Hista
 
 
 </template>
+
+<template id="ui-bi">
+
+<div id="world"><div id="fallGrid"></div></div>
+<div class="hud">
+  <div class="brand"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l8 6-8 12L2 7Z M2 7h16 M6 7l4 12 4-12 M10 1 6 7M10 1l4 6" fill="none" stroke="#9df3ff" stroke-width="1.2" stroke-linejoin="round"/></svg>CYFROWY DIAMENT / DIGITAL DIAMOND</div>
+  <div class="crumb" id="crumb"></div>
+  <div class="sp"></div>
+  <span id="langSlot"></span>
+  <span class="chip"><b id="pts">0</b> pkt / pts</span>
+  <button id="bSave" title="Zapisz stan gry / Save game">Zapisz / Save</button>
+  <button id="bMe">Profil / Profile</button>
+  <button id="bCert">Certyfikat / Cert</button>
+  <button id="bSnd" aria-pressed="false" title="Dźwięk / Sound">🔇</button>
+</div>
+<div class="tabs" id="tabs"><button data-t="l" aria-pressed="false">Czas / Time</button><button data-t="c" aria-pressed="true">Treść / Content</button><button data-t="r" aria-pressed="false">Mapa / Map</button></div>
+<div class="screens">
+  <section class="scr l" id="sL" aria-label="Lewy ekran: epoka i przedział czasu / Left screen: epoch"><header>⏳ Czas / Time<span class="sp"></span><span id="lSel" class="muted" style="font:500 11px var(--mono);letter-spacing:0;text-transform:none"></span>  <a href="/matryca/" style="color:#d9b25a;font-weight:600;margin-left:12px;text-decoration:none;">✨ Matryca 12×12×502</a>
+</header><div class="body" id="lBody"></div></section>
+  <section class="scr c show" id="sC" aria-label="Główny ekran / Main screen"><header id="cHead" style="display:flex;justify-content:space-between;align-items:center;">
+  <span>◆ Ekran główny / Main Screen</span>
+  <button id="bExitToMenu" style="background:#8b1e2f;border:1px solid #ff5975;color:#fff;font-weight:700;padding:3px 10px;border-radius:6px;cursor:pointer;font-size:12px;" onclick="if(window.HistadaCore&&window.HistadaCore.openExitModal)window.HistadaCore.openExitModal();else window.location.href='/';">🚪 Wyjdź z gry / Exit</button>
+</header><div class="body" id="cBody" aria-live="polite"></div></section>
+  <section class="scr r" id="sR" aria-label="Prawy ekran: mapa świata / Right screen: map"><header>🌍 Mapa / Map<span class="sp"></span><button class="ghost" id="mFit" title="Cała mapa" style="padding:2px 6px">⤢</button></header>
+    <div class="body" style="padding:8px;gap:0"><canvas id="mapc" aria-label="Mapa świata / World map"></canvas></div>
+    <div class="mapinfo"><div id="mInfo"></div><select id="mSel" aria-label="Wybierz miejsce / Select place"></select></div></section>
+</div>
+<div class="nav"><button id="nPrev" aria-label="Poprzednia karta / Prev">◀</button><div class="cur"><b id="nName"></b><span id="nSub"></span></div><button id="nNext" aria-label="Następna karta / Next">▶</button></div>
+<div id="modalRoot"></div>
+
+</template>
+
+
 <script type="text/plain" id="js-pl">
 'use strict';
 const E = window.HistadaEngine;
@@ -1719,6 +1792,12 @@ function pickQuiz() {
   const okSet = new Set(P.ok), h = HEXMAP.get(ST.hex), iso = h && h.iso, d = curDom().id;
   return E.INTELLIGENCES.map(I => {
     let pool = BANK.filter(q => q.domain === d && q.epoch === ST.ep && q.int === I.id);
+    if (!pool.length && window.HistadaCore && window.HistadaCore.get4DMatrixQuestions) {
+      const hexVal = (ST.hex && ST.hex.id) ? ST.hex.id : 93;
+      const mqs = window.HistadaCore.get4DMatrixQuestions({ epochId: ST.ep + 1, periodId: 1, hexId: hexVal, domainCode: d, seriesIndex: 1 });
+      const mq = mqs.find(q => q.int === I.id);
+      if (mq) pool = [mq];
+    }
     if (!pool.length) pool = BANK.filter(q => q.domain === d && q.int === I.id);
     if (!pool.length) pool = BANK.filter(q => q.int === I.id);
     const sc = q => (okSet.has(q.id) ? 0 : 4) + (iso && q.region === iso ? 2 : 0) + Math.random();
@@ -1759,13 +1838,23 @@ function renderCenter() {
     fs.forEach(q => { if (!P.fs.includes(q.id)) P.fs.push(q.id); });
     if (checkAch()) persist();
     const wiki = q => `https://pl.wikipedia.org/w/index.php?search=${encodeURIComponent(q.type === 'gap' ? String(q.answer) : q.options[0])}`;
-    const story = window.HistadaI18n && HistadaI18n.story(d.id + '|' + ST.ep);
-    const storyBox = story ? `<div class="storybox"><div class="lab">Opowieść Histady – źródło tego dokumentu</div><p>${esc(story)}</p></div>` : '';
+    let drawn = null;
+    if (window.HistadaCore && window.HistadaCore.drawSeries) {
+      drawn = window.HistadaCore.drawSeries({ epochId: ST.ep + 1, periodId: (ST.iv != null ? ST.iv + 1 : 1), hexId: (ST.hex && ST.hex.id) || 93, domainCode: d.id, lang: 'pl' });
+    }
+    const storyObj = drawn ? drawn.story : null;
+    const story = storyObj ? storyObj.text : (window.HistadaI18n && HistadaI18n.story(d.id + '|' + ST.ep));
+    const storyBox = story ? `<div class="storybox"><div class="lab">Opowieść Histady${drawn ? ` · Seria ${drawn.seriesIndex} z 10` : ''} – źródło tego dokumentu</div><p>${esc(story)}</p></div>` : '';
     b.innerHTML = hero + storyBox + `<div class="row"><div class="subtabs" role="group" aria-label="Widok dokumentu"><button data-dt="txt" aria-pressed="${dt === 'txt'}">Tekst</button><button data-dt="gfx" aria-pressed="${dt === 'gfx'}">Grafika</button></div><span class="lab" style="flex:1;text-align:right">${fs.length} ${fs.length === 1 ? 'ciekawostka' : 'ciekawostek'}${h.iso ? ` · najpierw ${esc(h.iso)}` : ''}</span></div>
       ${dt === 'gfx' ? gfxHTML(fs) : `<div class="facts">${fs.map(q => { const I = E.INTELLIGENCES.find(i => i.id === q.int), fp = factParts(q); return `<div class="fact" style="--c:${INT_UI[q.int]}"><span class="t">${ico(q.int, INT_UI[q.int], 13)} ${esc(I.name)}${q.region ? ' · ' + esc(q.region) : ''}</span><p>${fp.html}</p>${q.explain ? `<small>${esc(q.explain)}</small>` : ''}<a href="${wiki(q)}" target="_blank" rel="noopener">więcej w Wikipedii ↗</a></div>`; }).join('') || '<p class="muted">Brak ciekawostek dla tej karty i epoki – quiz dobierze pytania z tej dziedziny.</p>'}</div>`}
       <div class="row end"><button id="cRead">${story ? '▶ Posłuchaj historii' : '▶ Czytaj pierwszą'}</button><button class="pri" id="cQuiz">Rozpocznij quiz · 9 pytań</button></div>`;
     b.querySelectorAll('[data-dt]').forEach(x => x.onclick = () => { ST.docTab = x.dataset.dt; SND.fx('blip'); renderCenter(); persist(); });
-    $('cRead').onclick = () => { if (story) { G.say(story, { bubble: 'Opowiadam historię…' }); return; } const q = fs[0]; if (q) G.say(factParts(q).plain + (q.explain ? ' ' + q.explain : ''), { bubble: 'Czytam dokument…' }); };
+    $('cRead').onclick = () => {
+      if (window.HistadaCore && window.HistadaCore.tts) {
+        window.HistadaCore.tts.speakWithGuidance(storyObj || { text: story }, { seriesIndex: drawn ? drawn.seriesIndex : 1, lang: 'pl' });
+        return;
+      }
+      if (story) { G.say(story, { bubble: 'Opowiadam historię…' }); return; } const q = fs[0]; if (q) G.say(factParts(q).plain + (q.explain ? ' ' + q.explain : ''), { bubble: 'Czytam dokument…' }); };
     $('cQuiz').onclick = startQuiz;
     return;
   }
@@ -2095,7 +2184,16 @@ const G = (() => {
   el.innerHTML = `<button class="g-ava" id="gAva" aria-label="Histada – pokaż lub ukryj dymek">${GUIDE_SVG}</button><div class="g-bub" id="gBub" hidden><div class="g-name">HISTADA</div><div class="g-txt" id="gTxt"></div><div class="g-row"><button id="gV"></button><button id="gH" aria-label="Ukryj">✕</button></div></div>`;
   document.body.appendChild(el);
   const HX = HistadaFx($('gAva'));
-  const load = () => { if (TTS) voices = speechSynthesis.getVoices().filter(v => /^pl/i.test(v.lang)).sort((a, b) => /natural|online|neural/i.test(b.name) - /natural|online|neural/i.test(a.name)); };
+  const load = () => {
+    if (!TTS) return;
+    const femaleKw = /zofia|paulina|agnieszka|ewa|maja|zosia|marta|anna|monika|kasia|kobiecy|female|woman/i;
+    const maleKw = /adam|jan|marek|krzysztof|piotr|tomasz|male|david|george/i;
+    voices = speechSynthesis.getVoices().filter(v => /^pl/i.test(v.lang)).sort((a, b) => {
+      const aRank = (femaleKw.test(a.name) ? 20 : 0) - (maleKw.test(a.name) ? 30 : 0) + (/natural|online|neural/i.test(a.name) ? 4 : 0);
+      const bRank = (femaleKw.test(b.name) ? 20 : 0) - (maleKw.test(b.name) ? 30 : 0) + (/natural|online|neural/i.test(b.name) ? 4 : 0);
+      return bRank - aRank;
+    });
+  };
   if (TTS) { load(); speechSynthesis.onvoiceschanged = load; }
   const vb = () => $('gV').textContent = on ? '🔊 Głos' : '🔇 Bez głosu'; vb();
   $('gV').onclick = () => { on = !on; lsSet('histada.diament.glos', on ? '1' : '0'); vb(); if (!on && TTS) speechSynthesis.cancel(); };
@@ -2104,7 +2202,7 @@ const G = (() => {
   function say(text, o = {}) {
     $('gTxt').textContent = o.bubble || text; $('gBub').hidden = false; clearTimeout(hideT); hideT = setTimeout(() => { if (!el.classList.contains('talk')) $('gBub').hidden = true; }, Math.max(7000, text.length * 75));
     if (!(TTS && on && voices.length)) { el.classList.add('talk'); setTimeout(() => el.classList.remove('talk'), Math.min(3500, 400 + text.length * 28)); return; }
-    speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.voice = voices[0]; u.lang = voices[0].lang; u.pitch = 1.05; u.onstart = () => el.classList.add('talk'); u.onend = u.onerror = () => el.classList.remove('talk'); speechSynthesis.speak(u);
+    speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.voice = voices[0]; u.lang = voices[0].lang; u.pitch = 1.20; u.onstart = () => el.classList.add('talk'); u.onend = u.onerror = () => el.classList.remove('talk'); speechSynthesis.speak(u);
   }
   return { say, fx: HX };
 })();
@@ -2693,6 +2791,12 @@ function pickQuiz() {
   const okSet = new Set(P.ok), h = HEXMAP.get(ST.hex), iso = h && h.iso, d = curDom().id;
   return E.INTELLIGENCES.map(I => {
     let pool = BANK.filter(q => q.domain === d && q.epoch === ST.ep && q.int === I.id);
+    if (!pool.length && window.HistadaCore && window.HistadaCore.get4DMatrixQuestions) {
+      const hexVal = (ST.hex && ST.hex.id) ? ST.hex.id : 93;
+      const mqs = window.HistadaCore.get4DMatrixQuestions({ epochId: ST.ep + 1, periodId: 1, hexId: hexVal, domainCode: d, seriesIndex: 1 });
+      const mq = mqs.find(q => q.int === I.id);
+      if (mq) pool = [mq];
+    }
     if (!pool.length) pool = BANK.filter(q => q.domain === d && q.int === I.id);
     if (!pool.length) pool = BANK.filter(q => q.int === I.id);
     const sc = q => (okSet.has(q.id) ? 0 : 4) + (iso && q.region === iso ? 2 : 0) + Math.random();
@@ -3069,7 +3173,16 @@ const G = (() => {
   el.innerHTML = `<button class="g-ava" id="gAva" aria-label="Histada – show or hide speech bubble">${GUIDE_SVG}</button><div class="g-bub" id="gBub" hidden><div class="g-name">HISTADA</div><div class="g-txt" id="gTxt"></div><div class="g-row"><button id="gV"></button><button id="gH" aria-label="Ukryj">✕</button></div></div>`;
   document.body.appendChild(el);
   const HX = HistadaFx($('gAva'));
-  const load = () => { if (TTS) voices = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)).sort((a, b) => /natural|online|neural/i.test(b.name) - /natural|online|neural/i.test(a.name)); };
+  const load = () => {
+    if (!TTS) return;
+    const femaleKw = /zofia|paulina|agnieszka|ewa|maja|zosia|marta|anna|monika|kasia|kobiecy|female|woman|samantha|victoria|zira|karen/i;
+    const maleKw = /adam|jan|marek|krzysztof|piotr|tomasz|male|david|george|mark/i;
+    voices = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)).sort((a, b) => {
+      const aRank = (femaleKw.test(a.name) ? 20 : 0) - (maleKw.test(a.name) ? 30 : 0) + (/natural|online|neural/i.test(a.name) ? 4 : 0);
+      const bRank = (femaleKw.test(b.name) ? 20 : 0) - (maleKw.test(b.name) ? 30 : 0) + (/natural|online|neural/i.test(b.name) ? 4 : 0);
+      return bRank - aRank;
+    });
+  };
   if (TTS) { load(); speechSynthesis.onvoiceschanged = load; }
   const vb = () => $('gV').textContent = on ? '🔊 Voice' : '🔇 No voice'; vb();
   $('gV').onclick = () => { on = !on; lsSet('histada.diament.glos', on ? '1' : '0'); vb(); if (!on && TTS) speechSynthesis.cancel(); };
@@ -3078,7 +3191,7 @@ const G = (() => {
   function say(text, o = {}) {
     $('gTxt').textContent = o.bubble || text; $('gBub').hidden = false; clearTimeout(hideT); hideT = setTimeout(() => { if (!el.classList.contains('talk')) $('gBub').hidden = true; }, Math.max(7000, text.length * 75));
     if (!(TTS && on && voices.length)) { el.classList.add('talk'); setTimeout(() => el.classList.remove('talk'), Math.min(3500, 400 + text.length * 28)); return; }
-    speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.voice = voices[0]; u.lang = voices[0].lang; u.pitch = 1.05; u.onstart = () => el.classList.add('talk'); u.onend = u.onerror = () => el.classList.remove('talk'); speechSynthesis.speak(u);
+    speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.voice = voices[0]; u.lang = voices[0].lang; u.pitch = 1.20; u.onstart = () => el.classList.add('talk'); u.onend = u.onerror = () => el.classList.remove('talk'); speechSynthesis.speak(u);
   }
   return { say, fx: HX };
 })();

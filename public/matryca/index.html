@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Matryca HISTADA · 26 023 680 Opowiadań o Dziejach Religii od Mezopotamii po Paruzję (12×12×502×36)</title>
+  <meta name="description" content="Święta 4-wymiarowa Matryca Dziejów Religii i Duchowości HISTADA: 12 epok, 12 okresów, 502 pola hex, 36 obszarów religijnych (3 główne nurty). 26 023 680 unikatowych opowiadań sakralnych i serii pytań od zarania Homo Religiosus i Mezopotamii aż po Paruzję i Królestwo Boże, z 9 inteligencjami i lektorem TTS.">
+  <link rel="icon" href="/shared/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+  
+  <link rel="stylesheet" href="/shared/histada-core.css">
+  
+  <style>
+    :root {
+      --bg: #0a111d;
+      --bg2: #0f1a2b;
+      --line: #253754;
+      --ink: #eee7d4;
+      --muted: #9fabbe;
+      --gold: #d9b25a;
+      --gold2: #f0d48f;
+      --teal: #2c8f99;
+      --cyan: #38e8ff;
+      --magenta: #ff4fd8;
+      --display: "Cinzel", "Times New Roman", serif;
+      --sans: "IBM Plex Sans", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(90% 60% at 50% 0%, #16274a 0%, var(--bg) 60%) fixed, var(--bg);
+      color: var(--ink);
+      font: 15px/1.55 var(--sans);
+    }
+
+    .wrap {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Top Navigation Header */
+    header.nav-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 20px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+    }
+
+    .brand-logo svg { width: 36px; height: 36px; }
+
+    .brand-titles h1 {
+      margin: 0;
+      font: 700 24px var(--display);
+      color: var(--gold2);
+      letter-spacing: 0.04em;
+    }
+
+    .brand-titles p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .top-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      border-color: var(--gold);
+      color: var(--gold2);
+      background: rgba(217, 178, 90, 0.08);
+    }
+
+    .nav-link-highlight {
+      background: var(--teal);
+      color: #fff;
+      border-color: var(--teal);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* KPI Summary Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    .kpi-card {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .kpi-val {
+      font: 700 24px var(--mono);
+      color: var(--gold2);
+    }
+
+    .kpi-lbl {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    /* 4D Control Panel */
+    .control-panel {
+      background: var(--bg2);
+      border: 1px solid var(--gold);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .panel-title h2 {
+      margin: 0;
+      font: 700 20px var(--display);
+      color: var(--gold2);
+    }
+
+    .grid-4d-selectors {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .sel-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sel-group label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .sel-group select, .sel-group input {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 11px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .sel-group select:focus, .sel-group input:focus {
+      border-color: var(--gold);
+    }
+
+    .view-tabs {
+      display: flex;
+      gap: 6px;
+      background: var(--bg);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+    }
+
+    .vtab-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .vtab-btn.active {
+      background: var(--line);
+      color: var(--gold2);
+    }
+
+    /* Content Area */
+    .matrix-content-box {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 26px;
+      min-height: 520px;
+    }
+
+    /* 10 Series Grid */
+    .ten-series-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 18px;
+    }
+
+    .series-card-10 {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .series-card-10:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .sc10-badges {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sc10-num {
+      display: inline-block;
+      font: 700 11px var(--mono);
+      background: var(--line);
+      color: var(--gold2);
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .sc10-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .sc10-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .sc10-btn-bar {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    .sc10-btn {
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.15s;
+    }
+
+    .sc10-btn:hover { background: #38a2ad; }
+
+    .sc10-btn-sec {
+      background: rgba(217, 178, 90, 0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold2);
+    }
+
+    .sc10-btn-sec:hover {
+      background: var(--gold);
+      color: #0a111d;
+    }
+
+    /* 36 Domains Matrix Table */
+    .m36-table-wrap {
+      overflow-x: auto;
+    }
+
+    table.m36-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    table.m36-table th, table.m36-table td {
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      text-align: left;
+    }
+
+    table.m36-table th {
+      background: rgba(217, 178, 90, 0.08);
+      color: var(--gold2);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    /* Map View Box */
+    .map-box-view {
+      position: relative;
+      width: 100%;
+      min-height: 600px;
+      background: #0b1524;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .lang-sw { background: var(--bg2); border: 1px solid var(--gold); color: var(--gold2); font: 600 12.5px system-ui, sans-serif; padding: 6px 10px; border-radius: 8px; outline: none; cursor: pointer; }
+  
+    .edition-pills {
+      display: inline-flex;
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 3px;
+      gap: 4px;
+    }
+    .ed-pill {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font: 600 13px var(--sans);
+      padding: 6px 14px;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ed-pill:hover { color: var(--ink); }
+    .ed-pill.active {
+      background: var(--gold);
+      color: #1c1405;
+      box-shadow: 0 2px 8px rgba(217,178,90,0.35);
+    }
+  
+</style>
+</head>
+<body>
+
+  <script src="/shared/claude-shim.js"></script>
+<script src="/shared/histada-network.js"></script>
+  <script src="/shared/histada-data.js"></script>
+  <script src="/shared/histada-core.js"></script>
+
+  <div class="wrap">
+    <!-- Header -->
+    <header class="nav-top">
+      <div class="brand-box">
+        <div class="brand-logo">
+          <svg viewBox="0 0 100 100">
+            <polygon points="50,5 90,27 90,73 50,95 10,73 10,27" fill="none" stroke="#d9b25a" stroke-width="4"/>
+            <text x="50" y="58" text-anchor="middle" fill="#f0d48f" font-size="28" font-family="serif">H</text>
+          </svg>
+        </div>
+        <div class="brand-titles">
+          <h1 id="matrycaMainTitle">HISTADA · Święta Matryca Dziejów Wiary 12×12×502×36</h1>
+          
+          
+          <p id="matrycaSubtitle">26 023 680 Opowiadań o Dziejach Religii od Mezopotamii po Paruzję i Królestwo Boże z 9 Inteligencjami</p>
+          <div style="margin-top:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <span style="font-size:12px;color:var(--muted);font-weight:600;">Wersja Gry / Edition:</span>
+            <div class="edition-pills">
+              <button type="button" class="ed-pill" id="mPillStd" onclick="changeMatrycaEdition('standard')">🏛️ Podstawowa (Nauka)</button>
+              <button type="button" class="ed-pill active" id="mPillRel" onclick="changeMatrycaEdition('religion')">🕊️ Wersja R [Religia]</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <nav class="top-links">
+        <a href="/" class="nav-link">← Główna / Home</a>
+        <a href="/gra/" class="nav-link">Cz. 1 Plansza / Board</a>
+        <a href="/krag/" class="nav-link">Cz. 2 Krąg / Circle</a>
+        <a href="/diament/" class="nav-link">Cz. 3 Diament / Diamond</a>
+        <a href="/matryca/" class="nav-link active">Matryca 4D</a>
+        <span id="langSlot"></span>
+        <button id="topScannerBtn" class="nav-link nav-link-highlight">📷 Skaner Run / Scanner</button>
+      </nav>
+    </header>
+
+    <!-- KPI Metrics -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-val">26 023 680</div>
+        <div class="kpi-lbl" id="kpiLbl1">26 023 680 Świadectw Wiary i Pism Sakralnych (52 047 360 łącznie w obu edycjach)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">12×12×502×36</div>
+        <div class="kpi-lbl" id="kpiLbl2">12 Epok Sacrum · 12 Faz Wiary · 502 Święte Heksy · 36 Nurtów</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">10 Serii / Komórkę</div>
+        <div class="kpi-lbl" id="kpiLbl3">10 Serii Sakralnych / Komórkę z Opowieściami Wiary i 9 Pytaniami</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">9 Inteligencji</div>
+        <div class="kpi-lbl" id="kpiLbl4">9 Inteligencji w Obliczu Sacrum (Egzystencjalna, Moralna, Liturgiczna...)</div>
+      </div>
+    </section>
+
+    <!-- 4D Control Panel -->
+    <section class="control-panel">
+      <div class="panel-title">
+        <div>
+          <h2 id="panelNavHeading">Nawigator Dziejów Wiary i Dziedzin Religijnych</h2>
+          <p id="panelNavSub" style="margin:2px 0 0;font-size:13px;color:var(--gold);">Każdy święty heks zawiera 10 unikatowych serii – losowanych 1/10 bez powtórzeń, badających uświęcone przymierza i drogi wiary.</p>
+        </div>
+        <div class="view-tabs">
+          <button class="vtab-btn" id="btnDrawRandom10" style="background:linear-gradient(135deg,#d9b25a,#b88a28);color:#0a111d;font-weight:700;">🎲 Wylosuj Serię 1/10</button>
+          <button class="vtab-btn active" id="tabVSeries10">10 Serii Pytań z Opowieściami</button>
+          <button class="vtab-btn" id="tabV36Table">Tabela 36 Dziedzin</button>
+          <button class="vtab-btn" id="tabVMapHexes">Wektorowa Mapa Świata i Heksy (502)</button>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;align-items:center;">
+        <label id="lblSearch" style="font-size:12.5px;text-transform:uppercase;color:var(--gold);font-weight:700;">Szybkie Wyszukiwanie Świętego Miejsca lub Hexa:</label>
+        <input type="text" id="inpCountrySearch" placeholder="Wpisz np. Polska, Egipt, Francja, Chiny lub numer 1–502..." style="background:var(--bg);border:1px solid var(--line);color:#fff;padding:8px 14px;border-radius:8px;flex:1;min-width:240px;outline:none;" />
+        <button id="btnCountryGo" style="background:var(--teal);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-weight:600;cursor:pointer;">Znajdź Pole Hex</button>
+      </div>
+      <div class="grid-4d-selectors">
+        <div class="sel-group">
+          <label id="lblEpoch" for="selEpoch">1. Święta Epoka Dziejów Wiary od Mezopotamii po Paruzję (12):</label>
+          <select id="selEpoch"></select>
+        </div>
+
+        <div class="sel-group">
+          <label id="lblPeriod" for="selPeriod">2. Uświęcony Etap Drogi Duchowej i Zmagań Wiary (12):</label>
+          <select id="selPeriod"></select>
+        </div>
+
+        <div class="sel-group">
+          <label id="lblDomain" for="selDomain">3. Nurt Wiary, Tradycja Sakralna i Pisma (36 Tradycji Sacrum):</label>
+          <select id="selDomain"></select>
+        </div>
+
+        <div class="sel-group">
+          <label id="lblHex" for="selHex">4. Święta Geografia, Sanktuarium i Rejon Świata (502 Święte Heksy):</label>
+          <select id="selHex"></select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dynamic Content Box -->
+    <section class="matrix-content-box" id="matrixContent">
+      <!-- Injected via JS -->
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const data = window.__D;
+      const core = window.HistadaCore;
+
+      if (!core) return;
+
+      let currentLang = 'pl';
+      try { const v = localStorage.getItem('histada.lang'); if (v === 'en' || v === 'bi' || v === 'pl') currentLang = v; } catch (e) {}
+
+      const langSlot = document.getElementById('langSlot');
+      if (langSlot) {
+        const sw = document.createElement('select');
+        sw.className = 'lang-sw';
+        sw.setAttribute('aria-label', 'Język / Language');
+        sw.innerHTML = '<option value="pl">PL</option><option value="en">EN</option><option value="bi">PL+EN</option>';
+        sw.value = currentLang;
+        sw.onchange = () => {
+          try { localStorage.setItem('histada.lang', sw.value); } catch (e) {}
+          location.reload();
+        };
+        langSlot.appendChild(sw);
+      }
+
+      const selEpoch = document.getElementById('selEpoch');
+      const selPeriod = document.getElementById('selPeriod');
+      const selDomain = document.getElementById('selDomain');
+      const selHex = document.getElementById('selHex');
+      const matrixContent = document.getElementById('matrixContent');
+      const topScannerBtn = document.getElementById('topScannerBtn');
+
+      const tabVSeries10 = document.getElementById('tabVSeries10');
+      const tabV36Table = document.getElementById('tabV36Table');
+      const tabVMapHexes = document.getElementById('tabVMapHexes');
+
+      let currentTab = 'series10';
+
+      // 1. WYPEŁNIENIE KONTROLEK SELECT (W TYM SELHEX ZAWSZE Z 502 POLAMI)
+      function populateSelectors() {
+        const isRel = (core.getEdition() === 'religion');
+
+        // Epoki (12)
+        const curEpochVal = selEpoch.value || '1';
+        selEpoch.innerHTML = '';
+        core.EPOCHS_12.forEach(e => {
+          const opt = document.createElement('option');
+          opt.value = e.id;
+          opt.textContent = isRel
+            ? `Święta Epoka ${e.id}: ${e.name} (${e.era})`
+            : `Epoka ${e.id}: ${e.name} (${e.era})`;
+          selEpoch.appendChild(opt);
+        });
+        selEpoch.value = curEpochVal;
+
+        // Okresy (12)
+        const curPeriodVal = selPeriod.value || '1';
+        selPeriod.innerHTML = '';
+        core.PERIODS_12.forEach(p => {
+          const opt = document.createElement('option');
+          opt.value = p.id;
+          opt.textContent = isRel
+            ? `Faza Wiary ${p.id}: ${p.name}`
+            : `Okres Dziejowy ${p.id}: ${p.name}`;
+          selPeriod.appendChild(opt);
+        });
+        selPeriod.value = curPeriodVal;
+
+        // Dziedziny (36)
+        const curDomainVal = selDomain.value || (core.DOMAINS_36[0] ? core.DOMAINS_36[0].code : 'H01');
+        selDomain.innerHTML = '';
+        core.DOMAINS_36.forEach(d => {
+          const opt = document.createElement('option');
+          opt.value = d.code;
+          opt.textContent = isRel
+            ? `${d.code}: ${d.name} [Nurt: ${d.cat}]`
+            : `${d.code}: ${d.name} [Filar: ${d.cat}]`;
+          selDomain.appendChild(opt);
+        });
+        if (core.DOMAINS_36.some(d => d.code === curDomainVal)) {
+          selDomain.value = curDomainVal;
+        } else if (core.DOMAINS_36[0]) {
+          selDomain.value = core.DOMAINS_36[0].code;
+        }
+
+        // POLA HEX (502) – ZAWSZE WYPEŁNIANE ZE ZROZUMIAŁYMI OPISAMI DLA OBU WERSJI
+        const curHexVal = selHex.value || '93';
+        selHex.innerHTML = '';
+        const hexList = (window.__D && window.__D.POLA && window.__D.POLA.hexes) ? window.__D.POLA.hexes : [];
+        hexList.forEach(h => {
+          const opt = document.createElement('option');
+          opt.value = h.id;
+          const countryPart = (h.countries && h.countries.length) ? h.countries.map(c => c.name).join(', ') : h.name;
+          opt.textContent = isRel
+            ? `Święty Hex #${h.id}: ${h.name} · ${countryPart} (${h.continent})`
+            : `Hex #${h.id}: ${h.name} · ${countryPart} (${h.continent})`;
+          if (h.id === 93) opt.selected = true;
+          selHex.appendChild(opt);
+        });
+        if (curHexVal && hexList.some(h => String(h.id) === String(curHexVal))) {
+          selHex.value = curHexVal;
+        } else if (hexList.length) {
+          selHex.value = '93';
+        }
+      }
+
+      window.changeMatrycaEdition = function(edition) {
+        if (core && core.setEdition) {
+          core.setEdition(edition);
+        }
+        try {
+          const u = new URL(window.location.href);
+          u.searchParams.set('edition', edition === 'religion' ? 'r' : 'standard');
+          window.history.replaceState(null, '', u.pathname + u.search + u.hash);
+        } catch(e) {}
+        updateMatrycaEditionUI(edition);
+      };
+
+      function updateMatrycaEditionUI(edition) {
+        const isRel = (edition === 'religion');
+        const pillStd = document.getElementById('mPillStd');
+        const pillRel = document.getElementById('mPillRel');
+        if (pillStd) pillStd.classList.toggle('active', !isRel);
+        if (pillRel) pillRel.classList.toggle('active', isRel);
+
+        // Nagłówek marki
+        const mainTitle = document.getElementById('matrycaMainTitle');
+        if (mainTitle) {
+          mainTitle.textContent = isRel
+            ? 'HISTADA · Święta Matryca Dziejów Wiary 12×12×502×36'
+            : 'HISTADA · Matryca Nauki i Cywilizacji 12×12×502×36';
+        }
+        const sub = document.getElementById('matrycaSubtitle');
+        if (sub) {
+          sub.textContent = isRel
+            ? '26 023 680 Opowiadań o Dziejach Religii od Mezopotamii po Paruzję i Królestwo Boże z 9 Inteligencjami (Wersja R)'
+            : '26 023 680 Faktów Dziejowych i Naukowych w 3 Filarach (Humanistyka, Przyroda, Technika) z 9 Inteligencjami (Wersja Podstawowa)';
+        }
+
+        // Etykiety KPI
+        const kpiLbl1 = document.getElementById('kpiLbl1');
+        if (kpiLbl1) {
+          kpiLbl1.textContent = isRel
+            ? '26 023 680 Świadectw Wiary i Pism Sakralnych (52 047 360 łącznie w obu edycjach)'
+            : '26 023 680 Odkryć, Wynalazków i Zdarzeń Naukowych (52 047 360 łącznie w obu edycjach)';
+        }
+        const kpiLbl2 = document.getElementById('kpiLbl2');
+        if (kpiLbl2) {
+          kpiLbl2.textContent = isRel
+            ? '12 Epok Sacrum · 12 Faz Wiary · 502 Święte Heksy · 36 Nurtów'
+            : '12 Epok Cywilizacji · 12 Okresów · 502 Pola Mapy · 36 Dyscyplin Nauki';
+        }
+        const kpiLbl3 = document.getElementById('kpiLbl3');
+        if (kpiLbl3) {
+          kpiLbl3.textContent = isRel
+            ? '10 Serii Sakralnych / Komórkę z Opowieściami Wiary i 9 Pytaniami'
+            : '10 Serii Dziejowych / Komórkę z Opowieściami Odkryć i 9 Pytaniami';
+        }
+        const kpiLbl4 = document.getElementById('kpiLbl4');
+        if (kpiLbl4) {
+          kpiLbl4.textContent = isRel
+            ? '9 Inteligencji w Obliczu Sacrum (Egzystencjalna, Moralna, Liturgiczna...)'
+            : '9 Inteligencji Odkrywcy (Logiczna, Przyrodnicza, Przestrzenna...)';
+        }
+
+        // Nagłówek nawigatora panelu
+        const navHeading = document.getElementById('panelNavHeading');
+        if (navHeading) {
+          navHeading.textContent = isRel
+            ? 'Nawigator Dziejów Wiary, Tradycji Duchowych i Sacrum'
+            : 'Nawigator Historii Świata, Nauki i Odkryć Cywilizacji';
+        }
+        const navSub = document.getElementById('panelNavSub');
+        if (navSub) {
+          navSub.textContent = isRel
+            ? 'Każdy święty heks zawiera 10 unikatowych serii – losowanych 1/10 bez powtórzeń, badających uświęcone przymierza i drogi wiary.'
+            : 'Każde pole zawiera 10 unikatowych serii – losowanych 1/10 bez powtórzeń, badających przełomy ludzkiego poznania i technologii.';
+        }
+
+        // Przyciski i zakładki
+        const btnDraw = document.getElementById('btnDrawRandom10');
+        if (btnDraw) {
+          btnDraw.textContent = isRel ? '🕊️ Wylosuj Świadectwo Wiary 1/10' : '🎲 Wylosuj Serię Odkryć 1/10';
+        }
+        const tabSeries = document.getElementById('tabVSeries10');
+        if (tabSeries) {
+          tabSeries.textContent = isRel ? '10 Sakralnych Serii Pytań i Świadectw' : '10 Serii Odkryć Naukowych i Zdarzeń';
+        }
+        const tabTableBtn = document.getElementById('tabV36Table');
+        if (tabTableBtn) {
+          tabTableBtn.textContent = isRel
+            ? 'Tabela 36 Nurtów Wiary i Pism Świętych'
+            : 'Tabela 36 Dyscyplin Naukowych (H, P, T)';
+        }
+        const tabMap = document.getElementById('tabVMapHexes');
+        if (tabMap) {
+          tabMap.textContent = isRel
+            ? 'Wektorowa Święta Mapa Świata i Ziemie Wiary (502)'
+            : 'Wektorowa Mapa Świata i Szlaki Cywilizacji (502)';
+        }
+
+        // Etykiety selektorów
+        const lblEpoch = document.getElementById('lblEpoch');
+        if (lblEpoch) {
+          lblEpoch.textContent = isRel
+            ? '1. Święta Epoka Dziejów Wiary od Mezopotamii po Paruzję (12):'
+            : '1. Epoka Historii Świata i Cywilizacji (12):';
+        }
+        const lblPeriod = document.getElementById('lblPeriod');
+        if (lblPeriod) {
+          lblPeriod.textContent = isRel
+            ? '2. Uświęcony Etap Drogi Duchowej i Zmagań Wiary (12):'
+            : '2. Okres Przełomu Naukowego i Warsztatowego (12):';
+        }
+        const lblDomain = document.getElementById('lblDomain');
+        if (lblDomain) {
+          lblDomain.textContent = isRel
+            ? '3. Nurt Wiary, Tradycja Sakralna i Pisma (36 Tradycji Sacrum):'
+            : '3. Filar Wiedzy i Dyscyplina Naukowa (36 Dziedzin H, P, T):';
+        }
+        const lblHex = document.getElementById('lblHex');
+        if (lblHex) {
+          lblHex.textContent = isRel
+            ? '4. Święta Geografia, Sanktuarium i Rejon Świata (502 Święte Heksy):'
+            : '4. Pole Geograficzne i Ośrodek Cywilizacji (502 Heksy):';
+        }
+        const lblSearch = document.getElementById('lblSearch');
+        if (lblSearch) {
+          lblSearch.textContent = isRel
+            ? 'Szybkie Wyszukiwanie Świętego Miejsca lub Hexa:'
+            : 'Szybkie Wyszukiwanie Kraju lub Hexa:';
+        }
+
+        // Wypełnienie kontrolek
+        populateSelectors();
+
+        // Renderowanie aktywnego widoku
+        render();
+      }
+
+      window.addEventListener('histada:editionChanged', (e) => {
+        updateMatrycaEditionUI(e.detail.edition);
+      });
+
+      // Synchronizacja stanu początkowego przy starcie
+      updateMatrycaEditionUI(core.getEdition());
+
+      // Obsługa wyszukiwarki kraju / hexa
+      const inpSearch = document.getElementById('inpCountrySearch');
+      const btnSearch = document.getElementById('btnCountryGo');
+      function doSearch() {
+        if (!inpSearch) return;
+        const q = inpSearch.value.trim().toLowerCase();
+        if (!q) return;
+        const hexList = (window.__D && window.__D.POLA && window.__D.POLA.hexes) ? window.__D.POLA.hexes : [];
+        let found = null;
+        if (/^\d+$/.test(q)) {
+          const num = parseInt(q, 10);
+          found = hexList.find(h => h.id === num);
+        }
+        if (!found) {
+          found = hexList.find(h => h.name.toLowerCase().includes(q) || (h.countries && h.countries.some(c => c.name.toLowerCase().includes(q))));
+        }
+        if (found) {
+          selHex.value = found.id;
+          render();
+        } else {
+          alert('Nie znaleziono pola hex dla: ' + q);
+        }
+      }
+      if (btnSearch) btnSearch.onclick = doSearch;
+      if (inpSearch) {
+        inpSearch.onkeydown = (e) => { if (e.key === 'Enter') doSearch(); };
+      }
+
+      const btnDrawRandom10 = document.getElementById('btnDrawRandom10');
+      if (btnDrawRandom10) {
+        btnDrawRandom10.onclick = () => {
+          const draw = core.drawSeries({
+            epochId: parseInt(selEpoch.value, 10),
+            periodId: parseInt(selPeriod.value, 10),
+            domainCode: selDomain.value,
+            hexId: parseInt(selHex.value, 10),
+            lang: currentLang
+          });
+          core.openStoryModal({
+            epochId: parseInt(selEpoch.value, 10),
+            periodId: parseInt(selPeriod.value, 10),
+            domainCode: selDomain.value,
+            hexId: parseInt(selHex.value, 10),
+            seriesIndex: draw.seriesIndex
+          });
+          setTimeout(() => {
+            const btnPlay = document.querySelector('#ttsPlay');
+            if (btnPlay) btnPlay.click();
+          }, 300);
+        };
+      }
+
+      if (topScannerBtn) {
+        topScannerBtn.onclick = () => {
+          core.scanner.openModal((hexId) => {
+            selHex.value = hexId;
+            render();
+            core.openStoryModal({
+              epochId: selEpoch.value,
+              periodId: selPeriod.value,
+              domainCode: selDomain.value,
+              hexId: hexId,
+              seriesIndex: 1
+            });
+          });
+        };
+      }
+
+      if (tabVSeries10) tabVSeries10.onclick = () => setTab('series10');
+      if (tabV36Table) tabV36Table.onclick = () => setTab('table36');
+      if (tabVMapHexes) tabVMapHexes.onclick = () => setTab('map');
+
+      selEpoch.onchange = () => render();
+      selPeriod.onchange = () => render();
+      selDomain.onchange = () => render();
+      selHex.onchange = () => render();
+
+      function setTab(t) {
+        currentTab = t;
+        if (tabVSeries10) tabVSeries10.classList.toggle('active', t === 'series10');
+        if (tabV36Table) tabV36Table.classList.toggle('active', t === 'table36');
+        if (tabVMapHexes) tabVMapHexes.classList.toggle('active', t === 'map');
+        render();
+      }
+
+      function render() {
+        if (currentTab === 'series10') render10Series();
+        else if (currentTab === 'table36') renderTable36();
+        else if (currentTab === 'map') renderMap();
+      }
+
+      // 1. RENDEROWANIE 10 SERII PYTAŃ I OPOWIEŚCI
+      function render10Series() {
+        const isRel = (core.getEdition() === 'religion');
+        const epochId = parseInt(selEpoch.value, 10) || 1;
+        const periodId = parseInt(selPeriod.value, 10) || 1;
+        const domainCode = selDomain.value || (core.DOMAINS_36[0] ? core.DOMAINS_36[0].code : 'H01');
+        const hexId = parseInt(selHex.value, 10) || 93;
+
+        const hexList = (window.__D && window.__D.POLA && window.__D.POLA.hexes) ? window.__D.POLA.hexes : [];
+        const hexObj = hexList.find(h => h.id === hexId) || { id: hexId, name: isRel ? 'Święty Region' : 'Region Świata', continent: 'Świat' };
+        const epochObj = core.EPOCHS_12.find(e => e.id === epochId) || core.EPOCHS_12[0];
+        const periodObj = core.PERIODS_12.find(p => p.id === periodId) || core.PERIODS_12[0];
+        const domainObj = core.DOMAINS_36.find(d => d.code === domainCode) || core.DOMAINS_36[0];
+
+        const seriesHeaderTitle = isRel
+          ? '10 Uświęconych Opowieści Sakralnych i Świadectw Wiary dla Wybranego Świętego Węzła'
+          : '10 Dedykowanych Serii Dziejowych i Naukowych dla Wybranej Komórki Matrycy';
+
+        const seriesHeaderSub = isRel
+          ? `Święte Miejsce: <strong>Hex #${hexId} ${hexObj.name} (${hexObj.continent})</strong> · Święta Epoka: <strong>${epochObj.name} (${epochObj.era})</strong> · Faza: <strong>${periodObj.name}</strong> · Nurt Sacrum: <strong>${domainObj.name} (${domainCode})</strong>`
+          : `Lokalizacja: <strong>Hex #${hexId} ${hexObj.name} (${hexObj.continent})</strong> · Czas: <strong>${epochObj.name} (${epochObj.era})</strong> · <strong>${periodObj.name}</strong> · Dziedzina: <strong>${domainObj.name} (${domainCode})</strong>`;
+
+        let html = `
+          <div style="margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:16px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px;">
+            <div>
+              <h3 style="margin:0 0 6px;color:var(--gold2);font-size:22px;letter-spacing:0.02em;">${seriesHeaderTitle}</h3>
+              <p style="margin:0;color:var(--muted);font-size:14.5px;">${seriesHeaderSub}</p>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="sc10-btn sc10-btn-sec" onclick="toggleAllStories()" style="padding:8px 14px;font-size:13px;">
+                <span>📖 ${isRel ? 'Rozwiń Wszystkie 10 Opowieści Wiary' : 'Rozwiń Wszystkie 10 Opowieści'}</span>
+              </button>
+              <button class="sc10-btn" onclick="downloadCellJson(${epochId}, ${periodId}, ${hexId}, '${domainCode}')" style="padding:8px 14px;font-size:13px;background:var(--bg);border:1px solid var(--line);">
+                <span>📥 Pobierz 10 Serii (JSON)</span>
+              </button>
+            </div>
+          </div>
+          <div class="ten-series-grid">
+        `;
+
+        core.SERIES_THEMES.forEach((theme, idx) => {
+          const sIndex = idx + 1;
+          const storyData = core.get4DMatrixStory({ epochId, periodId, hexId, domainCode, seriesIndex: sIndex, lang: currentLang });
+          const questions = core.get4DMatrixQuestions({ epochId, periodId, hexId, domainCode, seriesIndex: sIndex, lang: currentLang });
+
+          const badgeTitle = isRel ? '9 Pytań · 9 Inteligencji Wiary' : '9 Pytań · 9 Inteligencji Odkrywcy';
+          const btnLektorText = isRel ? '▶ Słuchaj Świadectwa' : '▶ Lektor TTS';
+          const btnQuizText = isRel ? '✨ Quiz Sakralny' : '✨ Quiz Naukowy';
+          const btnQuestionsText = isRel ? '📋 9 Pytań Wiary' : '📋 9 Pytań i Odpowiedzi';
+
+          html += `
+            <div class="series-card-10" id="cardSeries${sIndex}">
+              <div class="sc10-badges">
+                <span class="sc10-num">${currentLang === 'en' ? `Series ${sIndex} of 10` : (currentLang === 'bi' ? `Seria ${sIndex} z 10 / Series ${sIndex} of 10` : `Seria ${sIndex} z 10`)}</span>
+                <span style="font-size:12px;color:var(--gold);font-weight:600;">${badgeTitle}</span>
+              </div>
+              <div class="sc10-title">${theme.title}</div>
+              
+              <div class="sc10-desc-preview" id="previewText${sIndex}">
+                ${storyData.text.substring(0, 200)}...
+              </div>
+
+              <div class="sc10-full-story" id="fullStory${sIndex}" style="display:none;font-size:14px;color:#cdd7e5;line-height:1.6;margin:12px 0;background:rgba(10,17,29,0.45);padding:14px;border-radius:8px;border:1px solid rgba(217,178,90,0.2);">
+                ${storyData.text.replace(/\n\n/g, '<br/><br/>')}
+              </div>
+
+              <div id="inlineQuestions${sIndex}" style="display:none;margin-top:12px;border-top:1px solid var(--line);padding-top:12px;">
+                <div style="font-size:12.5px;font-weight:700;color:var(--gold2);margin-bottom:8px;">${currentLang === 'en' ? '9 Questions and Correct Answers for this Story:' : (currentLang === 'bi' ? '9 Pytań i Odpowiedzi / 9 Questions & Answers:' : '9 Pytań do Opowieści wraz z Prawidłowymi Odpowiedziami:')}</div>
+                <div style="display:flex;flex-direction:column;gap:8px;max-height:360px;overflow-y:auto;padding-right:6px;">
+                  ${questions.map((q, qI) => `
+                    <div style="background:#0a111d;border:1px solid #1c2b42;border-radius:6px;padding:8px 10px;font-size:12.5px;">
+                      <div style="color:var(--gold);font-weight:600;font-size:11.5px;">${qI+1}. [${q.intLabel}]</div>
+                      <div style="color:#eee;margin:2px 0 4px;font-weight:500;">${q.q}</div>
+                      <div style="color:#2ecc71;font-weight:600;">${currentLang === 'en' ? 'Answer:' : (currentLang === 'bi' ? 'Odpowiedź / Answer:' : 'Odpowiedź:')} ${q.options[0]}</div>
+                      <div style="color:var(--muted);font-size:11px;margin-top:2px;">${q.explain}</div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <div class="sc10-btn-bar" style="flex-wrap:wrap;">
+                <button class="sc10-btn" onclick="openStoryForSeries(${sIndex})" title="Odtwórz opowieść z głosem lektora Histady (TTS)">
+                  <span>${btnLektorText}</span>
+                </button>
+                <button class="sc10-btn sc10-btn-sec" onclick="openQuizForSeries(${sIndex})" title="Uruchom interaktywny quiz z 9 pytań">
+                  <span>${btnQuizText}</span>
+                </button>
+                <button class="sc10-btn" style="background:#1a283e;border:1px solid var(--line);color:#eee;" onclick="toggleInlineQuestions(${sIndex})" title="Rozwiń spis 9 pytań i odpowiedzi">
+                  <span>${btnQuestionsText}</span>
+                </button>
+              </div>
+            </div>
+          `;
+        });
+
+        html += `</div>`;
+        matrixContent.innerHTML = html;
+      }
+
+      // 2. RENDEROWANIE TABELI 36 DZIEDZIN
+      function renderTable36() {
+        const isRel = (core.getEdition() === 'religion');
+        const titleText = isRel
+          ? 'Tabela 36 Obszarów Religijnych i 3 Głównych Nurtów Wiary (Wersja R)'
+          : 'Tabela 36 Dyscyplin Naukowych i 3 Filarów Wiedzy (Wersja Podstawowa)';
+        const descText = isRel
+          ? 'Wybierz dowolną tradycję lub nurt wiary, aby zbadać jej 10 unikatowych serii pytań i opowiadań sakralnych od Mezopotamii po Paruzję.'
+          : 'Wybierz dowolną dyscyplinę naukową, aby zbadać jej 10 unikatowych serii pytań i opowiadań o historii świata i odkryć.';
+        const colDomain = isRel ? 'Tradycja / Obszar Religijny' : 'Dyscyplina Naukowa';
+        const colCat = isRel ? 'Główny Nurt Wiary' : 'Filar Wiedzy';
+        const colFocus = isRel ? 'Istota i Święty Zakres' : 'Zakres Badań i Odkryć';
+
+        let html = `
+          <div style="margin-bottom:16px;">
+            <h3>${titleText}</h3>
+            <p style="color:var(--muted);font-size:14px;">${descText}</p>
+          </div>
+          <div class="m36-table-wrap">
+            <table class="m36-table">
+              <thead>
+                <tr>
+                  <th>Kod</th>
+                  <th>${colDomain}</th>
+                  <th>${colCat}</th>
+                  <th>${colFocus}</th>
+                  <th>Akcje</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        core.DOMAINS_36.forEach(d => {
+          html += `
+            <tr>
+              <td><strong style="color:var(--gold2);">${d.code}</strong></td>
+              <td><strong>${d.name}</strong></td>
+              <td><span style="color:var(--muted);">${d.cat}</span></td>
+              <td><span style="font-size:12.5px;color:#c8d4e4;">${d.focus}</span></td>
+              <td>
+                <button class="sc10-btn" style="padding:6px 12px;font-size:12px;" onclick="selectDomainAndOpen('${d.code}')">
+                  Wybierz i Pokaż 10 Serii →
+                </button>
+              </td>
+            </tr>
+          `;
+        });
+
+        html += `
+              </tbody>
+            </table>
+          </div>
+        `;
+        matrixContent.innerHTML = html;
+      }
+
+      // 3. RENDEROWANIE MAPY WEKTOROWEJ
+      function renderMap() {
+        const isRel = (core.getEdition() === 'religion');
+        const svgContent = (data && data.SVG) ? data.SVG : '<p>Brak mapy SVG.</p>';
+        const mapTitle = isRel
+          ? 'Wektorowa Święta Mapa Świata i Ziemie Wiary (502 Heksy)'
+          : 'Wektorowa Mapa Świata, Państw i Szlaków Odkryć (502 Heksy)';
+        const mapSub = isRel
+          ? 'Kliknij dowolny heks, aby załadować jego święte opowieści i serie pytań wiary'
+          : 'Kliknij dowolny heks, aby załadować jego historie cywilizacji i serie pytań naukowych';
+
+        matrixContent.innerHTML = `
+          <div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;">
+            <h3>${mapTitle}</h3>
+            <span style="font-size:13px;color:var(--muted);">${mapSub}</span>
+          </div>
+          <div class="map-box-view">
+            <div style="width:100%;height:100%;overflow:auto;" id="svgHost">
+              ${svgContent}
+            </div>
+          </div>
+        `;
+
+        const host = document.getElementById('svgHost');
+        if (host) {
+          host.querySelectorAll('[id^="hex-"], polygon, path').forEach(el => {
+            el.style.cursor = 'pointer';
+            el.addEventListener('click', () => {
+              const m = el.id.match(/\d+/);
+              if (m) {
+                selHex.value = m[0];
+                setTab('series10');
+              }
+            });
+          });
+        }
+      }
+
+      // Global Callbacks
+      window.openStoryForSeries = (sIndex) => {
+        core.openStoryModal({
+          epochId: selEpoch.value,
+          periodId: selPeriod.value,
+          domainCode: selDomain.value,
+          hexId: selHex.value,
+          seriesIndex: sIndex
+        });
+      };
+
+      window.openQuizForSeries = (sIndex) => {
+        const questions = core.get4DMatrixQuestions({
+          epochId: selEpoch.value,
+          periodId: selPeriod.value,
+          domainCode: selDomain.value,
+          hexId: selHex.value,
+          seriesIndex: sIndex
+        });
+        core.openQuizModal({
+          questions: questions,
+          title: `Quiz: Seria ${sIndex} · ${selDomain.value}`
+        });
+      };
+
+      window.selectDomainAndOpen = (code) => {
+        selDomain.value = code;
+        setTab('series10');
+      };
+
+      window.toggleInlineQuestions = (sIndex) => {
+        const el = document.getElementById('inlineQuestions' + sIndex);
+        if (el) el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+      };
+
+      let allExpanded = false;
+      window.toggleAllStories = () => {
+        allExpanded = !allExpanded;
+        for (let i = 1; i <= 10; i++) {
+          const prev = document.getElementById('previewText' + i);
+          const full = document.getElementById('fullStory' + i);
+          const qs = document.getElementById('inlineQuestions' + i);
+          if (prev && full) {
+            prev.style.display = allExpanded ? 'none' : 'block';
+            full.style.display = allExpanded ? 'block' : 'none';
+          }
+          if (qs) {
+            qs.style.display = allExpanded ? 'block' : 'none';
+          }
+        }
+      };
+
+      window.downloadCellJson = (epochId, periodId, hexId, domainCode) => {
+        const cellData = {
+          matrix_coordinates: { epochId, periodId, hexId, domainCode },
+          cell_total_series: 10,
+          cell_total_questions: 90,
+          series: core.SERIES_THEMES.map((th, idx) => {
+            const sIndex = idx + 1;
+            return {
+              seriesIndex: sIndex,
+              themeTitle: th.title,
+              story: core.get4DMatrixStory({ epochId, periodId, hexId, domainCode, seriesIndex: sIndex }),
+              questions: core.get4DMatrixQuestions({ epochId, periodId, hexId, domainCode, seriesIndex: sIndex })
+            };
+          })
+        };
+        const blob = new Blob([JSON.stringify(cellData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `histada_4d_e${epochId}_p${periodId}_h${hexId}_${domainCode}_10series.json`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      };
+
+      // Inicjalne renderowanie
+      render();
+    });
+  </script>
+</body>
+</html>

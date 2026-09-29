@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgG512" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1e3550"/>
+      <stop offset="100%" stop-color="#0a111d"/>
+    </radialGradient>
+    <linearGradient id="goldG512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff2be"/>
+      <stop offset="45%" stop-color="#d9b25a"/>
+      <stop offset="100%" stop-color="#8a6316"/>
+    </linearGradient>
+    <filter id="glow512" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#d9b25a" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bgG512)"/>
+  <path d="M256 58 L432 160 L432 352 L256 454 L80 352 L80 160 Z" fill="#132338" stroke="url(#goldG512)" stroke-width="14" filter="url(#glow512)"/>
+  <path d="M256 94 L396 175 L396 337 L256 418 L116 337 L116 175 Z" fill="none" stroke="#2c8f99" stroke-width="4" stroke-dasharray="10 8" opacity="0.65"/>
+  <text x="256" y="312" font-family="'Cinzel', Georgia, serif" font-size="204" font-weight="700" text-anchor="middle" fill="url(#goldG512)" filter="url(#glow512)">H</text>
+  <circle cx="256" cy="58" r="12" fill="#fff2be"/>
+  <circle cx="432" cy="160" r="12" fill="#fff2be"/>
+  <circle cx="432" cy="352" r="12" fill="#fff2be"/>
+  <circle cx="256" cy="454" r="12" fill="#fff2be"/>
+  <circle cx="80" cy="352" r="12" fill="#fff2be"/>
+  <circle cx="80" cy="160" r="12" fill="#fff2be"/>
+</svg>

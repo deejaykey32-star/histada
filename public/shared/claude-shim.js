@@ -85,6 +85,12 @@
       var p;
       if (name === 'downloads') p = Promise.resolve(downloads);
       else if (name === 'sample') p = probe().then(function (st) { return st && st.ok ? makeSample(st) : null; });
+      else if (window._histada_network_shims && window._histada_network_shims[name]) p = Promise.resolve(window._histada_network_shims[name]);
+      else if (window.HistadaNetwork && (name === 'room' || name === 'db' || name === 'user')) {
+        // dynamiczny fallback
+        var sh = window._histada_network_shims;
+        p = Promise.resolve(sh ? sh[name] : null);
+      }
       else p = Promise.resolve(null);
       return (cache[name] = p);
     }
