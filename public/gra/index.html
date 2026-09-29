@@ -23,6 +23,29 @@
   --paper:#0d181c; --panel:#13232a; --panel2:#182c34; --ink:#e3edee; --muted:#93a9ae; --line:#27404a;
   --accent:#4fbcc5; --accent-ink:#06262b; --good:#6cc98f; --bad:#f07a6e; --gold:#e3b845; color-scheme:dark;
   --shadow:0 2px 6px rgba(0,0,0,.35),0 12px 32px rgba(0,0,0,.35);}
+:root[data-theme="light"],
+html[data-theme="light"]{
+  --paper:#f8fafc; --panel:#ffffff; --panel2:#f1f5f6; --ink:#15303a; --muted:#5b7078; --line:#cfdadd;
+  --accent:#0d6c78; --accent-ink:#ffffff; --good:#2e7d4f; --bad:#b3372c; --gold:#b98a12; color-scheme:light;
+  --shadow:0 2px 6px rgba(21,48,58,.10),0 12px 32px rgba(21,48,58,.12);}
+html[data-theme="light"],
+body[data-theme="light"],
+html[data-theme="light"] body {
+  background: #f8fafc !important;
+  background-color: #f8fafc !important;
+  background-image: none !important;
+  color: #15303a !important;
+}
+/* ---------- LIGHT MODE ELEMENT OVERRIDES ---------- */
+:root[data-theme="light"] .stage{background:#dceef5}
+:root[data-theme="light"] .modal{background:rgba(233,238,240,.65)}
+:root[data-theme="light"] .toast{background:#15303a;color:#e9eef0}
+:root[data-theme="light"] .tcard{color:#fff}
+:root[data-theme="light"] .dbtns.w button[aria-pressed=true]{background:#fff;color:#15303a;border:2px solid var(--accent)}
+:root[data-theme="light"] .dbtns.b button[aria-pressed=true]{background:#1d2a30;color:#fff;border:2px solid var(--accent)}
+:root[data-theme="light"] .w3d .w3d-help{color:#15303a;background:rgba(255,255,255,.85)}
+:root[data-theme="light"] .shot{background:#e2e8ec}
+:root[data-theme="light"] #bExitToMenu{background:#c0293e !important;border-color:#e65c73 !important;color:#fff !important}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.45 var(--sans);padding-inline:16px;padding-block:10px}

@@ -185,6 +185,39 @@ body.placing #guide{bottom:calc(var(--placeH,150px) + 28px + env(safe-area-inset
   .hud .who .chip.pts{display:none}
 }
 @media (prefers-reduced-motion:reduce){#guide.talk .g-mouth-o,#guide.talk .g-mouth-c{animation:none}}
+
+/* ========== LIGHT MODE ========== */
+:root[data-theme="light"]{
+  color-scheme:light;
+  --night:#f0f4f8; --night2:#e8eef4; --panel:#ffffff; --panel2:#f1f5f9; --line:#cbd5e1;
+  --ink:#0f172a; --muted:#475569; --gold:#b45309; --gold2:#78350f; --gold-ink:#ffffff;
+  --H:#2563eb; --T:#dc2626; --P:#16a34a; --good:#16a34a; --bad:#dc2626;
+  --shadow:0 4px 14px rgba(0,0,0,.08),0 10px 30px rgba(0,0,0,.06);
+}
+:root[data-theme="light"] body{background:var(--night);overflow:hidden}
+:root[data-theme="light"] #cv{background:#e2e8f0}
+:root[data-theme="light"] .hud{background:linear-gradient(var(--night) 0%,rgba(240,244,248,.75) 70%,rgba(240,244,248,0))}
+:root[data-theme="light"] .crumbs button{background:rgba(241,245,249,.85)}
+:root[data-theme="light"] .chip{background:rgba(241,245,249,.9);border-color:var(--line)}
+:root[data-theme="light"] .chip b{color:var(--gold2)}
+:root[data-theme="light"] .place{background:rgba(255,255,255,.95);border-color:var(--line)}
+:root[data-theme="light"] .place h3{color:var(--gold2)}
+:root[data-theme="light"] #chat{background:rgba(255,255,255,.96);border-color:var(--line)}
+:root[data-theme="light"] .modal{background:rgba(241,245,249,.72)}
+:root[data-theme="light"] .dialog{background:var(--panel);border-color:var(--line)}
+:root[data-theme="light"] .dialog h2{color:var(--gold2)}
+:root[data-theme="light"] .ach div{background:var(--night2)}
+:root[data-theme="light"] .ach div.on{border-color:var(--gold);background:rgba(180,83,9,.06)}
+:root[data-theme="light"] .illu{background:radial-gradient(120% 140% at 0% 0%,color-mix(in srgb,var(--c) 20%,transparent),transparent 60%),linear-gradient(135deg,#f8fafc,#f1f5f9);border-color:color-mix(in srgb,var(--c) 30%,#cbd5e1)}
+:root[data-theme="light"] .illu .tl i{background:#cbd5e1}
+:root[data-theme="light"] .emobar{background:rgba(255,255,255,.96);border-color:var(--line)}
+:root[data-theme="light"] .emobar button:hover{background:var(--panel2)}
+:root[data-theme="light"] .toast{background:var(--panel);border-color:var(--gold)}
+:root[data-theme="light"] .hint{background:rgba(255,255,255,.92);border-color:var(--line)}
+:root[data-theme="light"] .hint b{color:var(--gold2)}
+:root[data-theme="light"] #guide .g-bub{background:var(--panel);border-color:var(--gold)}
+:root[data-theme="light"] .w3d .w3d-help{color:#0f172a;background:rgba(255,255,255,.85)}
+:root[data-theme="light"] button.gold{background:var(--gold);border-color:var(--gold);color:#fff}
 </style>
 <style>.lang-sw{font:600 12px/1 system-ui,sans-serif;padding:4px 6px;border-radius:6px}.qtext,.explain,.fact{white-space:pre-line}</style>
 <script>/*!

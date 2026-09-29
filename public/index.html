@@ -131,6 +131,103 @@
   letter-spacing: 0.04em;
 }
 
+.btn-secondary-link {
+  background: #0f1a2b;
+  border: 1px solid #253754;
+  color: #eee7d4;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.btn-secondary-link:hover {
+  border-color: #d9b25a;
+  color: #ffffff;
+  background: #15263f;
+}
+html[data-theme="light"] .btn-secondary-link,
+body[data-theme="light"] .btn-secondary-link {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+}
+html[data-theme="light"] .btn-secondary-link:hover,
+body[data-theme="light"] .btn-secondary-link:hover {
+  background: #f1f5f9 !important;
+  background-color: #f1f5f9 !important;
+  border-color: #b45309 !important;
+  color: #b45309 !important;
+}
+
+.dist-info-box {
+  background: #0a121e;
+  border: 1px solid #253754;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+html[data-theme="light"] .dist-modal-card,
+body[data-theme="light"] .dist-modal-card {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+}
+
+html[data-theme="light"] .dist-modal-card h2,
+html[data-theme="light"] .dist-modal-card h3,
+html[data-theme="light"] .dist-modal-card h4,
+body[data-theme="light"] .dist-modal-card h2,
+body[data-theme="light"] .dist-modal-card h3,
+body[data-theme="light"] .dist-modal-card h4 {
+  color: #78350f !important;
+}
+
+html[data-theme="light"] .dist-modal-card p,
+html[data-theme="light"] .dist-modal-card ol,
+html[data-theme="light"] .dist-modal-card li,
+body[data-theme="light"] .dist-modal-card p,
+body[data-theme="light"] .dist-modal-card ol,
+body[data-theme="light"] .dist-modal-card li {
+  color: #1e293b !important;
+}
+
+html[data-theme="light"] .dist-info-box,
+body[data-theme="light"] .dist-info-box {
+  background: #f8fafc !important;
+  background-color: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .dist-info-box h4,
+html[data-theme="light"] .dist-info-box strong,
+body[data-theme="light"] .dist-info-box h4,
+body[data-theme="light"] .dist-info-box strong {
+  color: #78350f !important;
+}
+
+html[data-theme="light"] .dist-info-box code,
+body[data-theme="light"] .dist-info-box code {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+html[data-theme="light"] .dist-modal-close,
+body[data-theme="light"] .dist-modal-close {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
 /* Modale Dystrybucji */
 .dist-modal-overlay {
   position: fixed;
@@ -497,6 +594,74 @@ section h3{margin:0 0 12px;font:700 20px var(--display);letter-spacing:.06em;col
 footer{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px;border-top:1px solid var(--line);padding-top:16px}
 @media (max-width:900px){.parts{grid-template-columns:1fr}.two{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats div:last-child{grid-column:1/-1}}
 @media (max-width:560px){header.top{grid-template-columns:1fr;justify-items:start}.ava{width:110px;height:110px}.ints{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ========== LIGHT MODE ========== */
+:root[data-theme="light"],
+html[data-theme="light"]{
+  color-scheme:light;--bg:#f8fafc;--bg2:#ffffff;--line:#cbd5e1;--ink:#0f172a;--muted:#475569;
+  --gold:#b45309;--gold2:#78350f;--teal:#0d6c78;--cyan:#0891b2;--mag:#a21caf}
+html[data-theme="light"],
+html[data-theme="light"] body,
+body[data-theme="light"]{
+  background:#f8fafc !important;
+  background-color:#f8fafc !important;
+  background-image:none !important;
+  color:var(--ink) !important;
+}
+html[data-theme="light"] .wrap{background:transparent !important}
+html[data-theme="light"] h1{color:var(--gold2)}
+html[data-theme="light"] .eyebrow{color:var(--gold)}
+html[data-theme="light"] .bubble{background:var(--bg2);border-color:var(--gold)}
+html[data-theme="light"] .bubble b{color:var(--gold2)}
+html[data-theme="light"] .stats div{background:var(--bg2)}
+html[data-theme="light"] .stats b{color:var(--gold2)}
+html[data-theme="light"] .stats span{color:var(--muted)}
+html[data-theme="light"] .part{background:var(--bg2);border-color:var(--line)}
+html[data-theme="light"] .part h2{color:var(--ink) !important}
+html[data-theme="light"] .part p{color:var(--ink)}
+html[data-theme="light"] .p1 h2{color:#0d6c78 !important}
+html[data-theme="light"] .p1 .go{background:#0d6c78;color:#fff}
+html[data-theme="light"] .p2 h2{color:#92400e !important}
+html[data-theme="light"] .p2 .go{background:var(--gold);color:#fff}
+html[data-theme="light"] .p3{background:linear-gradient(#e0f2fe,#f0f9ff)}
+html[data-theme="light"] .p3 h2{color:#0c4a6e !important}
+html[data-theme="light"] .p3 .go{background:#0891b2;color:#fff}
+html[data-theme="light"] .ints div{background:var(--bg2)}
+html[data-theme="light"] section h3{color:var(--gold2)}
+html[data-theme="light"] .flow li::before{color:#fff;background:var(--gold)}
+html[data-theme="light"] .ava{filter:drop-shadow(0 8px 24px rgba(0,0,0,.15))}
+/* Landing distribution bar + modals */
+html[data-theme="light"] .app-distribution-bar{background:linear-gradient(135deg,rgba(241,245,249,0.96),rgba(226,232,240,0.98));border-color:var(--gold);box-shadow:0 8px 26px rgba(0,0,0,.08)}
+html[data-theme="light"] .dist-bar-title{color:var(--gold2)}
+html[data-theme="light"] .dist-bar-badge{background:rgba(13,108,120,.12);border-color:var(--teal);color:#0d6c78}
+html[data-theme="light"] .btn-dist{background:var(--bg2);border-color:var(--line);color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+html[data-theme="light"] .btn-dist-title{color:var(--ink)}
+html[data-theme="light"] .btn-dist-sub{color:var(--muted)}
+html[data-theme="light"] .btn-dist-badge{background:var(--gold);color:#fff}
+html[data-theme="light"] .btn-dist:hover{border-color:var(--gold);box-shadow:0 8px 24px rgba(180,83,9,.15)}
+html[data-theme="light"] .dist-modal-overlay{background:rgba(241,245,249,.88);backdrop-filter:blur(10px)}
+html[data-theme="light"] .dist-modal-card{background:linear-gradient(135deg,#ffffff,#f8fafc);border-color:var(--gold);color:var(--ink);box-shadow:0 24px 70px rgba(0,0,0,.12)}
+html[data-theme="light"] .dist-modal-close{background:rgba(0,0,0,.04);border-color:var(--line);color:var(--muted)}
+html[data-theme="light"] .tab-pills{border-color:var(--line)}
+html[data-theme="light"] .tab-pill{background:var(--bg2);border-color:var(--line);color:var(--muted)}
+html[data-theme="light"] .tab-pill.active{background:linear-gradient(135deg,var(--gold),#92400e);color:#fff;border-color:var(--gold)}
+html[data-theme="light"] .modal-sec-btn{background:var(--bg2);border-color:var(--line);color:var(--ink)}
+html[data-theme="light"] .modal-dl-btn{background:linear-gradient(135deg,var(--gold),#92400e);color:#fff}
+/* Edition selector */
+html[data-theme="light"] .edition-selector-banner{background:linear-gradient(135deg,rgba(241,245,249,0.95),rgba(226,232,240,0.98));border-color:var(--line);box-shadow:0 10px 30px rgba(0,0,0,.06)}
+html[data-theme="light"] .edition-banner-titles h2{color:var(--gold2)}
+html[data-theme="light"] .edition-kicker{color:var(--gold)}
+html[data-theme="light"] .edition-pills{background:#f1f5f9;border-color:var(--line)}
+html[data-theme="light"] .ed-pill{color:var(--muted)}
+html[data-theme="light"] .ed-pill:hover{color:var(--ink)}
+html[data-theme="light"] .ed-pill.active{background:var(--gold);color:#fff}
+html[data-theme="light"] .edition-card{background:rgba(241,245,249,.65);border-color:var(--line)}
+html[data-theme="light"] .edition-card:hover{border-color:rgba(180,83,9,.45);background:rgba(241,245,249,.9)}
+html[data-theme="light"] .edition-card.active{border-color:var(--gold);background:linear-gradient(135deg,rgba(254,243,199,.3),rgba(241,245,249,.95));box-shadow:0 0 20px rgba(180,83,9,.12)}
+html[data-theme="light"] .edition-card.active .ed-radio{border-color:var(--gold);background:var(--gold)}
+html[data-theme="light"] .edition-card.active .ed-radio::after{background:#fff}
+html[data-theme="light"] .ed-badge{background:rgba(13,108,120,.08);border-color:#0d6c78;color:#0d6c78}
+html[data-theme="light"] .ed-badge.ed-badge-gold{background:rgba(180,83,9,.08);border-color:var(--gold);color:var(--gold2)}
 </style>
 <style>.lang-sw{font:600 12px/1 system-ui,sans-serif;padding:4px 6px;border-radius:6px}</style>
 
@@ -1009,10 +1174,10 @@ window.HistadaI18n = (() => {
         <a href="/matryca/" style="background:linear-gradient(135deg, #d9b25a, #b88a28);color:#0a111d;padding:10px 18px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(217,178,90,0.3);">
           <span>✨ Otwórz Matrycę 12×12×502×36</span>
         </a>
-        <a href="/matryca/" style="background:#0f1a2b;border:1px solid #253754;color:#eee7d4;padding:10px 16px;border-radius:10px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+        <a href="/matryca/" class="btn-secondary-link">
           <span>📷 Skaner Run Aparatem</span>
         </a>
-        <a href="/matryca/" style="background:#0f1a2b;border:1px solid #253754;color:#eee7d4;padding:10px 16px;border-radius:10px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+        <a href="/matryca/" class="btn-secondary-link">
           <span>🔊 Lektor TTS (Histada)</span>
         </a>
       </div>
@@ -2103,45 +2268,45 @@ Choose your game mode below and let our journey begin!`;
       <a href="/matryca/" style="background:linear-gradient(135deg, #d9b25a, #b88a28);color:#0a111d;padding:10px 18px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(217,178,90,0.3);">
         <span>✨ Otwórz Matrycę 12×12×502×36 / Open 4D Matrix</span>
       </a>
-      <a href="/matryca/" style="background:#0f1a2b;border:1px solid #253754;color:#eee7d4;padding:10px 16px;border-radius:10px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+      <a href="/matryca/" class="btn-secondary-link">
         <span>📷 Skaner Run Aparatem / Rune Camera Scanner</span>
       </a>
-      <a href="/matryca/" style="background:#0f1a2b;border:1px solid #253754;color:#eee7d4;padding:10px 16px;border-radius:10px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+      <a href="/matryca/" class="btn-secondary-link">
         <span>🔊 Lektor TTS (Histada) / TTS Reader</span>
       </a>
     </div>
   </header>
 
   
-  <!-- Wybór Edycji Gry / Game Edition Selector: Podstawowa vs R (Religijna) -->
+  <!-- Wybór Edycji Gry / Game Edition Selector: Wersja P vs Wersja R -->
   <section class="edition-selector-banner" id="editionSectionBi" aria-label="Wybór Edycji / Edition Selector">
     <div class="edition-banner-header">
       <div class="edition-banner-titles">
         <span class="edition-kicker">Wybór Wersji Gry · Game Edition Selector</span>
-        <h2>Wybierz Edycję Gry HISTADA / Choose HISTADA Game Edition</h2>
+        <h2>Wybierz Edycję Gry HISTADA: Wersja P (Podstawowa) / Edition P (Standard) vs Edycja R / Edition R</h2>
       </div>
       <div class="edition-pills">
         <button type="button" class="ed-pill" id="pillStdBi" onclick="setAppEdition('standard')">
-          🏛️ Wersja Podstawowa / Standard (Nauka)
+          🏛️ Wersja P / Edition P (Nauka / Science)
         </button>
         <button type="button" class="ed-pill active" id="pillRelBi" onclick="setAppEdition('religion')">
-          🕊️ Wersja R / Edition R (Religijna)
+          🕊️ Edycja R / Edition R (Religijna / Sacred)
         </button>
       </div>
     </div>
 
     <div class="edition-grid">
-      <!-- Karta 1: Wersja Podstawowa -->
+      <!-- Karta 1: Wersja P (Podstawowa) -->
       <div class="edition-card" id="cardStdBi" onclick="setAppEdition('standard')" role="button" tabindex="0">
         <div class="ed-card-top">
-          <span class="ed-badge">Nauka i Cywilizacja / Science & Civilization</span>
+          <span class="ed-badge">Edycja P · Nauka i Cywilizacja / Edition P · Science & Civilization</span>
           <span class="ed-radio" id="radioStdBi"></span>
         </div>
         <div class="ed-card-body">
           <div class="ed-title-row">
             <span class="ed-main-icon">🏛️</span>
             <div>
-              <h3>Wersja Podstawowa / Standard Edition</h3>
+              <h3>Wersja P (Podstawowa) / Edition P (Standard)</h3>
               <p class="ed-subtitle">Nauka, Cywilizacja i Odkrycia Świata / Science & Discoveries</p>
             </div>
           </div>
@@ -2155,7 +2320,7 @@ Choose your game mode below and let our journey begin!`;
           </ul>
         </div>
         <div class="ed-card-footer">
-          <span class="ed-status" id="statusStdBi">Przełącz na Wersję Podstawową / Switch to Standard →</span>
+          <span class="ed-status" id="statusStdBi">Przełącz na Wersję P / Switch to Edition P →</span>
         </div>
       </div>
 
@@ -2169,7 +2334,7 @@ Choose your game mode below and let our journey begin!`;
           <div class="ed-title-row">
             <span class="ed-main-icon">🕊️</span>
             <div>
-              <h3>Wersja R (Religijna) / Edition R</h3>
+              <h3>Edycja R (Religijna) / Edition R</h3>
               <p class="ed-subtitle">Dzieje Wiary od Mezopotamii po Paruzję / Mesopotamia to Parousia</p>
             </div>
           </div>
@@ -2183,84 +2348,7 @@ Choose your game mode below and let our journey begin!`;
           </ul>
         </div>
         <div class="ed-card-footer">
-          <span class="ed-status active" id="statusRelBi">✓ Aktywna Wersja R / Active Edition R</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-  <!-- Wybór Edycji Gry / Game Edition Selector: Podstawowa vs R (Religijna) -->
-  <section class="edition-selector-banner" id="editionSectionBi" aria-label="Wybór Edycji / Edition Selector">
-    <div class="edition-banner-header">
-      <div class="edition-banner-titles">
-        <span class="edition-kicker">Wybór Wersji Gry · Game Edition Selector</span>
-        <h2>Wybierz Edycję Gry HISTADA / Choose HISTADA Game Edition</h2>
-      </div>
-      <div class="edition-pills">
-        <button type="button" class="ed-pill" id="pillStdBi" onclick="setAppEdition('standard')">
-          🏛️ Wersja Podstawowa / Standard (Nauka)
-        </button>
-        <button type="button" class="ed-pill active" id="pillRelBi" onclick="setAppEdition('religion')">
-          🕊️ Wersja R / Edition R (Religijna)
-        </button>
-      </div>
-    </div>
-
-    <div class="edition-grid">
-      <!-- Karta 1: Wersja Podstawowa -->
-      <div class="edition-card" id="cardStdBi" onclick="setAppEdition('standard')" role="button" tabindex="0">
-        <div class="ed-card-top">
-          <span class="ed-badge">Nauka i Cywilizacja / Science & Civilization</span>
-          <span class="ed-radio" id="radioStdBi"></span>
-        </div>
-        <div class="ed-card-body">
-          <div class="ed-title-row">
-            <span class="ed-main-icon">🏛️</span>
-            <div>
-              <h3>Wersja Podstawowa / Standard Edition</h3>
-              <p class="ed-subtitle">Nauka, Cywilizacja i Odkrycia Świata / Science & Discoveries</p>
-            </div>
-          </div>
-          <p class="ed-desc">
-            Obejmuje 3 filary wiedzy: <strong>Humanistykę (H)</strong>, <strong>Przyrodę (P)</strong> i <strong>Technikę (T)</strong>. 36 dyscyplin naukowych od archeologii po AI i kosmos.
-          </p>
-          <ul class="ed-specs">
-            <li><strong>12 Epok / Epochs:</strong> od początku wszechświata po XXI wiek i futurologię (2100+)</li>
-            <li><strong>36 Dziedzin / Domains:</strong> po 12 dziedzin w 3 filarach wiedzy</li>
-            <li><strong>Skala / Scale:</strong> 26 023 680 faktów, odkryć i wynalazków</li>
-          </ul>
-        </div>
-        <div class="ed-card-footer">
-          <span class="ed-status" id="statusStdBi">Przełącz na Wersję Podstawową / Switch to Standard →</span>
-        </div>
-      </div>
-
-      <!-- Karta 2: Wersja R (Religijna) -->
-      <div class="edition-card active" id="cardRelBi" onclick="setAppEdition('religion')" role="button" tabindex="0">
-        <div class="ed-card-top">
-          <span class="ed-badge ed-badge-gold">Edycja R · Wierzenia i Sacrum / Sacred Traditions</span>
-          <span class="ed-radio active" id="radioRelBi"></span>
-        </div>
-        <div class="ed-card-body">
-          <div class="ed-title-row">
-            <span class="ed-main-icon">🕊️</span>
-            <div>
-              <h3>Wersja R (Religijna) / Edition R</h3>
-              <p class="ed-subtitle">Dzieje Wiary od Mezopotamii po Paruzję / Mesopotamia to Parousia</p>
-            </div>
-          </div>
-          <p class="ed-desc">
-            Obejmuje wyłącznie sferę wiary i religii: <strong>Religie Księgi (H)</strong>, <strong>Drogi Mądrości Wschodu (P)</strong> oraz <strong>Wierzenia Pierwotne i Eschatologię (T)</strong>. Wszystkie wielkie religie i denominacje (w tym Świadkowie Jehowy).
-          </p>
-          <ul class="ed-specs">
-            <li><strong>12 Epok / Epochs:</strong> od Homo Religiosus po Paruzję i Królestwo Boże</li>
-            <li><strong>36 Nurtów / Disciplines:</strong> po 12 obszarów w 3 nurtach sacrum</li>
-            <li><strong>Skala / Scale:</strong> 26 023 680 opowiadań sakralnych i serii pytań</li>
-          </ul>
-        </div>
-        <div class="ed-card-footer">
-          <span class="ed-status active" id="statusRelBi">✓ Aktywna Wersja R / Active Edition R</span>
+          <span class="ed-status active" id="statusRelBi">✓ Aktywna Edycja R / Active Edition R</span>
         </div>
       </div>
     </div>
@@ -2982,7 +3070,7 @@ Wybierz jeden z trybów poniżej i ruszajmy w podróż! Choose your mode below a
       HISTADA WEB to w pełni autonomiczna aplikacja internetowa działająca bezpośrednio w Twojej przeglądarce na komputerach, tabletach i smartfonach. Nie wymaga instalacji ani uprawnień administratora.
     </p>
 
-    <div style="background:#0a121e;border:1px solid #253754;border-radius:12px;padding:16px;margin:18px 0;display:flex;flex-direction:column;gap:12px;">
+    <div class="dist-info-box" style="margin:18px 0;display:flex;flex-direction:column;gap:12px;">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
         <span style="font-weight:700;color:#eee7d4;">Tryb Pełnoekranowy (Immersyjny):</span>
         <button type="button" class="modal-dl-btn" onclick="toggleFullscreenWeb()">⛶ Uruchom Pełny Ekran</button>
@@ -3036,7 +3124,7 @@ Wybierz jeden z trybów poniżej i ruszajmy w podróż! Choose your mode below a
         </a>
       </div>
 
-      <div style="background:#0a121e;border:1px solid #253754;border-radius:12px;padding:16px;">
+      <div class="dist-info-box">
         <h4 style="margin:0 0 8px;color:#f0d48f;font-size:14px;">🚀 Instrukcja instalacji (Natywna Aplikacja Android):</h4>
         <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.7;color:#cfdbe8;">
           <li><strong>Najprostsza i najpewniejsza metoda (Android WebAPK):</strong> Kliknij zielony przycisk <em>„⚡ 1-Kliknięcie: Zainstaluj na Androidzie”</em> (lub w menu przeglądarki Chrome / Samsung Internet wybierz <em>„Zainstaluj aplikację” / „Dodaj do ekranu głównego”</em>). System Android utworzy natywną aplikację z ikoną na pulpicie, pełnym wsparciem offline i brakiem jakichkolwiek błędów analizowania pakietów!</li>
@@ -3065,7 +3153,7 @@ Wybierz jeden z trybów poniżej i ruszajmy w podróż! Choose your mode below a
         </a>
       </div>
 
-      <div style="background:#0a121e;border:1px solid #253754;border-radius:12px;padding:16px;">
+      <div class="dist-info-box">
         <h4 style="margin:0 0 8px;color:#f0d48f;font-size:14px;">🍏 Instalacja na iPhone / iPad (Sideload bez płatnego konta):</h4>
         <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.7;color:#cfdbe8;">
           <li>Pobierz darmowy program <strong>AltStore</strong> (altstore.io) lub <strong>Sideloadly</strong> na komputer PC/Mac.</li>

@@ -400,6 +400,47 @@
       color: #1c1405;
       box-shadow: 0 2px 8px rgba(217,178,90,0.35);
     }
+
+    /* ========== LIGHT MODE ========== */
+    :root[data-theme="light"],
+    html[data-theme="light"] {
+      --bg: #f8fafc; --bg2: #ffffff; --line: #cbd5e1; --ink: #0f172a; --muted: #475569;
+      --gold: #b45309; --gold2: #78350f; --teal: #0d6c78; --cyan: #0891b2; --magenta: #a21caf;
+      color-scheme: light;
+    }
+    html[data-theme="light"],
+    html[data-theme="light"] body,
+    body[data-theme="light"] {
+      background: #f8fafc !important;
+      background-color: #f8fafc !important;
+      background-image: none !important;
+      color: var(--ink) !important;
+    }
+    html[data-theme="light"] .kpi-card { background: var(--bg2); border-color: var(--line); box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+    html[data-theme="light"] .kpi-val { color: var(--gold2); }
+    html[data-theme="light"] .control-panel { background: var(--bg2); border-color: var(--gold); box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+    html[data-theme="light"] .panel-title h2 { color: var(--gold2); }
+    html[data-theme="light"] .view-tabs { background: #f1f5f9; border-color: var(--line); }
+    html[data-theme="light"] .vtab-btn { color: var(--muted); }
+    html[data-theme="light"] .vtab-btn.active { background: var(--line); color: var(--gold2); }
+    html[data-theme="light"] .brand-titles h1 { color: var(--gold2); }
+    html[data-theme="light"] .nav-link { background: var(--bg2); border-color: var(--line); color: var(--ink); }
+    html[data-theme="light"] .nav-link:hover, html[data-theme="light"] .nav-link.active { border-color: var(--gold); color: var(--gold2); background: rgba(180,83,9,.06); }
+    html[data-theme="light"] .nav-link-highlight { background: var(--teal); color: #fff; border-color: var(--teal); }
+    html[data-theme="light"] .brand-logo { background: var(--bg2); border-color: var(--gold); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+    html[data-theme="light"] .matrix-content-box { background: var(--bg2); border-color: var(--line); }
+    html[data-theme="light"] .series-card-10 { background: #f8fafc; border-color: var(--line); }
+    html[data-theme="light"] .series-card-10:hover { border-color: var(--gold); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+    html[data-theme="light"] .sc10-num { background: var(--line); color: var(--gold2); }
+    html[data-theme="light"] .sc10-title { color: var(--ink); }
+    html[data-theme="light"] table.m36-table th { background: rgba(180,83,9,.06); color: var(--gold2); }
+    html[data-theme="light"] .map-box-view { background: #e2e8f0; border-color: var(--line); }
+    html[data-theme="light"] .sel-group select, html[data-theme="light"] .sel-group input { background: #f8fafc; border-color: var(--line); color: var(--ink); }
+    html[data-theme="light"] .sel-group label { color: var(--gold); }
+    html[data-theme="light"] .edition-pills { background: #f1f5f9; border-color: var(--line); }
+    html[data-theme="light"] .ed-pill.active { background: var(--gold); color: #fff; }
+    html[data-theme="light"] .lang-sw { background: var(--bg2); border-color: var(--gold); color: var(--gold2); }
+    html[data-theme="light"] #inpCountrySearch { background: #f8fafc !important; border-color: var(--line) !important; color: var(--ink) !important; }
   
 </style>
 </head>

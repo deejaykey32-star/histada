@@ -611,24 +611,46 @@
 /* ==========================================================================
    LIGHT MODE & DARK MODE SYSTEM OVERRIDES
    ========================================================================== */
-html[data-theme="light"], body[data-theme="light"] {
-  --h-bg: #f8fafc;
-  --h-bg2: #ffffff;
-  --h-line: #cbd5e1;
-  --h-ink: #0f172a;
-  --h-muted: #475569;
-  --h-gold: #d97706;
-  --h-gold2: #92400e;
-  --h-teal: #0284c7;
-  --h-cyan: #0d9488;
-  --h-green: #16a34a;
-  --h-red: #dc2626;
+html[data-theme="light"],
+body[data-theme="light"],
+:root[data-theme="light"] {
+  --bg: #f8fafc !important;
+  --bg2: #ffffff !important;
+  --paper: #f8fafc !important;
+  --night: #f8fafc !important;
+  --night2: #f1f5f9 !important;
+  --void: #f8fafc !important;
+  --deep: #f1f5f9 !important;
+  --panel: #ffffff !important;
+  --panel2: #f1f5f9 !important;
+  --line: #cbd5e1 !important;
+  --line2: #cbd5e1 !important;
+  --ink: #0f172a !important;
+  --muted: #475569 !important;
+  --gold: #b45309 !important;
+  --gold2: #78350f !important;
+  --gold-ink: #ffffff !important;
+  --h-bg: #f8fafc !important;
+  --h-bg2: #ffffff !important;
+  --h-line: #cbd5e1 !important;
+  --h-ink: #0f172a !important;
+  --h-muted: #475569 !important;
+  --h-gold: #b45309 !important;
+  --h-gold2: #78350f !important;
+  --h-teal: #0d6c78 !important;
+  --h-cyan: #0284c7 !important;
+  --h-green: #16a34a !important;
+  --h-red: #dc2626 !important;
+  color-scheme: light !important;
+  background: #f8fafc !important;
   background-color: #f8fafc !important;
+  background-image: none !important;
   color: #0f172a !important;
 }
 
 /* Page containers & Cards */
 html[data-theme="light"] body,
+body[data-theme="light"],
 html[data-theme="light"] #app,
 html[data-theme="light"] .app,
 html[data-theme="light"] .hud,
@@ -756,6 +778,78 @@ html[data-theme="light"] .certprev {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
 }
 
+/* Story body, TTS bar, Scanner & Exit menu: override hardcoded dark backgrounds */
+html[data-theme="light"] .story-body {
+  color: #1e293b !important;
+}
+html[data-theme="light"] .story-tts-bar {
+  background: rgba(241, 245, 249, 0.95) !important;
+  border-color: #cbd5e1 !important;
+}
+html[data-theme="light"] .story-header,
+html[data-theme="light"] .scanner-header,
+html[data-theme="light"] .quiz-header {
+  background: rgba(180, 83, 9, 0.04) !important;
+  border-color: #cbd5e1 !important;
+}
+html[data-theme="light"] .story-footer,
+html[data-theme="light"] .quiz-footer {
+  background: #ffffff !important;
+}
+html[data-theme="light"] .scan-tip {
+  background: rgba(255, 255, 255, 0.92) !important;
+  color: #78350f !important;
+}
+html[data-theme="light"] .scanner-controls {
+  background: #ffffff !important;
+}
+html[data-theme="light"] .sc-tab.active {
+  background: #e2e8f0 !important;
+  color: #78350f !important;
+}
+html[data-theme="light"] .sc-pill {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+html[data-theme="light"] .sc-pill:hover {
+  border-color: #b45309 !important;
+  background: #f1f5f9 !important;
+}
+html[data-theme="light"] .sc-manual-grid input {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html[data-theme="light"] .hem-link-btn {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html[data-theme="light"] .hem-link-btn:hover {
+  border-color: #0891b2 !important;
+  background: rgba(13, 108, 120, 0.06) !important;
+}
+html[data-theme="light"] .histada-exit-modal-card {
+  background: linear-gradient(135deg, #ffffff, #f8fafc) !important;
+  border-color: #b45309 !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12) !important;
+}
+html[data-theme="light"] .quiz-explain {
+  background: rgba(241, 245, 249, 0.9) !important;
+  border-left-color: #b45309 !important;
+  color: #475569 !important;
+}
+html[data-theme="light"] .tts-btn {
+  background: #0d6c78 !important;
+  color: #fff !important;
+}
+html[data-theme="light"] .st-btn-quiz,
+html[data-theme="light"] .qz-next-btn {
+  background: linear-gradient(135deg, #b45309, #92400e) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 14px rgba(180, 83, 9, 0.25) !important;
+}
+
 /* Floating Theme Switcher Button - Centered at Top */
 .histada-theme-toggle-trigger {
   position: fixed;
@@ -786,9 +880,26 @@ html[data-theme="light"] .certprev {
 html[data-theme="light"] .histada-global-menu-trigger,
 html[data-theme="light"] .histada-theme-toggle-trigger {
   background: #ffffff !important;
+  background-color: #ffffff !important;
   border-color: #d97706 !important;
   color: #b45309 !important;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+}
+
+html[data-theme="light"] .histada-theme-toggle-trigger span,
+html[data-theme="light"] .histada-global-menu-trigger span {
+  color: #b45309 !important;
+}
+
+html[data-theme="light"] .h-social-launcher {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+}
+html[data-theme="light"] .h-social-launcher span {
+  color: #0f172a !important;
 }
 
 html[data-theme="light"] .histada-global-menu-trigger:hover,

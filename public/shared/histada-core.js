@@ -8,10 +8,13 @@
  */
 (typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HistadaCore = (() => {
 
-  // --- DUAL EDITION DEFINITIONS ---
+  // --- DUAL EDITION DEFINITIONS (P: Podstawowa, R: Religijna) ---
   const EDITIONS = {
     STANDARD: 'standard',
-    RELIGION: 'religion'
+    RELIGION: 'religion',
+    P: 'standard',
+    R: 'religion',
+    BASIC: 'standard'
   };
 
   const RELIGION_DATA = {
@@ -1970,7 +1973,7 @@
               inMemoryEdition = EDITIONS.RELIGION;
               return inMemoryEdition;
             }
-            if (lower === 'std' || lower === 'standard' || lower === 'podstawowa') {
+            if (lower === 'p' || lower === 'std' || lower === 'standard' || lower === 'podstawowa' || lower === 'basic') {
               inMemoryEdition = EDITIONS.STANDARD;
               return inMemoryEdition;
             }
@@ -1978,8 +1981,8 @@
         }
         if (typeof localStorage !== 'undefined') {
           const stored = localStorage.getItem('histada.edition');
-          if (stored === EDITIONS.STANDARD || stored === EDITIONS.RELIGION) {
-            inMemoryEdition = stored;
+          if (stored === EDITIONS.STANDARD || stored === EDITIONS.RELIGION || stored === 'p' || stored === 'r') {
+            inMemoryEdition = (stored === 'r' || stored === EDITIONS.RELIGION) ? EDITIONS.RELIGION : EDITIONS.STANDARD;
             return inMemoryEdition;
           }
         }
@@ -1991,7 +1994,7 @@
   }
 
   function setEdition(ed) {
-    const val = (ed === EDITIONS.STANDARD) ? EDITIONS.STANDARD : EDITIONS.RELIGION;
+    const val = (ed === EDITIONS.STANDARD || ed === 'p' || ed === 'standard' || ed === 'basic') ? EDITIONS.STANDARD : EDITIONS.RELIGION;
     inMemoryEdition = val;
     try {
       if (typeof localStorage !== 'undefined') {
@@ -2002,6 +2005,20 @@
       window.dispatchEvent(new CustomEvent('histada:editionChanged', { detail: { edition: val } }));
     }
     return val;
+  }
+
+  function getEditionCode(optEdition) {
+    const ed = optEdition || getEdition();
+    return (ed === EDITIONS.STANDARD || ed === 'standard' || ed === 'p') ? 'P' : 'R';
+  }
+
+  function getEditionName(optEdition, lang) {
+    const ed = optEdition || getEdition();
+    const isP = (ed === EDITIONS.STANDARD || ed === 'standard' || ed === 'p');
+    if (lang === 'en') {
+      return isP ? 'Edition P (Standard)' : 'Edition R (Religious)';
+    }
+    return isP ? 'Wersja P (Podstawowa)' : 'Wersja R (Religijna)';
   }
 
   function getActiveData(optEdition) {
@@ -2497,14 +2514,167 @@
     return 'dark';
   }
 
+  const LIGHT_THEME_CSS = `
+    :root, html, body {
+      color-scheme: light !important;
+      background: #f8fafc !important;
+      background-color: #f8fafc !important;
+      background-image: none !important;
+      color: #0f172a !important;
+    }
+    #app, .wrap, main, section, .hero, .stage, #world, #cv, #game, .side, .panel {
+      color: #0f172a !important;
+    }
+    body {
+      background: #f8fafc !important;
+      background-color: #f8fafc !important;
+      background-image: none !important;
+    }
+    .card, .pane, .part, .bubble, .stats div, .ints div, .edition-card,
+    .kpi-card, .control-panel, .matrix-content-box, .series-card-10,
+    .app-distribution-bar, .btn-dist, .place, .illu, #chat, .dialog,
+    .modal-card, .histada-story-card, .histada-scanner-card,
+    .histada-quiz-card, .histada-exit-modal-card, .certprev, .rules-box,
+    .mode-card, .feature-card, .storybox, .fact, .facts, .scr, .nav,
+    .prow, .toast, .hint, .emobar, #guide .g-bub, .w3d-help {
+      background-color: #ffffff !important;
+      background-image: none !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+    }
+    .modal, .histada-modal-backdrop, .dist-modal-overlay, .h-social-modal-overlay {
+      background: rgba(241, 245, 249, 0.88) !important;
+      backdrop-filter: blur(8px) !important;
+    }
+    #mapc, #cv, .map-box-view, .stage {
+      background: #e2e8f0 !important;
+      border-color: #cbd5e1 !important;
+    }
+    h1, h2, h3, h4, h5, h6,
+    .eyebrow, .brand, .brand-titles h1, .panel-title h2,
+    .story-titles h2, .scanner-title, .hem-header h3,
+    .p1 h2, .p2 h2, .p3 h2 {
+      color: #0f172a !important;
+    }
+    h1, .brand, .brand-titles h1 {
+      color: #78350f !important;
+    }
+    .eyebrow, .p2 h2 {
+      color: #b45309 !important;
+    }
+    .p1 h2 {
+      color: #0d6c78 !important;
+    }
+    .p3 h2 {
+      color: #0369a1 !important;
+    }
+    p, span:not(.badge):not(.k):not(.dot):not(.edition-r-badge):not(.edition-std-badge):not(.active),
+    li, label, td, th, div:not(.dot):not(.badge) {
+      color: #1e293b !important;
+    }
+    .muted, small, .sub, .lab, .st-sub, .quiz-counter, .btn-dist-sub {
+      color: #475569 !important;
+    }
+    input[type="text"], input[type="number"], select, textarea {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1 !important;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #b45309 !important;
+      outline: 2px solid #b45309 !important;
+    }
+    button:not(.pri):not(.gold):not(.primary):not(.st-btn-quiz):not(.btn-dist-badge):not(.histada-theme-toggle-trigger):not(.histada-global-menu-trigger):not(#bExitToMenu):not(.hem-exit-primary):not(.go),
+    .opts button, .qz-opt-btn, .nums button, .tab-pill, .sc-tab, .vtab-btn, .btn-secondary-link {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1 !important;
+    }
+    .btn-secondary-link:hover {
+      background-color: #f1f5f9 !important;
+      border-color: #b45309 !important;
+      color: #b45309 !important;
+    }
+    button:hover:not(:disabled) {
+      background-color: #f1f5f9 !important;
+      border-color: #94a3b8 !important;
+    }
+    .tab-pill.active, .sc-tab.active, .vtab-btn.active, .ed-pill.active {
+      background-color: #b45309 !important;
+      color: #ffffff !important;
+      border-color: #b45309 !important;
+    }
+    .h-social-launcher {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border-color: #b45309 !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12) !important;
+    }
+    .h-social-drawer {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border-left: 1px solid #cbd5e1 !important;
+    }
+    .h-social-header {
+      background: #f1f5f9 !important;
+      border-bottom: 1px solid #cbd5e1 !important;
+    }
+    .h-social-title {
+      color: #78350f !important;
+    }
+    .h-msg-item {
+      background: #f8fafc !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1 !important;
+    }
+  `;
+
   function setTheme(theme) {
     const val = (theme === 'light') ? 'light' : 'dark';
     if (typeof document !== 'undefined') {
       document.documentElement.setAttribute('data-theme', val);
-      if (document.body) document.body.setAttribute('data-theme', val);
+      document.documentElement.style.setProperty('color-scheme', val, 'important');
+
+      let dynamicStyle = document.getElementById('histada-dynamic-theme-style');
+      if (!dynamicStyle && document.head) {
+        dynamicStyle = document.createElement('style');
+        dynamicStyle.id = 'histada-dynamic-theme-style';
+        document.head.appendChild(dynamicStyle);
+      }
+
+      if (val === 'light') {
+        document.documentElement.style.setProperty('background', '#f8fafc', 'important');
+        document.documentElement.style.setProperty('background-color', '#f8fafc', 'important');
+        document.documentElement.style.setProperty('color', '#0f172a', 'important');
+        if (dynamicStyle) dynamicStyle.textContent = LIGHT_THEME_CSS;
+      } else {
+        document.documentElement.style.removeProperty('background');
+        document.documentElement.style.removeProperty('background-color');
+        document.documentElement.style.removeProperty('color');
+        if (dynamicStyle) dynamicStyle.textContent = '';
+      }
+      if (document.body) {
+        document.body.setAttribute('data-theme', val);
+        if (val === 'light') {
+          document.body.style.setProperty('background', '#f8fafc', 'important');
+          document.body.style.setProperty('background-color', '#f8fafc', 'important');
+          document.body.style.setProperty('background-image', 'none', 'important');
+          document.body.style.setProperty('color', '#0f172a', 'important');
+        } else {
+          document.body.style.removeProperty('background');
+          document.body.style.removeProperty('background-color');
+          document.body.style.removeProperty('background-image');
+          document.body.style.removeProperty('color');
+        }
+      }
     }
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('histada_theme', val);
+    }
+    const btn = (typeof document !== 'undefined') ? document.getElementById('histadaThemeToggleTrigger') : null;
+    if (btn) {
+      updateThemeBtnUI(btn);
     }
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('histada:themeChanged', { detail: { theme: val } }));
@@ -2528,15 +2698,29 @@
     btn.onclick = () => {
       const nextTheme = getTheme() === 'light' ? 'dark' : 'light';
       setTheme(nextTheme);
-      updateThemeBtnUI(btn);
     };
   }
 
   function updateThemeBtnUI(btn) {
     if (!btn) return;
     const isLight = (getTheme() === 'light');
-    btn.innerHTML = isLight ? `<span>☀️</span><span>Motyw Jasny</span>` : `<span>🌙</span><span>Motyw Ciemny</span>`;
-    btn.title = isLight ? 'Przełącz na motyw ciemny (Dark Mode)' : 'Przełącz na motyw jasny (Light Mode)';
+    btn.innerHTML = isLight
+      ? `<span>🌙</span><span>Przełącz na Motyw Ciemny</span>`
+      : `<span>☀️</span><span>Przełącz na Motyw Jasny</span>`;
+    btn.title = isLight ? 'Kliknij, aby włączyć motyw ciemny' : 'Kliknij, aby włączyć motyw jasny';
+    if (isLight) {
+      btn.style.setProperty('background', '#ffffff', 'important');
+      btn.style.setProperty('background-color', '#ffffff', 'important');
+      btn.style.setProperty('color', '#0f172a', 'important');
+      btn.style.setProperty('border', '2px solid #b45309', 'important');
+      btn.style.setProperty('box-shadow', '0 4px 14px rgba(0, 0, 0, 0.15)', 'important');
+    } else {
+      btn.style.removeProperty('background');
+      btn.style.removeProperty('background-color');
+      btn.style.removeProperty('color');
+      btn.style.removeProperty('border');
+      btn.style.removeProperty('box-shadow');
+    }
   }
 
   // --- TTS ABBREVIATIONS & FEMALE VOICE LEKTOR HISTADA ---
@@ -2564,7 +2748,17 @@
     // Fix tzw. -> tak zwany
     s = s.replace(/\btzw\.\s*/gi, 'tak zwany ');
 
+    // Fix "w wersji R" / "edycji R" / "wersja R" for natural TTS speech
+    s = s.replace(/\bw\s+wersji\s+R\b/gi, 'w wersji religijnej');
+    s = s.replace(/\bwersj[aęi]\s+R\b/gi, 'wersja religijna');
+    s = s.replace(/\bedycj[aęi]\s+R\b/gi, 'edycja religijna');
+    s = s.replace(/\bWersja\s+R\b/gi, 'Wersja religijna');
+    s = s.replace(/\bEdycja\s+R\b/gi, 'Edycja religijna');
+    s = s.replace(/\bWersja\s+Podstawowa\b/gi, 'Wersja podstawowa');
+    s = s.replace(/\bw\s+wersji\s+podstawowej\b/gi, 'w wersji podstawowej');
+
     // Ensure name "Histada" is never spelled out letter by letter (H-i-s-t-a-d-a)
+    s = s.replace(/\bhistada\b/gi, 'Histada');
     s = s.replace(/\bH-i-s-t-a-d-a\b/gi, 'Histada');
     s = s.replace(/\bH\.I\.S\.T\.A\.D\.A\b/gi, 'Histada');
     s = s.replace(/\bHISTADA\b/g, 'Histada');
@@ -2815,7 +3009,6 @@
         if (this.isSpeaking && this.synth) {
           try {
             if (this.synth.paused) this.synth.resume();
-            else { this.synth.pause(); this.synth.resume(); }
           } catch (e) {}
         } else {
           clearInterval(this.heartbeatTimer);
@@ -2979,6 +3172,7 @@
           </div>
           <div class="story-titles">
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span class="st-badge ${isRel ? 'edition-r-badge' : 'edition-std-badge'}">${isRel ? '🕊️ Wersja R' : '🏛️ Wersja P'}</span>
               <div class="st-badge">${storyData.epoch} · ${storyData.period}</div>
               <span class="st-badge" style="background:rgba(56,232,255,0.15);border-color:#2c8f99;color:#38e8ff;">${isEn ? `🎲 Series ${seriesIndex} of 10 drawn` : (isBi ? `🎲 Seria ${seriesIndex} z 10 / Series ${seriesIndex} of 10` : `🎲 Wylosowano Serię ${seriesIndex} z 10 (unikatowa w puli)`)}</span>
             </div>
@@ -3168,8 +3362,11 @@
         <div class="histada-quiz-card">
           <div class="quiz-header">
             <div class="quiz-title-box">
-              <h3>${title}</h3>
-              <div class="quiz-counter">Pytanie ${cur + 1} z ${total} · [${q.intLabel}] · Wynik: ${score}/${cur}</div>
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                <h3 style="margin:0;">${title}</h3>
+                <span class="st-badge ${isRel ? 'edition-r-badge' : 'edition-std-badge'}" style="font-size:11.5px;">${isRel ? '🕊️ Wersja R' : '🏛️ Wersja P'}</span>
+              </div>
+              <div class="quiz-counter" style="margin-top:4px;">Pytanie ${cur + 1} z ${total} · [${q.intLabel}] · Wynik: ${score}/${cur}</div>
             </div>
             <button class="quiz-close" id="qzClose">&times;</button>
           </div>
@@ -3340,7 +3537,10 @@
     modal.innerHTML = `
       <div class="histada-exit-modal-card">
         <div class="hem-header">
-          <h3>${isEn ? '🏛️ HISTADA · Navigation & Exit Menu' : '🏛️ HISTADA · Menu Nawigacji i Wyjście z Gry'}</h3>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <h3 style="margin:0;">${isEn ? '🏛️ HISTADA · Navigation & Exit Menu' : '🏛️ HISTADA · Menu Nawigacji i Wyjście z Gry'}</h3>
+            <span class="${isRel ? 'edition-r-badge' : 'edition-std-badge'}" style="font-size:12px;">${isRel ? '🕊️ HISTADA-R' : '🏛️ HISTADA-P'}</span>
+          </div>
           <button class="hem-close" id="hemClose" aria-label="Zamknij menu">&times;</button>
         </div>
 
@@ -3411,20 +3611,45 @@
     document.addEventListener('keydown', onEsc);
   }
 
+  function updateBrandEditionBadges() {
+    if (typeof document === 'undefined') return;
+    const isRel = (getEdition() === 'religion');
+    const badgeText = isRel ? 'Wersja R' : 'Wersja P';
+    const badgeClass = isRel ? 'edition-r-badge' : 'edition-std-badge';
+    
+    document.querySelectorAll('.brand').forEach(el => {
+      let b = el.querySelector('.histada-ed-badge');
+      if (!b) {
+        b = document.createElement('span');
+        b.className = `histada-ed-badge ${badgeClass}`;
+        b.style.marginLeft = '8px';
+        b.style.verticalAlign = 'middle';
+        b.style.fontSize = '12px';
+        el.appendChild(b);
+      } else {
+        b.className = `histada-ed-badge ${badgeClass}`;
+      }
+      b.textContent = badgeText;
+    });
+  }
+
   function initGlobalNavMenu() {
     if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
     initThemeToggle();
+    updateBrandEditionBadges();
 
     if (document.getElementById('histadaGlobalMenuTrigger')) return;
 
     const path = window.location.pathname;
     if (path !== '/' && path !== '/index.html') {
       const isEn = (window.HistadaI18n && window.HistadaI18n.ui && window.HistadaI18n.ui() === 'en');
+      const isRel = (getEdition() === 'religion');
+      const edCode = isRel ? 'R' : 'P';
       const trigger = document.createElement('button');
       trigger.id = 'histadaGlobalMenuTrigger';
       trigger.className = 'histada-global-menu-trigger';
-      trigger.innerHTML = `<span>☰</span><span>${isEn ? 'Menu / Exit' : 'Menu / Wyjdź z gry'}</span>`;
+      trigger.innerHTML = `<span>☰</span><span>${isEn ? 'Menu / Exit' : 'Menu / Wyjdź'}</span><span style="background:${isRel ? '#8e24aa' : '#0284c7'};color:#fff;padding:2px 7px;border-radius:10px;font-size:11px;font-weight:700;margin-left:4px;">${edCode}</span>`;
       trigger.title = isEn ? 'Open navigation menu or exit game' : 'Otwórz menu nawigacji lub wyjdź z gry';
       trigger.onclick = () => openExitModal();
       document.body.appendChild(trigger);
@@ -3449,6 +3674,8 @@
     EDITIONS,
     getEdition,
     setEdition,
+    getEditionCode,
+    getEditionName,
     getTheme,
     setTheme,
     initThemeToggle,

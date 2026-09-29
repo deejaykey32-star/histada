@@ -1,5 +1,5 @@
 /* HISTADA - Progressive Web App Service Worker (Cache & Offline Support) */
-const CACHE_NAME = 'histada-v2-cache';
+const CACHE_NAME = 'histada-v4-cache';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -48,24 +48,23 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
+  // Network-first strategy for dynamic & UI files to prevent stale themes
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      const fetchPromise = fetch(event.request).then((networkResponse) => {
-        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
-          const responseToCache = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
-        }
-        return networkResponse;
-      }).catch(() => {
-        // If offline and request is an HTML page, fallback to cached index
+    fetch(event.request).then((networkResponse) => {
+      if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+        const responseToCache = networkResponse.clone();
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, responseToCache);
+        });
+      }
+      return networkResponse;
+    }).catch(() => {
+      return caches.match(event.request).then((cachedResponse) => {
+        if (cachedResponse) return cachedResponse;
         if (event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html')) {
           return caches.match('/index.html');
         }
       });
-
-      return cachedResponse || fetchPromise;
     })
   );
 });

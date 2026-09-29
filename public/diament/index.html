@@ -154,6 +154,50 @@ input,select{font:14px var(--sans);color:var(--ink);background:var(--deep);borde
 @media (prefers-reduced-motion:reduce){.scr{transition:none}}
 .storybox{margin:0 0 14px;padding:12px 14px;border:1px solid #2b5680;border-left:3px solid #ff4fd8;border-radius:8px;background:rgba(18,38,74,.55)}
 .storybox p{margin:6px 0 0;font-size:15px;line-height:1.55;max-width:70ch;white-space:pre-line;max-height:34vh;overflow:auto}
+
+/* ========== LIGHT MODE ========== */
+:root[data-theme="light"]{
+  color-scheme:light;
+  --void:#f0f4f8; --deep:#e8eef4; --glass:rgba(255,255,255,.88); --glass2:rgba(241,245,249,.92); --line:#94a3b8; --line2:#cbd5e1;
+  --ink:#0f172a; --muted:#475569; --cyan:#0891b2; --cyan2:#0e7490; --mag:#a21caf; --diam:#1e293b; --ok:#16a34a; --no:#dc2626; --gold:#b45309;
+  --H:#2563eb; --T:#dc2626; --P:#16a34a;
+  --glow:0 0 0 1px rgba(148,163,184,.35),0 4px 14px rgba(0,0,0,.06);
+}
+:root[data-theme="light"] body{background:var(--void)}
+:root[data-theme="light"] #world{background:radial-gradient(120% 90% at 50% 100%,#dbeafe 0%,var(--void) 60%)}
+:root[data-theme="light"] #fallGrid{background:linear-gradient(transparent 60%,rgba(8,145,178,.05)),repeating-linear-gradient(90deg,rgba(148,163,184,.12) 0 1px,transparent 1px 60px),repeating-linear-gradient(0deg,rgba(148,163,184,.08) 0 1px,transparent 1px 60px)}
+:root[data-theme="light"] .hud{background:linear-gradient(var(--void),rgba(240,244,248,.6) 70%,transparent)}
+:root[data-theme="light"] .brand{color:var(--diam);text-shadow:none}
+:root[data-theme="light"] .crumb b{color:var(--cyan2)}
+:root[data-theme="light"] .chip{background:rgba(241,245,249,.9);border-color:var(--line2)}
+:root[data-theme="light"] .chip b{color:var(--gold)}
+:root[data-theme="light"] .scr{background:var(--glass);border-color:var(--line2);backdrop-filter:blur(6px)}
+:root[data-theme="light"] .scr::after{background:none}
+:root[data-theme="light"] .scr header{border-color:var(--line2);color:var(--cyan2)}
+:root[data-theme="light"] .eps button,.ivs button{background:rgba(241,245,249,.75)}
+:root[data-theme="light"] .eps button[aria-pressed=true],:root[data-theme="light"] .ivs button[aria-pressed=true]{border-color:var(--mag);background:rgba(162,28,175,.08);box-shadow:0 0 12px rgba(162,28,175,.12)}
+:root[data-theme="light"] .hero h2{color:var(--diam)}
+:root[data-theme="light"] .fact{background:rgba(241,245,249,.7);border-color:var(--line2)}
+:root[data-theme="light"] .fact mark{color:var(--cyan2)}
+:root[data-theme="light"] .opts button{background:rgba(241,245,249,.8)}
+:root[data-theme="light"] .opts button.ok{border-color:var(--ok);background:rgba(22,163,74,.08)}
+:root[data-theme="light"] .opts button.no{border-color:var(--no);background:rgba(220,38,38,.06)}
+:root[data-theme="light"] .nav{background:rgba(255,255,255,.85);border-color:var(--line2)}
+:root[data-theme="light"] .nav .cur b{color:var(--diam)}
+:root[data-theme="light"] .modal{background:rgba(241,245,249,.72)}
+:root[data-theme="light"] .dialog{background:var(--deep);border-color:var(--line2)}
+:root[data-theme="light"] .dialog h2{color:var(--diam)}
+:root[data-theme="light"] .toast{background:var(--glass2);border-color:var(--cyan)}
+:root[data-theme="light"] #guide .g-ava{box-shadow:0 0 18px rgba(8,145,178,.2)}
+:root[data-theme="light"] #guide .g-bub{background:var(--glass2);border-color:var(--cyan)}
+:root[data-theme="light"] #guide .g-name{color:var(--cyan2)}
+:root[data-theme="light"] .gfx .pane{background:rgba(241,245,249,.7);border-color:var(--line2)}
+:root[data-theme="light"] .ach div{background:rgba(241,245,249,.7);border-color:var(--line2)}
+:root[data-theme="light"] .ach div.on{border-color:var(--gold);box-shadow:0 0 10px rgba(180,83,9,.1)}
+:root[data-theme="light"] #mapc{background:#e2e8f0}
+:root[data-theme="light"] .storybox{border-color:var(--line2);border-left-color:var(--mag);background:rgba(241,245,249,.6)}
+:root[data-theme="light"] button.pri{background:var(--cyan);border-color:var(--cyan);color:#fff}
+:root[data-theme="light"] button:hover:not(:disabled){border-color:var(--cyan);box-shadow:0 0 8px rgba(8,145,178,.15)}
 </style>
 <style>.lang-sw{font:600 12px/1 system-ui,sans-serif;padding:4px 6px;border-radius:6px}.qtext,.explain,.fact p,.fact small{white-space:pre-line}</style>
 <script>/*!
