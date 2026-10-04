@@ -135211,19 +135211,23 @@ function HistadaFx(host) {
 }
 
 
-const RULES_TEXT = `ZASADY GRY HISTADA (wersja cyfrowa/planszowa):
+const _isRelGame = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) 
+  ? (window.HistadaCore.getEdition() === 'religion') 
+  : true;
+
+const RULES_TEXT = `ZASADY GRY HISTADA (${_isRelGame ? 'wersja R – dzieje religii i wiary' : 'wersja cyfrowa/planszowa'}):
 - Gra dla 1–12 graczy. Każdy ma postać i kartonik z 9 rzędami inteligencji i rzędem sumy (kółka zębate 0000–9999).
-- Tura: 1) rzut kośćmi: biała k12 = epoka (12 epok od Początku wszechświata do Przyszłości), czarna k12 = jeden z 12 przedziałów czasu tej epoki, dwie szare k6 = liczba pól ruchu; 2) ruch pionkiem o najwyżej tyle pól, ile wypadło na k6 (w pierwszej turze wejście na dowolne pole); pola z łódką to porty – trasa morska między portami liczy się jak 1 krok; wyspy mają promy; 3) karta dziedziny z talii 36 kart (niebieskie humanistyka, czerwone technika, zielone przyroda); 4) 9 pytań o miejsce (pole) × czas (epoka i przedział) × dziedzinę, po jednym dla każdego typu inteligencji: muzyczno-rytmiczna, wizualno-przestrzenna, werbalno-językowa, logiczno-matematyczna, cielesno-kinestetyczna, interpersonalna, intrapersonalna, przyrodnicza, egzystencjalna; 5) za dobrą odpowiedź 10 punktów w danej inteligencji i w sumie.
+- Tura: 1) rzut kośćmi: biała k12 = epoka (${_isRelGame ? '12 epok sakralnych od Mezopotamii i Pradziejów do Paruzji i Królestwa Bożego' : '12 epok od Początku wszechświata do Przyszłości'}), czarna k12 = jeden z 12 przedziałów czasu tej epoki, dwie szare k6 = liczba pól ruchu; 2) ruch pionkiem o najwyżej tyle pól, ile wypadło na k6 (w pierwszej turze wejście na dowolne pole); pola z łódką to porty – trasa morska między portami liczy się jak 1 krok; wyspy mają promy; 3) karta dziedziny z talii 36 kart (${_isRelGame ? 'niebieskie Religie Księgi, czerwone Wierzenia Pierwotne, zielone Religie Wschodu' : 'niebieskie humanistyka, czerwone technika, zielone przyroda'}); 4) 9 pytań o miejsce (pole) × czas (epoka i przedział) × dziedzinę, po jednym dla każdego typu inteligencji: muzyczno-rytmiczna, wizualno-przestrzenna, werbalno-językowa, logiczno-matematyczna, cielesno-kinestetyczna, interpersonalna, intrapersonalna, przyrodnicza, egzystencjalna; 5) za dobrą odpowiedź 10 punktów w danej inteligencji i w sumie.
 - Koniec: kto pierwszy osiągnie cel punktowy (np. 1000 albo 10 000); runda jest dokańczana, żeby wszyscy mieli tyle samo tur. Albo limit czasu. Wygrywa najwyższa suma.
 - Plansza fizyczna: kości można wpisać lub sfotografować, pole zeskanować telefonem (numer i dwie runy na polu), kartę dziedziny zeskanować po kodzie (np. T02).
 - Poziomy inteligencji na certyfikacie: Nowicjusz 10+, Adept 50+, Znawca 150+, Mistrz 300+, Arcymistrz 600+ punktów.`;
 
 const FAQ = [
   [/port|łód|morz|statek/, 'Pola z łódką to porty. Z portu możesz przepłynąć trasą morską do innego portu, a taki rejs liczy się jak jeden krok.'],
-  [/biał|epok/, 'Biała kość k12 wybiera epokę: od Początku wszechświata (1) do Przyszłości (12).'],
+  [/biał|epok/, _isRelGame ? 'Biała kość k12 wybiera epokę sakralną: od Pradziejów i Mezopotamii (1) do Paruzji i Królestwa Bożego (12).' : 'Biała kość k12 wybiera epokę: od Początku wszechświata (1) do Przyszłości (12).'],
   [/czarn|przedział/, 'Czarna kość k12 wybiera jeden z dwunastu przedziałów czasu w wylosowanej epoce.'],
   [/szar|ruch|ile pól|krok/, 'Dwie szare kości k6 mówią, o ile pól najwyżej możesz się przesunąć. W pierwszej turze wybierasz dowolne pole.'],
-  [/kart|dziedzin/, 'Karta dziedziny mówi, z jakiej nauki będą pytania. Kolor: niebieski to humanistyka, czerwony technika, zielony przyroda.'],
+  [/kart|dziedzin|nurt|relig/, _isRelGame ? 'Karta dziedziny mówi, z jakiego nurtu wiary będą pytania. Kolor: niebieski to Religie Księgi, czerwony Wierzenia Pierwotne, zielony Religie Wschodu.' : 'Karta dziedziny mówi, z jakiej nauki będą pytania. Kolor: niebieski to humanistyka, czerwony technika, zielony przyroda.'],
   [/punkt|kółk|wygr|koniec|cel/, 'Za każdą dobrą odpowiedź dostajesz 10 punktów w danej inteligencji. Wygrywa ten, kto pierwszy dojdzie do celu, ale rundę kończą wszyscy.'],
   [/inteligenc/, 'Każda runda ma 9 pytań, po jednym dla każdego typu inteligencji: od muzyczno-rytmicznej po egzystencjalną.'],
   [/skan|zdjęc|run/, 'Na planszy fizycznej zeskanuj pole telefonem albo wpisz jego numer lub dwie runy. Kartę rozpoznam po kodzie, np. T02.'],
@@ -135309,7 +135313,12 @@ const G = (() => {
     show('…'); talking(true);
     askCtl && askCtl.abort(); askCtl = new AbortController();
     const st = S ? `Stan gry: runda ${S.round}, tura gracza ${E.current(S).name}, faza: ${S.phase}${S.dice ? `, wyrzucono epokę ${E.EPOCHS[S.dice.epoch - 1].name}, ruch ${S.dice.move[0] + S.dice.move[1]} pól` : ''}.` : 'Gra jeszcze się nie zaczęła.';
-    const prompt = `Jesteś Histadą – przyjazną przewodniczką i lektorką edukacyjnej gry planszowej HISTADA. Mówisz po polsku, w pierwszej osobie, w formie żeńskiej, ciepło i krótko (najwyżej 3 zdania, bez list i bez emotikonów). Odpowiadasz tylko na podstawie zasad poniżej; jeśli czegoś w nich nie ma, powiedz, że o tym decydują gracze. Nie zdradzaj odpowiedzi na pytania quizowe.
+    const prompt = _isRelGame
+      ? `Jesteś Histadą – przyjazną przewodniczką i lektorką edukacyjnej gry planszowej HISTADA w wersji religijnej (Wersja R). Trzy nurty kart to: niebieski – Religie Księgi, zielony – Religie Wschodu, czerwony – Wierzenia Pierwotne. Mówisz po polsku, w pierwszej osobie, w formie żeńskiej, ciepło i krótko (najwyżej 3 zdania, bez list i bez emotikonów). Odpowiadasz tylko na podstawie zasad poniżej; jeśli czegoś w nich nie ma, powiedz, że o tym decydują gracze. Nie zdradzaj odpowiedzi na pytania quizowe.
+${RULES_TEXT}
+${st}
+Pytanie gracza: ${q}`
+      : `Jesteś Histadą – przyjazną przewodniczką i lektorką edukacyjnej gry planszowej HISTADA. Mówisz po polsku, w pierwszej osobie, w formie żeńskiej, ciepło i krótko (najwyżej 3 zdania, bez list i bez emotikonów). Odpowiadasz tylko na podstawie zasad poniżej; jeśli czegoś w nich nie ma, powiedz, że o tym decydują gracze. Nie zdradzaj odpowiedzi na pytania quizowe.
 ${RULES_TEXT}
 ${st}
 Pytanie gracza: ${q}`;
@@ -135321,7 +135330,13 @@ Pytanie gracza: ${q}`;
   const letters = 'ABCD';
   return {
     say, once, stop, cfg, fx: HX,
-    welcome(s) { HX.react('hi'); lastKey = `${s.turn}|${s.phase}`; say(`Witajcie! Jestem Histada, wasza przewodniczka po czasie i przestrzeni. Każda tura to podróż: rzut kośćmi, ruch po mapie, karta dziedziny i dziewięć pytań. Zaczyna ${E.current(s).name}.`); },
+    welcome(s) {
+      HX.react('hi');
+      lastKey = `${s.turn}|${s.phase}`;
+      say(_isRelGame
+        ? `Witajcie! Jestem Histada, wasza przewodniczka po dziejach wiary i trzech wielkich nurtach: Religiach Wschodu, Religiach Księgi i Wierzeniach Pierwotnych. Każda tura to podróż duchowa: rzut kośćmi, ruch po mapie, karta tradycji i dziewięć pytań. Zaczyna ${E.current(s).name}.`
+        : `Witajcie! Jestem Histada, wasza przewodniczka po czasie i przestrzeni. Każda tura to podróż: rzut kośćmi, ruch po mapie, karta dziedziny i dziewięć pytań. Zaczyna ${E.current(s).name}.`);
+    },
     phase(s) {
       const p = E.current(s), phys = s.ui && s.ui.physical, k = `${s.turn}|${s.phase}`;
       if (s.phase === 'roll') once(k, phys ? `${p.name}, rzuć kośćmi na stole i wpisz wynik. Biała kość wybiera epokę, czarna przedział czasu, a szare – liczbę pól.` : `${p.name}, rzuć kośćmi. Biała wybierze epokę, czarna przedział czasu, a dwie szare – ile pól możesz przejść.`);
@@ -136701,19 +136716,23 @@ function HistadaFx(host) {
 }
 
 
-const RULES_TEXT = `HISTADA GAME RULES (digital/board version):
+const _isRelGameEn = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) 
+  ? (window.HistadaCore.getEdition() === 'religion') 
+  : true;
+
+const RULES_TEXT = `HISTADA GAME RULES (${_isRelGameEn ? 'Religion Edition R' : 'digital/board version'}):
 - A game for 1–12 players. Each player has a character and a character sheet with 9 intelligence rows and a total row (gear wheels 0000–9999).
-- Turn: 1) dice roll: white d12 = epoch (12 epochs from the Beginning of the Universe to the Future), black d12 = one of the 12 time intervals of that epoch, two gray d6 = number of fields to move; 2) move the pawn up to as many fields as rolled on the d6 (on the first turn, enter on any field); fields with a boat are ports – a sea route between ports counts as 1 step; islands have ferries; 3) a domain card from the 36-card deck (blue humanities, red technology, green nature); 4) 9 questions about the place (field) × time (epoch and interval) × domain, one for each type of intelligence: musical-rhythmic, visual-spatial, verbal-linguistic, logical-mathematical, bodily-kinesthetic, interpersonal, intrapersonal, naturalistic, existential; 5) a correct answer earns 10 points in that intelligence and in the total.
+- Turn: 1) dice roll: white d12 = epoch (${_isRelGameEn ? '12 sacred epochs from Mesopotamia to the Parousia and the Kingdom of God' : '12 epochs from the Beginning of the Universe to the Future'}), black d12 = one of the 12 time intervals of that epoch, two gray d6 = number of fields to move; 2) move the pawn up to as many fields as rolled on the d6 (on the first turn, enter on any field); fields with a boat are ports – a sea route between ports counts as 1 step; islands have ferries; 3) a domain card from the 36-card deck (${_isRelGameEn ? 'blue Religions of the Book, red Primal Beliefs, green Religions of the East' : 'blue humanities, red technology, green nature'}); 4) 9 questions about the place (field) × time (epoch and interval) × domain, one for each type of intelligence: musical-rhythmic, visual-spatial, verbal-linguistic, logical-mathematical, bodily-kinesthetic, interpersonal, intrapersonal, naturalistic, existential; 5) a correct answer earns 10 points in that intelligence and in the total.
 - End: whoever first reaches the points target (e.g. 1,000 or 10,000); the round is finished so that everyone has had the same number of turns. Or a time limit. The highest total wins.
 - Physical board: dice can be entered or photographed, a field scanned with a phone (the number and two runes on the field), a domain card scanned by its code (e.g. T02).
 - Intelligence levels on the certificate: Novice 10+, Adept 50+, Expert 150+, Master 300+, Grandmaster 600+ points.`;
 
 const FAQ = [
   [/port|boat|sea|ship|sail|ferr/, 'Fields with a boat are ports. From a port you can sail along a sea route to another port, and such a voyage counts as one step.'],
-  [/white|epoch/, 'The white d12 die picks the epoch: from the Beginning of the Universe (1) to the Future (12).'],
+  [/white|epoch/, _isRelGameEn ? 'The white d12 die picks the sacred epoch: from Mesopotamia and Antiquity (1) to the Parousia and Kingdom of God (12).' : 'The white d12 die picks the epoch: from the Beginning of the Universe (1) to the Future (12).'],
   [/black|interval/, 'The black d12 die picks one of the twelve time intervals in the rolled epoch.'],
   [/gr[ae]y|move|moving|how far|how many fields|step/, 'The two gray d6 dice tell you the maximum number of fields you can move. On your first turn you choose any field.'],
-  [/card|domain/, 'The domain card tells you which field of knowledge the questions come from. Color: blue is humanities, red is technology, green is nature.'],
+  [/card|domain|tradition|relig/, _isRelGameEn ? 'The domain card tells you which sacred tradition the questions come from. Color: blue is Religions of the Book, red is Primal Beliefs, green is Religions of the East.' : 'The domain card tells you which field of knowledge the questions come from. Color: blue is humanities, red is technology, green is nature.'],
   [/point|gear|win|end|goal|target|score/, 'For every correct answer you get 10 points in that intelligence. Whoever reaches the target first wins, but everyone finishes the round.'],
   [/intelligen/, 'Every round has 9 questions, one for each type of intelligence: from musical-rhythmic to existential.'],
   [/scan|photo|picture|rune/, 'On the physical board, scan the field with your phone or enter its number or its two runes. I\'ll recognize a card by its code, e.g. T02.'],
@@ -136797,7 +136816,12 @@ const G = (() => {
     show('…'); talking(true);
     askCtl && askCtl.abort(); askCtl = new AbortController();
     const st = S ? `Game state: round ${S.round}, turn of player ${E.current(S).name}, phase: ${S.phase}${S.dice ? `, epoch rolled: ${E.EPOCHS[S.dice.epoch - 1].name}, move ${S.dice.move[0] + S.dice.move[1]} fields` : ''}.` : 'The game has not started yet.';
-    const prompt = `You are Histada – the friendly guide and narrator of the educational board game HISTADA. You speak English, in the first person, as a woman, warmly and briefly (at most 3 sentences, no lists and no emoji). You answer only based on the rules below; if something is not covered there, say that the players decide. Do not reveal the answers to quiz questions.
+    const prompt = _isRelGameEn
+      ? `You are Histada – the friendly guide and narrator of the educational board game HISTADA in Religion Edition R. The three card pillars are: blue – Religions of the Book, green – Religions of the East, red – Primal Beliefs. You speak English, in the first person, as a woman, warmly and briefly (at most 3 sentences, no lists and no emoji). You answer only based on the rules below; if something is not covered there, say that the players decide. Do not reveal the answers to quiz questions.
+${RULES_TEXT}
+${st}
+Player's question: ${q}`
+      : `You are Histada – the friendly guide and narrator of the educational board game HISTADA. You speak English, in the first person, as a woman, warmly and briefly (at most 3 sentences, no lists and no emoji). You answer only based on the rules below; if something is not covered there, say that the players decide. Do not reveal the answers to quiz questions.
 ${RULES_TEXT}
 ${st}
 Player's question: ${q}`;
@@ -136809,7 +136833,13 @@ Player's question: ${q}`;
   const letters = 'ABCD';
   return {
     say, once, stop, cfg, fx: HX,
-    welcome(s) { HX.react('hi'); lastKey = `${s.turn}|${s.phase}`; say(`Welcome! I'm Histada, your guide through time and space. Every turn is a journey: a dice roll, a move across the map, a domain card and nine questions. First up: ${E.current(s).name}.`); },
+    welcome(s) {
+      HX.react('hi');
+      lastKey = `${s.turn}|${s.phase}`;
+      say(_isRelGameEn
+        ? `Welcome! I'm Histada, your guide across sacred history and the three spiritual pillars: Religions of the East, Religions of the Book, and Primal Beliefs. Every turn is a spiritual journey: a dice roll, a move across the map, a tradition card and nine questions. First up: ${E.current(s).name}.`
+        : `Welcome! I'm Histada, your guide through time and space. Every turn is a journey: a dice roll, a move across the map, a domain card and nine questions. First up: ${E.current(s).name}.`);
+    },
     phase(s) {
       const p = E.current(s), phys = s.ui && s.ui.physical, k = `${s.turn}|${s.phase}`;
       if (s.phase === 'roll') once(k, phys ? `${p.name}, roll the dice on the table and enter the result. The white die picks the epoch, the black one the time interval, and the gray ones – the number of fields.` : `${p.name}, roll the dice. The white one will pick the epoch, the black one the time interval, and the two gray ones – how many fields you can move.`);

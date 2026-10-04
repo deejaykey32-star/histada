@@ -1794,7 +1794,7 @@ const CATN = new Proxy({ H: 'Humanistyka', T: 'Technika', P: 'Przyroda' }, {
     if (typeof prop === 'symbol') return target[prop];
     const isRel = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) ? (window.HistadaCore.getEdition() === 'religion') : true;
     if (isRel) {
-      const relMap = { H: 'Religie Księgi', P: 'Drogi Wschodu', T: 'Wierzenia Pierwotne' };
+      const relMap = { H: 'Religie Księgi', P: 'Religie Wschodu', T: 'Wierzenia Pierwotne' };
       return relMap[prop] || target[prop];
     }
     return target[prop];
@@ -1969,7 +1969,7 @@ const ACH = [
   { id: 'perfect', i: '💎', n: 'Czysty diament', d: '9 z 9 w jednym quizie', ok: p => Object.values(p.done).some(x => x.best >= 9) },
   { id: 'ten', i: '🔟', n: 'Dziesiątka', d: 'Ukończ 10 quizów', ok: p => p.quizzes >= 10 },
   { id: 'streak', i: '🔥', n: 'Seria', d: '3 quizy z rzędu po 7+ dobrych', ok: p => (p.streak || 0) >= 3 },
-  { id: 'podests', i: '🔺', n: 'Trzy nauki', d: 'Quiz z humanistyki, techniki i przyrody', ok: p => ['H', 'T', 'P'].every(c => Object.keys(p.done).some(k => k[0] === c)) },
+  { id: 'podests', i: '🔺', n: 'Trzy nauki', get d() { const isR = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) ? (window.HistadaCore.getEdition() === 'religion') : true; return isR ? 'Quiz z Religii Wschodu, Religii Księgi i Wierzeń Pierwotnych' : 'Quiz z humanistyki, techniki i przyrody'; }, ok: p => ['H', 'T', 'P'].every(c => Object.keys(p.done).some(k => k[0] === c)) },
   { id: 'time', i: '⏳', n: 'Podróżnik w czasie', d: 'Quiz w każdej z 12 epok', ok: p => new Set(Object.keys(p.done).map(k => k.split('|')[1])).size >= 12 },
   { id: 'keeper', i: '🌀', n: 'Strażnik karty', d: 'Wszystkie 12 epok jednej dziedziny', ok: p => DOMS.some(d => { for (let i = 0; i < 12; i++) if (!p.done[d.id + '|' + i]) return false; return true; }) },
   { id: 'cards', i: '🃏', n: 'Cała talia', d: 'Stań na każdej z 36 kart', ok: p => (p.cards || []).length >= 36 },
@@ -2363,9 +2363,10 @@ addEventListener('resize', hudH); hudH();
 changed();
 D3.init();
 setTimeout(() => {
+  const isRel = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) ? (window.HistadaCore.getEdition() === 'religion') : true;
   const resumed = P.updated && (ST.ep != null || ST.card || ST.quiz);
   if (resumed) { G.fx.react('hi'); G.say(`Witaj z powrotem! Wracasz do karty ${curDom().name}${ST.quiz ? `, pytanie ${ST.quiz.i + 1} z 9` : ''}.`); if (narrow()) tab('c'); }
-  else { G.fx.react('hi'); G.say('Witaj w Cyfrowym Diamencie! Stoisz na karcie dziedziny. Strzałkami przechodzisz w lewo i w prawo. Na lewym ekranie wybierasz epokę i przedział czasu, a na prawym miejsce na mapie świata.'); if (narrow()) tab('l'); }
+  else { G.fx.react('hi'); G.say(isRel ? 'Witaj w Cyfrowym Diamencie! Stoisz na karcie nurtu religijnego. Strzałkami przechodzisz w lewo i w prawo. Na lewym ekranie wybierasz epokę i przedział czasu, a na prawym święte miejsce na mapie świata.' : 'Witaj w Cyfrowym Diamencie! Stoisz na karcie dziedziny. Strzałkami przechodzisz w lewo i w prawo. Na lewym ekranie wybierasz epokę i przedział czasu, a na prawym miejsce na mapie świata.'); if (narrow()) tab('l'); }
 }, 700);
 (async () => {
   if (!window.claude || !window.claude.use) return;
@@ -2896,7 +2897,7 @@ const CATN = new Proxy({ H: 'Humanities', T: 'Technology', P: 'Nature' }, {
     if (typeof prop === 'symbol') return target[prop];
     const isRel = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) ? (window.HistadaCore.getEdition() === 'religion') : true;
     if (isRel) {
-      const relMap = { H: 'Book Religions', P: 'Eastern Wisdom', T: 'Ancient Beliefs' };
+      const relMap = { H: 'Religions of the Book', P: 'Religions of the East', T: 'Primal Beliefs' };
       return relMap[prop] || target[prop];
     }
     return target[prop];
@@ -3059,7 +3060,7 @@ const ACH = [
   { id: 'perfect', i: '💎', n: 'Flawless Diamond', d: '9 of 9 in a single quiz', ok: p => Object.values(p.done).some(x => x.best >= 9) },
   { id: 'ten', i: '🔟', n: 'Top Ten', d: 'Complete 10 quizzes', ok: p => p.quizzes >= 10 },
   { id: 'streak', i: '🔥', n: 'Streak', d: '3 quizzes in a row with 7+ correct', ok: p => (p.streak || 0) >= 3 },
-  { id: 'podests', i: '🔺', n: 'Three Sciences', d: 'A quiz in humanities, technology and nature', ok: p => ['H', 'T', 'P'].every(c => Object.keys(p.done).some(k => k[0] === c)) },
+  { id: 'podests', i: '🔺', n: 'Three Sciences', get d() { const isR = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) ? (window.HistadaCore.getEdition() === 'religion') : true; return isR ? 'A quiz in Religions of the East, Religions of the Book and Primal Beliefs' : 'A quiz in humanities, technology and nature'; }, ok: p => ['H', 'T', 'P'].every(c => Object.keys(p.done).some(k => k[0] === c)) },
   { id: 'time', i: '⏳', n: 'Time Traveler', d: 'A quiz in each of the 12 epochs', ok: p => new Set(Object.keys(p.done).map(k => k.split('|')[1])).size >= 12 },
   { id: 'keeper', i: '🌀', n: 'Card Keeper', d: 'All 12 epochs of one domain', ok: p => DOMS.some(d => { for (let i = 0; i < 12; i++) if (!p.done[d.id + '|' + i]) return false; return true; }) },
   { id: 'cards', i: '🃏', n: 'Full Deck', d: 'Stand on each of the 36 cards', ok: p => (p.cards || []).length >= 36 },

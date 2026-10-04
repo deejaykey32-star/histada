@@ -2419,22 +2419,36 @@
   }
 
   function getGuidanceText(storyData, seriesIndex = 1, lang = 'pl') {
+    const isRel = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition)
+      ? (window.HistadaCore.getEdition() === 'religion')
+      : true;
+
     if (lang === 'en') {
-      const intro = `Welcome to HISTADA! I am Histada, your guide across the board, epochs, and domains of knowledge. Here is your reminder of the game rules for this round: in a moment, I will share an authentic historical chronicle with you. Listen with close attention, because each of the 9 quiz questions that follow will test a different dimension of your intelligence and directly relate to facts in this story — from logic and spatial reasoning to language, music, physical skill, interpersonal cooperation, naturalist observation, and philosophical reflection. For every correct answer, you score 10 points and advance your cognitive cogwheels! Now, listen to the chronicle:`;
+      const intro = isRel
+        ? `Welcome to HISTADA Religion Edition! I am Histada, your personal guide across sacred history, epochs, and the three spiritual pillars: Religions of the East, Religions of the Book, and Primal Beliefs. Here is your reminder of the game rules for this round: in a moment, I will share an authentic sacred chronicle and spiritual testimony with you. Listen with close attention, because each of the 9 quiz questions that follow will test a different dimension of your spiritual and intellectual intelligence and directly relate to facts in this story — from logic and spatial reasoning to sacred text, liturgical chant, community bonds, nature contemplation, and existential meaning. For every correct answer, you score 10 points and advance your cognitive cogwheels! Now, listen to the sacred chronicle:`
+        : `Welcome to HISTADA! I am Histada, your guide across the board, epochs, and domains of knowledge. Here is your reminder of the game rules for this round: in a moment, I will share an authentic historical chronicle with you. Listen with close attention, because each of the 9 quiz questions that follow will test a different dimension of your intelligence and directly relate to facts in this story — from logic and spatial reasoning to language, music, physical skill, interpersonal cooperation, naturalist observation, and philosophical reflection. For every correct answer, you score 10 points and advance your cognitive cogwheels! Now, listen to the chronicle:`;
       const body = storyData.text_en || storyData.text;
-      const outro = `That concludes our chronicle! Here is what to do next step by step: Step one — click 'Start Quiz' or 'Proceed to Questions'. Step two — read each of the 9 questions carefully and select one correct answer among options A, B, C, or D. Step three — after completing the quiz, tally your points, update your character sheet cogwheels, advance your pawn on the world map, and pass the dice to the next player. Good luck, I believe in you!`;
+      const outro = isRel
+        ? `That concludes our sacred chronicle! Here is what to do next step by step: Step one — click 'Start Quiz' or 'Proceed to Questions'. Step two — read each of the 9 questions carefully and select one correct answer among options A, B, C, or D. Step three — after completing the quiz, tally your points, update your character sheet cogwheels, advance your pawn on the sacred map, and pass the dice to the next player. May wisdom guide you, good luck!`
+        : `That concludes our chronicle! Here is what to do next step by step: Step one — click 'Start Quiz' or 'Proceed to Questions'. Step two — read each of the 9 questions carefully and select one correct answer among options A, B, C, or D. Step three — after completing the quiz, tally your points, update your character sheet cogwheels, advance your pawn on the world map, and pass the dice to the next player. Good luck, I believe in you!`;
       return `${intro}\n\n${body}\n\n${outro}`;
     }
     if (lang === 'bi') {
-      const intro = `Witaj w grze HISTADA! Nazywam się Histada i jestem Twoją osobistą przewodniczką po wiedzy świata. Za chwilę przedstawię dwujęzyczną opowieść historyczną. Wysłuchaj jej z wielką uwagą, bo quiz zawiera 9 pytań w języku polskim i angielskim! Welcome to HISTADA! I am Histada, your guide. Listen to this bilingual chronicle, and prepare for 9 questions testing 9 intelligences!`;
+      const intro = isRel
+        ? `Witaj w grze HISTADA w wersji religijnej! Nazywam się Histada i jestem Twoją osobistą przewodniczką po dziejach wiary i trzech wielkich nurtach: Religiach Wschodu, Religiach Księgi i Wierzeniach Pierwotnych. Za chwilę przedstawię dwujęzyczną opowieść i świadectwo sakralne. Welcome to HISTADA Religion Edition! I am Histada, your guide across the three spiritual pillars: Religions of the East, Religions of the Book, and Primal Beliefs. Listen to this bilingual chronicle, and prepare for 9 questions testing 9 intelligences!`
+        : `Witaj w grze HISTADA! Nazywam się Histada i jestem Twoją osobistą przewodniczką po wiedzy świata. Za chwilę przedstawię dwujęzyczną opowieść historyczną. Wysłuchaj jej z wielką uwagą, bo quiz zawiera 9 pytań w języku polskim i angielskim! Welcome to HISTADA! I am Histada, your guide. Listen to this bilingual chronicle, and prepare for 9 questions testing 9 intelligences!`;
       const body = (storyData.text_pl || storyData.text) + '\n\n---\n\n' + (storyData.text_en || '');
       const outro = `To koniec opowieści! Krok pierwszy – kliknij Rozpocznij Quiz. Krok drugi – przeczytaj 9 pytań i wskaż poprawną odpowiedź A, B, C lub D. Krok trzeci – zsumuj punkty i przesuń pionek. That concludes our chronicle! Proceed to the quiz, read all 9 questions carefully, and select your answers. Powodzenia! Good luck!`;
       return `${intro}\n\n${body}\n\n${outro}`;
     }
 
-    const intro = `Witaj w grze HISTADA! Nazywam się Histada i jestem Twoją osobistą przewodniczką po planszy, epoce i dziedzinach wiedzy. Przypominam najważniejsze zasady gry dla tej rundy: za chwilę przedstawię Ci autentyczną opowieść historyczną. Wysłuchaj jej z wielką uwagą, ponieważ każde z dziewięciu pytań, które za chwilę usłyszysz w quizie, odnosi się ściśle do faktów z tej historii i bada inny rodzaj Twojej inteligencji – od logiki i wyobraźni przestrzennej, przez język, muzykę i sprawność manualną, aż po relacje społeczne, przyrodę i sens egzystencji. Za każdą poprawną odpowiedź zdobywasz 10 punktów i rozwijasz koła zębate wiedzy! A teraz posłuchaj opowieści:`;
+    const intro = isRel
+      ? `Witaj w grze HISTADA w wersji religijnej! Nazywam się Histada i jestem Twoją osobistą przewodniczką po dziejach wiary, pismach sakralnych i trzech wielkich nurtach duchowych: Religiach Wschodu, Religiach Księgi oraz Wierzeniach Pierwotnych. Przypominam najważniejsze zasady gry dla tej rundy: za chwilę przedstawię Ci autentyczną opowieść i świadectwo wiary. Wysłuchaj jej z wielką uwagą, ponieważ każde z dziewięciu pytań, które za chwilę usłyszysz w quizie, odnosi się ściśle do faktów z tej historii i bada inny wymiar Twojej inteligencji duchowej – od logiki i wyobraźni przestrzennej, przez język, muzykę i obrzędy, aż po relacje wspólnotowe, kontemplację przyrody i sens egzystencji. Za każdą poprawną odpowiedź zdobywasz 10 punktów i rozwijasz koła zębate wiedzy! A teraz posłuchaj opowieści:`
+      : `Witaj w grze HISTADA! Nazywam się Histada i jestem Twoją osobistą przewodniczką po planszy, epoce i dziedzinach wiedzy. Przypominam najważniejsze zasady gry dla tej rundy: za chwilę przedstawię Ci autentyczną opowieść historyczną. Wysłuchaj jej z wielką uwagą, ponieważ każde z dziewięciu pytań, które za chwilę usłyszysz w quizie, odnosi się ściśle do faktów z tej historii i bada inny rodzaj Twojej inteligencji – od logiki i wyobraźni przestrzennej, przez język, muzykę i sprawność manualną, aż po relacje społeczne, przyrodę i sens egzystencji. Za każdą poprawną odpowiedź zdobywasz 10 punktów i rozwijasz koła zębate wiedzy! A teraz posłuchaj opowieści:`;
     const body = storyData.text_pl || storyData.text;
-    const outro = `To koniec opowieści! Oto instrukcja, co po kolei robimy w grze: Krok pierwszy – kliknij przycisk 'Rozpocznij Quiz' lub 'Przejdź do pytań'. Krok drugi – przeczytaj uważnie każde z dziewięciu pytań i wskaż jedną poprawną odpowiedź spośród czterech opcji A, B, C lub D. Krok trzeci – po zakończeniu quizu zsumuj swoje punkty, zaktualizuj koła zębate na karcie postaci, przesuń pionek na mapie świata i przekaż kości kolejnemu graczowi. Powodzenia, trzymam za Ciebie kciuki!`;
+    const outro = isRel
+      ? `To koniec opowieści! Oto instrukcja, co po kolei robimy w grze: Krok pierwszy – kliknij przycisk 'Rozpocznij Quiz' lub 'Przejdź do pytań'. Krok drugi – przeczytaj uważnie każde z dziewięciu pytań i wskaż jedną poprawną odpowiedź spośród czterech opcji A, B, C lub D. Krok trzeci – po zakończeniu quizu zsumuj swoje punkty, zaktualizuj koła zębate na karcie postaci, przesuń pionek na mapie świata i przekaż kości kolejnemu graczowi. Niech prowadzi Cię mądrość, powodzenia!`
+      : `To koniec opowieści! Oto instrukcja, co po kolei robimy w grze: Krok pierwszy – kliknij przycisk 'Rozpocznij Quiz' lub 'Przejdź do pytań'. Krok drugi – przeczytaj uważnie każde z dziewięciu pytań i wskaż jedną poprawną odpowiedź spośród czterech opcji A, B, C lub D. Krok trzeci – po zakończeniu quizu zsumuj swoje punkty, zaktualizuj koła zębate na karcie postaci, przesuń pionek na mapie świata i przekaż kości kolejnemu graczowi. Powodzenia, trzymam za Ciebie kciuki!`;
     return `${intro}\n\n${body}\n\n${outro}`;
   }
 
@@ -2805,6 +2819,24 @@
     s = s.replace(/\bH-i-s-t-a-d-a\b/gi, 'Histada');
     s = s.replace(/\bH\.I\.S\.T\.A\.D\.A\b/gi, 'Histada');
     s = s.replace(/\bHISTADA\b/g, 'Histada');
+
+    // Adaptacja kategorii w wersji R dla lektorki Histady
+    const isRelEdition = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition)
+      ? (window.HistadaCore.getEdition() === 'religion')
+      : true;
+    if (isRelEdition) {
+      s = s.replace(/niebieski[e]?\s+humanistyka/gi, 'niebieskie Religie Księgi');
+      s = s.replace(/czerwon[ye]\s+technika/gi, 'czerwone Wierzenia Pierwotne');
+      s = s.replace(/zielon[ye]\s+przyroda/gi, 'zielone Religie Wschodu');
+      s = s.replace(/podest to przyroda/gi, 'podest to Religie Wschodu');
+      s = s.replace(/niebieski\s+humanistyka/gi, 'niebieski Religie Księgi');
+      s = s.replace(/czerwony\s+technika/gi, 'czerwony Wierzenia Pierwotne');
+      s = s.replace(/zielony\s+przyroda/gi, 'zielony Religie Wschodu');
+      s = s.replace(/Humanistyka,\s*Przyroda\s*i\s*Technika/gi, 'Religie Wschodu, Religie Księgi i Wierzenia Pierwotne');
+      s = s.replace(/Humanistyka,\s*Technika\s*i\s*Przyroda/gi, 'Religie Księgi, Wierzenia Pierwotne i Religie Wschodu');
+      s = s.replace(/humanistyk[aęi],\s*technik[aęi]\s*i\s*przyrod[aęy]/gi, 'Religie Wschodu, Religie Księgi i Wierzenia Pierwotne');
+    }
+
     return s;
   }
 

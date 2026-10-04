@@ -1902,7 +1902,7 @@ const CATN = new Proxy({ H: 'Humanistyka', T: 'Technika', P: 'Przyroda' }, {
     if (typeof prop === 'symbol') return target[prop];
     const isRel = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) ? (window.HistadaCore.getEdition() === 'religion') : true;
     if (isRel) {
-      const relMap = { H: 'Religie Księgi', P: 'Drogi Wschodu', T: 'Wierzenia Pierwotne' };
+      const relMap = { H: 'Religie Księgi', P: 'Religie Wschodu', T: 'Wierzenia Pierwotne' };
       return relMap[prop] || target[prop];
     }
     return target[prop];
@@ -2952,7 +2952,7 @@ const ACH = [
   { id: 'first', i: '🎯', n: 'Pierwszy krok', d: 'Ukończ pierwszy quiz', ok: p => p.quizzes >= 1 },
   { id: 'perfect', i: '💎', n: 'Bezbłędnie', d: '9 z 9 w jednym quizie', ok: p => Object.values(p.done).some(x => x.best >= 9) },
   { id: 'ten', i: '🔟', n: 'Dziesiątka', d: 'Ukończ 10 quizów', ok: p => p.quizzes >= 10 },
-  { id: 'podests', i: '🔺', n: 'Trzy podesty', d: 'Korytarz w humanistyce, technice i przyrodzie', ok: p => ['H', 'T', 'P'].every(c => Object.keys(p.done).some(k => k[0] === c)) },
+  { id: 'podests', i: '🔺', n: 'Trzy podesty', get d() { const isR = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) ? (window.HistadaCore.getEdition() === 'religion') : true; return isR ? 'Korytarz w Religiach Wschodu, Religiach Księgi i Wierzeniach Pierwotnych' : 'Korytarz w humanistyce, technice i przyrodzie'; }, ok: p => ['H', 'T', 'P'].every(c => Object.keys(p.done).some(k => k[0] === c)) },
   { id: 'time', i: '⏳', n: 'Podróżnik w czasie', d: 'Korytarz w każdej z 12 epok', ok: p => new Set(Object.keys(p.done).map(k => k.split('|')[1])).size >= 12 },
   { id: 'keeper', i: '🌀', n: 'Strażnik dziedziny', d: 'Wszystkie 12 epok jednej dziedziny', ok: p => E.DOMAINS.some(d => { for (let i = 0; i < 12; i++) if (!p.done[d.id + '|' + i]) return false; return true; }) },
   { id: 'nine', i: '🌈', n: 'Dziewięć świateł', d: 'Adept we wszystkich 9 inteligencjach', ok: p => E.INTELLIGENCES.every(I => (p.pts[I.id] || 0) >= 50) },
@@ -3396,11 +3396,20 @@ const G = (() => {
 const told = new Set();
 function narrate() {
   const k = S.key === 'hall' ? 'hall' : S.key === 'glade' ? 'glade' : S.key; if (told.has(k)) return; told.add(k);
+  const isRel = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) ? (window.HistadaCore.getEdition() === 'religion') : true;
   const t = {
-    map: 'Witaj W Kręgu Tajemnicy! Jestem Histada. Wybierz na mapie świata miejsce podróży albo skorzystaj z listy, a potem wejdź do Kręgu.',
-    circle: 'To Krąg. Zielony podest to przyroda, niebieski humanistyka, a czerwony technika. Każdy z dwunastu portali prowadzi do jednej dziedziny nauki.',
-    glade: 'Polana epok. Każdy łuk to jedna z dwunastu epok, od początku wszechświata po przyszłość. Przejdź przez łuk, by wejść do korytarza czasu.',
-    hall: 'Korytarz czasu. Mijasz dwanaście bram – przedziałów czasu. Na ścianach czekają ciekawostki: kliknij, by je powiększyć. Na końcu korytarza jest stanowisko quizu.',
+    map: isRel
+      ? 'Witaj w Kręgu Tajemnicy! Jestem Histada. Wybierz na mapie świata święte miejsce podróży albo skorzystaj z listy, a potem wejdź do Kręgu.'
+      : 'Witaj W Kręgu Tajemnicy! Jestem Histada. Wybierz na mapie świata miejsce podróży albo skorzystaj z listy, a potem wejdź do Kręgu.',
+    circle: isRel
+      ? 'To Krąg. Zielony podest to Religie Wschodu, niebieski Religie Księgi, a czerwony Wierzenia Pierwotne. Każdy z dwunastu portali prowadzi do jednej tradycji i nurtu religijnego.'
+      : 'To Krąg. Zielony podest to przyroda, niebieski humanistyka, a czerwony technika. Każdy z dwunastu portali prowadzi do jednej dziedziny nauki.',
+    glade: isRel
+      ? 'Polana epok. Każdy łuk to jedna z dwunastu epok sakralnych, od pradziejów i Mezopotamii po Paruzję i Królestwo Boże. Przejdź przez łuk, by wejść do korytarza czasu.'
+      : 'Polana epok. Każdy łuk to jedna z dwunastu epok, od początku wszechświata po przyszłość. Przejdź przez łuk, by wejść do korytarza czasu.',
+    hall: isRel
+      ? 'Korytarz czasu. Mijasz dwanaście bram – przedziałów czasu wiary. Na ścianach czekają ciekawostki sakralne: kliknij, by je powiększyć. Na końcu korytarza jest stanowisko quizu.'
+      : 'Korytarz czasu. Mijasz dwanaście bram – przedziałów czasu. Na ścianach czekają ciekawostki: kliknij, by je powiększyć. Na końcu korytarza jest stanowisko quizu.',
   }[k];
   setTimeout(() => { G.say(t); G.fx.react(k === 'map' ? 'hi' : 'point'); }, 350);
 }
@@ -3973,7 +3982,7 @@ const CATN = new Proxy({ H: 'Humanities', T: 'Technology', P: 'Nature' }, {
     if (typeof prop === 'symbol') return target[prop];
     const isRel = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) ? (window.HistadaCore.getEdition() === 'religion') : true;
     if (isRel) {
-      const relMap = { H: 'Book Religions', P: 'Eastern Wisdom', T: 'Ancient Beliefs' };
+      const relMap = { H: 'Religions of the Book', P: 'Religions of the East', T: 'Primal Beliefs' };
       return relMap[prop] || target[prop];
     }
     return target[prop];
@@ -4999,7 +5008,7 @@ const ACH = [
   { id: 'first', i: '🎯', n: 'First Step', d: 'Complete your first quiz', ok: p => p.quizzes >= 1 },
   { id: 'perfect', i: '💎', n: 'Flawless', d: '9 out of 9 in one quiz', ok: p => Object.values(p.done).some(x => x.best >= 9) },
   { id: 'ten', i: '🔟', n: 'Perfect Ten', d: 'Complete 10 quizzes', ok: p => p.quizzes >= 10 },
-  { id: 'podests', i: '🔺', n: 'Three Podiums', d: 'A corridor in Humanities, Technology and Nature', ok: p => ['H', 'T', 'P'].every(c => Object.keys(p.done).some(k => k[0] === c)) },
+  { id: 'podests', i: '🔺', n: 'Three Podiums', get d() { const isR = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) ? (window.HistadaCore.getEdition() === 'religion') : true; return isR ? 'A corridor in Religions of the East, Religions of the Book and Primal Beliefs' : 'A corridor in Humanities, Technology and Nature'; }, ok: p => ['H', 'T', 'P'].every(c => Object.keys(p.done).some(k => k[0] === c)) },
   { id: 'time', i: '⏳', n: 'Time Traveler', d: 'A corridor in each of the 12 epochs', ok: p => new Set(Object.keys(p.done).map(k => k.split('|')[1])).size >= 12 },
   { id: 'keeper', i: '🌀', n: 'Domain Guardian', d: 'All 12 epochs of one domain', ok: p => E.DOMAINS.some(d => { for (let i = 0; i < 12; i++) if (!p.done[d.id + '|' + i]) return false; return true; }) },
   { id: 'nine', i: '🌈', n: 'Nine Lights', d: 'Adept in all 9 intelligences', ok: p => E.INTELLIGENCES.every(I => (p.pts[I.id] || 0) >= 50) },
@@ -5333,11 +5342,20 @@ const G = (() => {
 const told = new Set();
 function narrate() {
   const k = S.key === 'hall' ? 'hall' : S.key === 'glade' ? 'glade' : S.key; if (told.has(k)) return; told.add(k);
+  const isRel = (typeof window !== 'undefined' && window.HistadaCore && window.HistadaCore.getEdition) ? (window.HistadaCore.getEdition() === 'religion') : true;
   const t = {
-    map: 'Welcome to the Circle of Mystery! I\'m Histada. Pick a destination on the world map or use the list, then enter the Circle.',
-    circle: 'This is the Circle. The green podium is Nature, the blue one is Humanities, and the red one is Technology. Each of the twelve portals leads to one domain of knowledge.',
-    glade: 'The glade of epochs. Each arch is one of the twelve epochs, from the Beginning of the Universe to the Future. Walk through an arch to enter a time corridor.',
-    hall: 'The time corridor. You\'ll pass twelve gates – time intervals. Fun facts wait on the walls: click to enlarge them. At the end of the corridor is the quiz station.',
+    map: isRel
+      ? 'Welcome to the Circle of Mystery! I\'m Histada. Pick a sacred pilgrimage destination on the world map or use the list, then enter the Circle.'
+      : 'Welcome to the Circle of Mystery! I\'m Histada. Pick a destination on the world map or use the list, then enter the Circle.',
+    circle: isRel
+      ? 'This is the Circle. The green podium is Religions of the East, the blue one is Religions of the Book, and the red one is Primal Beliefs. Each of the twelve portals leads to one sacred tradition and spiritual path.'
+      : 'This is the Circle. The green podium is Nature, the blue one is Humanities, and the red one is Technology. Each of the twelve portals leads to one domain of knowledge.',
+    glade: isRel
+      ? 'The glade of epochs. Each arch is one of the twelve sacred epochs, from Mesopotamia to the Parousia and the Kingdom of God. Walk through an arch to enter a time corridor.'
+      : 'The glade of epochs. Each arch is one of the twelve epochs, from the Beginning of the Universe to the Future. Walk through an arch to enter a time corridor.',
+    hall: isRel
+      ? 'The time corridor. You\'ll pass twelve gates – sacred time intervals. Sacred facts wait on the walls: click to enlarge them. At the end of the corridor is the quiz station.'
+      : 'The time corridor. You\'ll pass twelve gates – time intervals. Fun facts wait on the walls: click to enlarge them. At the end of the corridor is the quiz station.',
   }[k];
   setTimeout(() => { G.say(t); G.fx.react(k === 'map' ? 'hi' : 'point'); }, 350);
 }
