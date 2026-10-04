@@ -2825,6 +2825,19 @@
       ? (window.HistadaCore.getEdition() === 'religion')
       : true;
     if (isRelEdition) {
+      // W wersji R odczytujemy kategorie wiary: Przyroda -> Religie Wschodu, Humanistyka -> Religie Księgi, Technika -> Wierzenia Pierwotne
+      s = s.replace(/(?:kategorie\s+|filary\s+)?przyroda,\s*humanistyka\s*i\s*technika/gi, 'Religie Wschodu, Religie Księgi i Wierzenia Pierwotne');
+      s = s.replace(/(?:kategorie\s+|filary\s+)?humanistyka,\s*przyroda\s*i\s*technika/gi, 'Religie Księgi, Religie Wschodu i Wierzenia Pierwotne');
+      s = s.replace(/(?:kategorie\s+|filary\s+)?humanistyka,\s*technika\s*i\s*przyroda/gi, 'Religie Księgi, Wierzenia Pierwotne i Religie Wschodu');
+      s = s.replace(/przyrod[aęy],\s*humanistyk[aęi]\s*i\s*technik[aęi]/gi, 'Religie Wschodu, Religie Księgi i Wierzenia Pierwotne');
+      s = s.replace(/humanistyk[aęi],\s*przyrod[aęy]\s*i\s*technik[aęi]/gi, 'Religie Księgi, Religie Wschodu i Wierzenia Pierwotne');
+      s = s.replace(/humanistyk[aęi],\s*technik[aęi]\s*i\s*przyrod[aęy]/gi, 'Religie Księgi, Wierzenia Pierwotne i Religie Wschodu');
+      s = s.replace(/karta\s+przyrody/gi, 'karta Religii Wschodu');
+      s = s.replace(/karty\s+przyrody/gi, 'karty Religii Wschodu');
+      s = s.replace(/karta\s+humanistyki/gi, 'karta Religii Księgi');
+      s = s.replace(/karty\s+humanistyki/gi, 'karty Religii Księgi');
+      s = s.replace(/karta\s+techniki/gi, 'karta Wierzeń Pierwotnych');
+      s = s.replace(/karty\s+techniki/gi, 'karty Wierzeń Pierwotnych');
       s = s.replace(/niebieski[e]?\s+humanistyka/gi, 'niebieskie Religie Księgi');
       s = s.replace(/czerwon[ye]\s+technika/gi, 'czerwone Wierzenia Pierwotne');
       s = s.replace(/zielon[ye]\s+przyroda/gi, 'zielone Religie Wschodu');
@@ -2832,9 +2845,6 @@
       s = s.replace(/niebieski\s+humanistyka/gi, 'niebieski Religie Księgi');
       s = s.replace(/czerwony\s+technika/gi, 'czerwony Wierzenia Pierwotne');
       s = s.replace(/zielony\s+przyroda/gi, 'zielony Religie Wschodu');
-      s = s.replace(/Humanistyka,\s*Przyroda\s*i\s*Technika/gi, 'Religie Wschodu, Religie Księgi i Wierzenia Pierwotne');
-      s = s.replace(/Humanistyka,\s*Technika\s*i\s*Przyroda/gi, 'Religie Księgi, Wierzenia Pierwotne i Religie Wschodu');
-      s = s.replace(/humanistyk[aęi],\s*technik[aęi]\s*i\s*przyrod[aęy]/gi, 'Religie Wschodu, Religie Księgi i Wierzenia Pierwotne');
     }
 
     return s;
