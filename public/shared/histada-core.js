@@ -3233,6 +3233,7 @@
     const currentLang = (typeof window !== 'undefined' && window.HistadaI18n && window.HistadaI18n.lang) ? window.HistadaI18n.lang() : 'pl';
     const isEn = currentLang === 'en';
     const isBi = currentLang === 'bi';
+    const isRel = (getEdition() === 'religion');
 
     const storyData = get4DMatrixStory({ epochId, periodId, hexId, domainCode, seriesIndex, lang: currentLang });
     const questions = get4DMatrixQuestions({ epochId, periodId, hexId, domainCode, seriesIndex, lang: currentLang });
@@ -3426,6 +3427,7 @@
   // --- 9-QUESTION QUIZ MODAL ---
   function openQuizModal(params) {
     const { questions, title = 'Quiz Histady (9 Pytań z 9 Inteligencji)' } = params;
+    const isRel = (getEdition() === 'religion');
 
     if (!questions || !questions.length) return;
 
@@ -3616,9 +3618,19 @@
     }
 
     const isEn = (typeof window !== 'undefined' && window.HistadaI18n && window.HistadaI18n.ui && window.HistadaI18n.ui() === 'en');
+    const isRel = (getEdition() === 'religion');
+
+    let basePath = '/';
+    if (typeof window !== 'undefined' && window.location && window.location.pathname) {
+      const match = window.location.pathname.match(/^(.*?\/)(?:gra|krag|diament|matryca|druk)(?:\/.*)?$/i);
+      if (match && match[1]) {
+        basePath = match[1];
+      }
+    }
 
     const modal = document.createElement('div');
     modal.className = 'histada-modal-backdrop histada-exit-modal';
+    modal.style.zIndex = '100000';
     modal.innerHTML = `
       <div class="histada-exit-modal-card">
         <div class="hem-header">
@@ -3636,7 +3648,7 @@
         </p>
 
         <div class="hem-links">
-          <a href="/" class="hem-link-btn hem-exit-primary">
+          <a href="${basePath}" class="hem-link-btn hem-exit-primary" id="hemExitHome">
             <span>🚪 <strong>${isEn ? 'EXIT GAME (Return to Home Page)' : 'WYJDŹ Z GRY (Powrót do Strony Głównej)'}</strong></span>
             <span>↗</span>
           </a>
@@ -3645,27 +3657,27 @@
             ${isEn ? 'Switch Game Mode:' : 'Przejdź do innego trybu:'}
           </div>
 
-          <a href="/gra/" class="hem-link-btn">
+          <a href="${basePath}gra/" class="hem-link-btn">
             <span>🎲 ${isEn ? 'Part 1: Tabletop Board Game' : 'Część 1: Planszowa (Plansza A1 i Pionki)'}</span>
             <span style="font-size:12px;color:var(--h-muted);">/gra/</span>
           </a>
 
-          <a href="/krag/" class="hem-link-btn">
+          <a href="${basePath}krag/" class="hem-link-btn">
             <span>🔮 ${isEn ? 'Part 2: Circle of Mystery' : 'Część 2: W Kręgu Tajemnicy (Multiplayer)'}</span>
             <span style="font-size:12px;color:var(--h-muted);">/krag/</span>
           </a>
 
-          <a href="/diament/" class="hem-link-btn">
+          <a href="${basePath}diament/" class="hem-link-btn">
             <span>💎 ${isEn ? 'Part 3: Digital Diamond' : 'Część 3: Cyfrowy Diament (1 Gracz)'}</span>
             <span style="font-size:12px;color:var(--h-muted);">/diament/</span>
           </a>
 
-          <a href="/matryca/" class="hem-link-btn">
+          <a href="${basePath}matryca/" class="hem-link-btn">
             <span>🧭 ${isEn ? '4D Matrix (12×12×502×36)' : 'Czterowymiarowa Matryca 4D (26 023 680 Serii)'}</span>
             <span style="font-size:12px;color:var(--h-muted);">/matryca/</span>
           </a>
 
-          <a href="/druk/" class="hem-link-btn">
+          <a href="${basePath}druk/" class="hem-link-btn">
             <span>🖨️ ${isEn ? 'Printable Kit (PDF 41 pages)' : 'Zestaw do Druku (PDF 41 stron)'}</span>
             <span style="font-size:12px;color:var(--h-muted);">/druk/</span>
           </a>
@@ -3734,7 +3746,7 @@
       const trigger = document.createElement('button');
       trigger.id = 'histadaGlobalMenuTrigger';
       trigger.className = 'histada-global-menu-trigger';
-      trigger.innerHTML = `<span>☰</span><span>${isEn ? 'Menu / Exit' : 'Menu / Wyjdź'}</span><span style="background:${isRel ? '#8e24aa' : '#0284c7'};color:#fff;padding:2px 7px;border-radius:10px;font-size:11px;font-weight:700;margin-left:4px;">${edCode}</span>`;
+      trigger.innerHTML = `<span>☰</span><span>${isEn ? 'Menu / Exit' : 'Menu / Wyjdź'}</span><span class="ed-badge-tag" style="background:${isRel ? '#8e24aa' : '#0284c7'};color:#fff !important;padding:2px 7px;border-radius:10px;font-size:11px;font-weight:700;margin-left:4px;">${edCode}</span>`;
       trigger.title = isEn ? 'Open navigation menu or exit game' : 'Otwórz menu nawigacji lub wyjdź z gry';
       trigger.onclick = () => openExitModal();
       document.body.appendChild(trigger);

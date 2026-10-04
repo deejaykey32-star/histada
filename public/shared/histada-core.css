@@ -930,7 +930,7 @@ html[data-theme="light"] .histada-theme-toggle-trigger {
 }
 
 html[data-theme="light"] .histada-theme-toggle-trigger span,
-html[data-theme="light"] .histada-global-menu-trigger span {
+html[data-theme="light"] .histada-global-menu-trigger span:not(.ed-badge-tag) {
   color: #b45309 !important;
 }
 
@@ -945,10 +945,18 @@ html[data-theme="light"] .h-social-launcher span {
   color: #0f172a !important;
 }
 
-html[data-theme="light"] .histada-global-menu-trigger:hover,
+html[data-theme="light"] .histada-global-menu-trigger:hover {
+  background: #fef3c7 !important;
+  transform: translateY(-2px) !important;
+}
+
 html[data-theme="light"] .histada-theme-toggle-trigger:hover {
   background: #fef3c7 !important;
   transform: translateX(-50%) translateY(-2px) !important;
+}
+
+.histada-exit-modal {
+  z-index: 100000 !important;
 }
 
 /* Extended TTS Control Panel */
